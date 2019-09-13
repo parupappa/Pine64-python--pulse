@@ -10,3 +10,6 @@ while True:
     GPIO.output(15,flag)
     flag = flag ^ 1
     time.sleep(1)
+
+GPIO.cleanup()
+
