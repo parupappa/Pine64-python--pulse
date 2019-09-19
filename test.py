@@ -6,10 +6,8 @@ GPIO.setmode(GPIO.BCM)
 RF = 15
 AD = 17
 
-
 GPIO.setup(RF,GPIO.OUT)
 GPIO.setup(AD,GPIO.OUT)
-
 
 RFlist = []
 ADlist = []
@@ -39,10 +37,6 @@ while j < len(RFlist):
 	
 	j = j + 1
 	sleep(1)
-
-	
-
-
 
 GPIO.cleanup()
 
