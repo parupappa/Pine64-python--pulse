@@ -40,7 +40,7 @@ while j < len(RFlist):
 	GPIO.output(AD,ADlight)
 	
 	j = j + 1
-	sleep(0.0001)	#動作を1[s]継続
+	#sleep(0.001)	#動作を1[s]継続
 
 GPIO.cleanup()
 

@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 import RPi.GPIO as GPIO
-#from time import sleep
+from time import sleep
 import time
 
 GPIO.setmode(GPIO.BCM)
@@ -27,7 +27,7 @@ with open("data.txt","r") as testdata: #data.txtを開く
 j = 0
 
 
-start = time.time()
+
 
 while j < len(RFlist):	
 	if RFlist[j] == 0: #RFlistのi番目が0ならGPIOピンをLOW
@@ -40,14 +40,18 @@ while j < len(RFlist):
 			ADlight = 1'''
 
 	
-	
+	start = time.time()
+
 	GPIO.output(RF,RFlight)
+
+	
 	#GPIO.output(AD,ADlight)
 	
 	j = j + 1
-	#sleep(0.0001)	#動作を1[s]継続
-end = time.time()
-print(end-start)
+	sleep(0.000001)	#動作を1[s]継続
+	end = time.time()
+	print(end-start)
+	
 
 GPIO.cleanup()
 
