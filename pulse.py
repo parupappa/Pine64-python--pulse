@@ -23,33 +23,32 @@ with open("pulsedata.txt","r") as testdata:
 		#ADlist.append(int(strAD[i])) 
 	print(RFlist)
 
+
+
 count = 0
+j = 0
 
-for counter in range(10):
+starttime = time.time()
+
+while j < len(RFlist):	
 	
-	if count == 3:
-		j = 0
-		while j < len(RFlist):	
-			if RFlist[j] == 0: #RFlistのi番目が0ならGPIOピンをLOW
-			  RFlight = 0 #タイムラグをなるべくなくすためRFlightという変数を用い後に出力
-			elif RFlist[j] == 1:
-				RFlight = 1
-			
+	for counter in range(10):	
+		RFlight = RFlist[j]
 
-			starttime = time.time()
-
+		if count == 3:
 			GPIO.output(RF,RFlight)			
-			sleep(0.1)
-			endtime = time.time()
-			print(endtime - starttime)
-			j = j + 1
-
-	elif count != 3:  
-		sleep(0.1)
+			sleep(0.01)	
+				
+		elif count != 3:  
+			GPIO.output(RF,0)
+			sleep(0.01)
+			
 		
-	count = count + 1
-	print(count)
-	
+		count = count + 1
+		print(count)
+	j = j + 1
+endtime = time.time()
+print(endtime - starttime)
 	
 
 
