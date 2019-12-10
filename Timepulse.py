@@ -46,7 +46,7 @@ for counter in range(10):
 
 	elif counter == Timedata[7]:
 		GPIO.output(RF,0)			
-		sleep(0.02)
+		sleep(0.01)
 
 	elif counter == Timedata[8]:
 		GPIO.output(DDS,1)			
@@ -57,6 +57,7 @@ for counter in range(10):
 		sleep(0.01)
 
 	else:
+		GPIO.output(RF,0)
 		GPIO.output(AD,0)
 		GPIO.output(DDS,0)
 		sleep(0.01)
