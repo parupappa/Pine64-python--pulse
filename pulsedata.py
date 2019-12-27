@@ -24,6 +24,11 @@ GPIO.setup(DDS,GPIO.OUT)
 
 '''
 
+
+
+
+#カウント値操作部分
+
 countlist = []
 targetlist  = []
 DDSdatalist = []
@@ -37,25 +42,29 @@ with open("pulsedata.csv","r") as Pulsedata:
         countlist.append(row[0])
     del countlist[0]
     countlist = [int(i) for i in countlist]
-    print(countlist)
-
+    #print(countlist)
 
 countlist1 = []
 
 for k in range(len(countlist)):
-    countlist1.append(countlist[k] * 1000000)
+    countlist1.append(countlist[k] * 100000) #[ms]単位のカウント値
     countlist1[k] = format(countlist1[k],'b').zfill(32)
-print(countlist1)
+#print(countlist1)
 
 
 
 
+
+
+
+
+#対象操作部分
 
 with open("pulsedata.csv","r") as Pulsedata:    
     for row in csv.reader(Pulsedata):
         targetlist.append(row[1])
     del targetlist[0]
-    print(targetlist)
+    #print(targetlist)
 
 
 targetRF = []
@@ -97,9 +106,18 @@ for b in range(len(targetRF)):
     s3 = targetAD[b]
     s = s1 + s2 + s3
     bitsdata.append(s.zfill(32))
-print(bitsdata)
+#print(bitsdata)
 
 
+
+
+
+
+
+
+
+
+#DDS動作部分
 
 
 with open("pulsedata.csv","r") as Pulsedata:    
@@ -109,21 +127,71 @@ with open("pulsedata.csv","r") as Pulsedata:
     for n in DDSdatalist:
         if n != '':
             DDSdata.append(n)   
-    print(DDSdata)
+    #print(DDSdata)
+
+
+DDSinfo = []
+a = 1
+for dl in targetlist :
+    if 'DDS' in dl:
+        a = a + 1            
+DDSinfo.append(format(a,'x').zfill(16))        
+print(DDSinfo)
 
 
 
 
+
+
+
+
+#データ連結部分
+#データを16進数に変換
 
 Pulsedata = []
 
+for c in range(len(bitsdata)) :
+    P1 = countlist1[c] 
+    P2 = bitsdata[c]
+    P = P2 + P1
+    Pulsedata.append(P)
+#print(Pulsedata)
+
+
+hexdata = ''
+Pulsedata_hex =[]
+n = 0
+for m in range(len(Pulsedata)):
+    str = Pulsedata[m]
+    hexdata = ''
+    n = 0
+    while n + 3 < 64:
+        four_str = str[n:n+4]
+        four_int = int("0b"+four_str, 0)
+        hex_str = format(four_int,'x')
+        hexdata = hexdata + hex_str
+        n = n + 4
+    Pulsedata_hex.append(hexdata)
+print(Pulsedata_hex)
+   
 
 
 
+#アドレスデータ部分
+
+addresslist = []
+for d in range(len(countlist) + 1):
+    addresslist.append(format(d,'x').zfill(5))    
+print(addresslist)    
 
 
 
+csvdata = []
+start = DDSinfo + addresslist[0]
 
+
+
+print(start)
 
 #GPIO.cleanup()
 
