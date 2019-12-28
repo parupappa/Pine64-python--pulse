@@ -1,22 +1,17 @@
 #-*- coding: utf-8 -*-
 
 '''
-
 import RPi.GPIO as GPIO
 from time import sleep
 import time
 '''
 import csv
-
-
 '''
 GPIO.setmode(GPIO.BCM)
 
 RF = 15
 AD = 11
 DDS = 8
-
-
 
 GPIO.setup(RF,GPIO.OUT)
 GPIO.setup(AD,GPIO.OUT)
@@ -26,16 +21,9 @@ GPIO.setup(DDS,GPIO.OUT)
 
 
 
-
 #カウント値操作部分
 
 countlist = []
-targetlist  = []
-DDSdatalist = []
-DDSdata = []
-
-
-
 
 with open("pulsedata.csv","r") as Pulsedata: 
     for row in csv.reader(Pulsedata):
@@ -60,12 +48,13 @@ for k in range(len(countlist)):
 
 #対象操作部分
 
+targetlist  = []
+
 with open("pulsedata.csv","r") as Pulsedata:    
     for row in csv.reader(Pulsedata):
         targetlist.append(row[1])
     del targetlist[0]
     #print(targetlist)
-
 
 targetRF = []
 targetDDS = []
@@ -97,7 +86,6 @@ for tl in targetlist :
 #print(targetDDS)
 #print(targetAD)
 
-
 bitsdata = []
 
 for b in range(len(targetRF)):
@@ -119,6 +107,8 @@ for b in range(len(targetRF)):
 
 #DDS動作部分
 
+DDSdatalist = []
+DDSdata = []
 
 with open("pulsedata.csv","r") as Pulsedata:    
     for row in csv.reader(Pulsedata):
@@ -126,7 +116,7 @@ with open("pulsedata.csv","r") as Pulsedata:
     del DDSdatalist[0]
     for n in DDSdatalist:
         if n != '':
-            DDSdata.append(n)   
+            DDSdata.append(n.zfill(16))   
     #print(DDSdata)
 
 
@@ -136,7 +126,7 @@ for dl in targetlist :
     if 'DDS' in dl:
         a = a + 1            
 DDSinfo.append(format(a,'x').zfill(16))        
-print(DDSinfo)
+#print(DDSinfo)
 
 
 
@@ -157,7 +147,6 @@ for c in range(len(bitsdata)) :
     Pulsedata.append(P)
 #print(Pulsedata)
 
-
 hexdata = ''
 Pulsedata_hex =[]
 n = 0
@@ -172,7 +161,7 @@ for m in range(len(Pulsedata)):
         hexdata = hexdata + hex_str
         n = n + 4
     Pulsedata_hex.append(hexdata)
-print(Pulsedata_hex)
+#print(Pulsedata_hex)
    
 
 
@@ -180,18 +169,41 @@ print(Pulsedata_hex)
 #アドレスデータ部分
 
 addresslist = []
-for d in range(len(countlist) + 1):
+for d in range(1 + len(DDSdata) + len(Pulsedata_hex)):
     addresslist.append(format(d,'x').zfill(5))    
-print(addresslist)    
+#print(addresslist)    
 
 
+
+#全データを指定の二次元配列の形に直す部分
 
 csvdata = []
-start = DDSinfo + addresslist[0]
+
+start_csvlist = [addresslist[0],DDSinfo[0]]
+csvdata.append(start_csvlist)
+#print(csvdata)
+
+for i in range(len(DDSdata)):
+    csvdata0 = []
+    csvdata0 = [addresslist[i+1],DDSdata[i]]
+    csvdata.append(csvdata0)
+#print(csvdata)
+
+
+for j in range(len(Pulsedata_hex)):
+    csvdata1 = []
+    csvdata1 = [addresslist[len(DDSdata)+ j +1],Pulsedata_hex[j]]
+    csvdata.append(csvdata1)
+print(csvdata)
 
 
 
-print(start)
+#CSVファイル生成部分
+
+with open ("pulsedata_exit.csv","w")as f:
+    writer = csv.writer(f,lineterminator="\n")
+    writer.writerows(csvdata)
+
 
 #GPIO.cleanup()
 
