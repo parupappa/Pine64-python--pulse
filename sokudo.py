@@ -30,7 +30,7 @@ while j < len(RFlist):
 
 	GPIO.output(RF,RFlight)	
 
-	sleep(0.1)
+	sleep(0.00001)
 	
 	end = time.time()
 	print(end-start)
