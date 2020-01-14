@@ -1,24 +1,6 @@
 #-*- coding: utf-8 -*-
 
-'''
-import RPi.GPIO as GPIO
-from time import sleep
-import time
-'''
 import csv
-'''
-GPIO.setmode(GPIO.BCM)
-
-RF = 15
-AD = 11
-DDS = 8
-
-GPIO.setup(RF,GPIO.OUT)
-GPIO.setup(AD,GPIO.OUT)
-GPIO.setup(DDS,GPIO.OUT)
-
-'''
-
 
 
 #カウント値操作部分
@@ -38,8 +20,6 @@ for k in range(len(countlist)):
     countlist1.append(countlist[k] * 10000) #[us]単位のカウント値
     countlist1[k] = format(countlist1[k],'b').zfill(32)
 #print(countlist1)
-
-
 
 
 
@@ -95,9 +75,6 @@ for b in range(len(targetRF)):
     s = s1 + s2 + s3
     bitsdata.append(s.zfill(32))
 #print(bitsdata)
-
-
-
 
 
 
