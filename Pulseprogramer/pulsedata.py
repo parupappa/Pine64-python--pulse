@@ -7,7 +7,7 @@ import csv
 
 countlist = []
 
-with open("pulsedata_in.csv","r") as Pulsedata: 
+with open("pulsedata_in.csv","r") as Pulsedata:
     for row in csv.reader(Pulsedata):
         countlist.append(row[0])
     del countlist[0]
@@ -22,15 +22,11 @@ for k in range(len(countlist)):
 #print(countlist1)
 
 
-
-
-
-
 #対象操作部分
 
 targetlist  = []
 
-with open("pulsedata_in.csv","r") as Pulsedata:    
+with open("pulsedata_in.csv","r") as Pulsedata:
     for row in csv.reader(Pulsedata):
         targetlist.append(row[1])
     del targetlist[0]
@@ -47,7 +43,7 @@ for tl in targetlist :
     else:
         i = '0'
         targetRF.append(i)
-    
+
     if 'DDS' in tl:
         j = '1'
         targetDDS.append(j)
@@ -61,7 +57,7 @@ for tl in targetlist :
     else:
         k = '0'
         targetAD.append(k)
-        
+
 #print(targetRF)
 #print(targetDDS)
 #print(targetAD)
@@ -87,13 +83,13 @@ for b in range(len(targetRF)):
 DDSdatalist = []
 DDSdata = []
 
-with open("pulsedata_in.csv","r") as Pulsedata:    
+with open("pulsedata_in.csv","r") as Pulsedata:
     for row in csv.reader(Pulsedata):
         DDSdatalist.append(row[2])
     del DDSdatalist[0]
     for n in DDSdatalist:
         if n != '':
-            DDSdata.append(n.zfill(16))   
+            DDSdata.append(n.zfill(16))
     #print(DDSdata)
 
 
@@ -101,8 +97,8 @@ DDSinfo = []
 a = 1
 for dl in targetlist :
     if 'DDS' in dl:
-        a = a + 1            
-DDSinfo.append(format(a,'x').zfill(16))        
+        a = a + 1
+DDSinfo.append(format(a,'x').zfill(16))
 #print(DDSinfo)
 
 
@@ -118,7 +114,7 @@ DDSinfo.append(format(a,'x').zfill(16))
 Pulsedata = []
 
 for c in range(len(bitsdata)) :
-    P1 = countlist1[c] 
+    P1 = countlist1[c]
     P2 = bitsdata[c]
     P = P2 + P1
     Pulsedata.append(P)
@@ -139,7 +135,7 @@ for m in range(len(Pulsedata)):
         n = n + 4
     Pulsedata_hex.append(hexdata)
 #print(Pulsedata_hex)
-   
+
 
 
 
@@ -147,8 +143,8 @@ for m in range(len(Pulsedata)):
 
 addresslist = []
 for d in range(1 + len(DDSdata) + len(Pulsedata_hex)):
-    addresslist.append(format(d,'x').zfill(5))    
-#print(addresslist)    
+    addresslist.append(format(d,'x').zfill(5))
+#print(addresslist)
 
 
 
