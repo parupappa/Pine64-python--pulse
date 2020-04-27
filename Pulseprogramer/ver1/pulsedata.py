@@ -179,4 +179,3 @@ with open ("pulsedata_out.csv","w")as f:
 
 
 #GPIO.cleanup()
-
