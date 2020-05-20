@@ -32,7 +32,7 @@ for n in range(3):  # 3,7,11を指定すれば繰り返し回数、つまりRF�
         col_value = sheet.col_values(int(n))
         del col_value[0:3]
         col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
-        print(col_nvalue)
+        # print(col_nvalue)
         for m in range(len(col_nvalue)):
             a = col_nvalue[m]
             b = int(a)
@@ -46,7 +46,7 @@ for n in range(3):  # 3,7,11を指定すれば繰り返し回数、つまりRF�
         col_value = sheet.col_values(int(n))
         del col_value[0:3]
         col_nvalue = [s for s in col_value if s != '']
-        print(col_nvalue)
+        # print(col_nvalue)
         for m in range(len(col_nvalue)):
             c = col_nvalue[m]
             d = int(c)
@@ -66,12 +66,13 @@ RFcountlist = []
 for n in range(len(allRFdatalist)):  # RFとカウント値に分割
     RFlist.append(allRFdatalist[n][0])
     RFcountlist.append(allRFdatalist[n][1])
-# print(RFlist)  # ['RF1', '', 'RF1', '', 'RF1', '']
-# print(RFcountlist)  # [0, 2, 5, 9, 12, 18]
+print(RFlist)  # ['RF1', '', 'RF1', '', 'RF1', '']
+print(RFcountlist)  # [0, 2, 5, 9, 12, 18]
 
 
 ##################################################################
-"""
+
+# ADの部分のみについて取り出し、sortを行う
 n = 0
 m = 0
 AD1 = 'AD1'
@@ -89,24 +90,40 @@ for n in range(12, 15):  # 右の値15,19,23を指定すれば繰り返し回数
     if n % 4 == 0:  # sc 12,16,20行目
         col_value = sheet.col_values(int(n))
         del col_value[0:3]
-        for m in range(len(col_value)):
-            a = col_value[m]
+        col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
+        for m in range(len(col_nvalue)):
+            a = col_nvalue[m]
             b = int(a)
             AD_scset.append(ADnamelist[m])
             AD_scset.append(b)
             AD_nscset.append(AD_scset)
             AD_scset = []
-        #print(AD_nscset)  # RFのsc部分のデータ [[RF1,0],...[RF3,12]]
+        # print(AD_nscset)  # RFのsc部分のデータ [[RF1,0],...[RF3,12]]
 
     elif (n - 2) % 4 == 0:  # ec 14,18,22行目
         col_value = sheet.col_values(int(n))
         del col_value[0:3]
-        for m in range(len(col_value)):
-            c = col_value[m]
+        col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
+        for m in range(len(col_nvalue)):
+            c = col_nvalue[m]
             d = int(c)
             AD_ecset.append('')  # ecの方は何も入れない
             AD_ecset.append(d)
             AD_necset.append(AD_ecset)
             AD_ecset = []
-        #print(AD_necset)  # RFのec部分のデータ　[['',2],...['',18]]
-"""
+        # print(AD_necset)  # RFのec部分のデータ　[['',2],...['',18]]
+
+allADdatalist = AD_nscset + AD_necset
+allADdatalist.sort(key=lambda num: num[1])  # count順になるようにsort
+# print(allADdatalist)  # [['AD1', 0], ['', 2], ... ['', 18]]
+
+
+ADlist = []
+ADcountlist = []
+for n in range(len(allADdatalist)):  # RFとカウント値に分割
+    ADlist.append(allADdatalist[n][0])
+    ADcountlist.append(allADdatalist[n][1])
+print(ADlist)  # ['RF1', '', 'RF1', '', 'RF1', '']
+print(ADcountlist)  # [0, 2, 5, 9, 12, 18]
+
+#####################################################################################
