@@ -56,25 +56,14 @@ for n in range(3):  # 3,7,11を指定すれば繰り返し回数、つまりRF�
             RF_ecset = []
         # print(RF_necset)  #RFのec部分のデータ　[['',2],...['',18]]
 
-
 allRFdatalist = RF_nscset + RF_necset
-allRFdatalist.sort(key=lambda num: num[1])  # count順になるようにsort
 # print(allRFdatalist)  # [['RF1', 0], ['', 2], ... ['', 18]]
-
-RFlist = []
-RFcountlist = []
-for n in range(len(allRFdatalist)):  # RFとカウント値に分割
-    RFlist.append(allRFdatalist[n][0])
-    RFcountlist.append(allRFdatalist[n][1])
-print(RFlist)  # ['RF1', '', 'RF1', '', 'RF1', '']
-print(RFcountlist)  # [0, 2, 5, 9, 12, 18]
 
 
 ##################################################################
 
 # ADの部分のみについて取り出し、sortを行う
-n = 0
-m = 0
+
 AD1 = 'AD1'
 AD2 = 'AD2'
 AD3 = 'AD3'
@@ -94,7 +83,7 @@ for n in range(12, 15):  # 右の値15,19,23を指定すれば繰り返し回数
         for m in range(len(col_nvalue)):
             a = col_nvalue[m]
             b = int(a)
-            AD_scset.append(ADnamelist[m])
+            AD_scset.append(ADnamelist[int(n/4 - 3)])
             AD_scset.append(b)
             AD_nscset.append(AD_scset)
             AD_scset = []
@@ -114,16 +103,69 @@ for n in range(12, 15):  # 右の値15,19,23を指定すれば繰り返し回数
         # print(AD_necset)  # RFのec部分のデータ　[['',2],...['',18]]
 
 allADdatalist = AD_nscset + AD_necset
-allADdatalist.sort(key=lambda num: num[1])  # count順になるようにsort
-# print(allADdatalist)  # [['AD1', 0], ['', 2], ... ['', 18]]
-
-
-ADlist = []
-ADcountlist = []
-for n in range(len(allADdatalist)):  # RFとカウント値に分割
-    ADlist.append(allADdatalist[n][0])
-    ADcountlist.append(allADdatalist[n][1])
-print(ADlist)  # ['RF1', '', 'RF1', '', 'RF1', '']
-print(ADcountlist)  # [0, 2, 5, 9, 12, 18]
+# print(allADdatalist)  # [['AD1', 10], ['', 1], ... ]
 
 #####################################################################################
+
+
+# DDSの部分のみについて取り出し、scと40bitデータを16進数に直し分けて格納
+
+DDS1 = 'DDS1'
+DDS2 = 'DDS2'
+DDSnamelist = [DDS1, DDS2]
+
+col_nvalue = []
+DDS_scset = []
+DDS_nscset = []
+DDS_40bitset = []
+DDS_16bitset = []
+
+for n in range(24, 29):  # 右の値29,37を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
+    if n % 8 == 0:  # 24(Y),32(AG)行目 #8にしないと28（AC）が含まれちゃう
+        col_value = sheet.col_values(int(n))
+        del col_value[0:3]
+        col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
+        for m in range(len(col_nvalue)):
+            a = col_nvalue[m]
+            b = int(a)
+            DDS_scset.append(DDSnamelist[int(n/8 - 3)])
+            DDS_scset.append(b)
+            DDS_nscset.append(DDS_scset)
+            DDS_scset = []
+        print(DDS_nscset)  # RFのsc部分のデータ [[RF1,0],...[RF3,12]]
+
+    elif (n - 2) % 8 == 4:  # 40bitdata 28(AC),36(AK)行目
+        col_value = sheet.col_values(int(n))
+        del col_value[0:3]
+        col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
+        for m in range(len(col_nvalue)):
+            40bitdata = col_nvalue[m]
+            d = int(c)
+            AD_ecset.append('')  # ecの方は何も入れない
+            AD_ecset.append(d)
+            AD_necset.append(AD_ecset)
+            AD_ecset = []
+        # print(AD_necset)  # RFのec部分のデータ　[['',2],...['',18]]
+
+allADdatalist = AD_nscset + AD_necset
+# print(allADdatalist)  # [['AD1', 10], ['', 1], ... ]
+
+
+######################################################################
+
+# RF,ADの統合を行う
+"""
+allRFADdatalist = allRFdatalist + allADdatalist
+allRFADdatalist.sort(key=lambda count: count[1])  # count順になるようにsort
+# print(allRFADdatalist) # [['RF1', 0], ['', 2], ['RF1', 5], ['', 9], ['AD1', 10], ['', 11]]
+
+
+targetlist0 = []
+countlist0 = []
+
+for n in range(len(allRFADdatalist)):  # 対象とカウント値に分割
+    targetlist0.append(allRFADdatalist[n][0])
+    countlist0.append(allRFADdatalist[n][1])
+print(targetlist0)  # ['RF1', '', 'RF1', '', 'AD1', '']
+print(countlist0)  # [0, 2, 5, 9, 10, 11]
+"""
