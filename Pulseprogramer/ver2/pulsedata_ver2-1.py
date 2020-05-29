@@ -6,7 +6,7 @@ import pprint
 
 
 wb = xlrd.open_workbook(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
+    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(type(wb))  #Bookオブジェクトを取得
 sheet = wb.sheet_by_name('Sheet1')
 # print(type(sheet)) #sheetオブジェクトを取得
@@ -27,7 +27,7 @@ RF_nscset = []
 RF_ecset = []
 RF_necset = []
 
-for n in range(3):  # 3,7,11を指定すれば繰り返し回数、つまりRFの個数を指定出来る
+for n in range(11):  # 3,7,11を指定すれば繰り返し回数、つまりRFの個数を指定出来る
     if n % 4 == 0:  # sc 0,4,8行目
         # col_valuesの長さは常にsheet.nrowsに等しい 。つまり、sheetの一番下の行数となってしまう
         col_value = sheet.col_values(int(n))
@@ -76,7 +76,7 @@ AD_nscset = []
 AD_ecset = []
 AD_necset = []
 
-for n in range(12, 15):  # 右の値15,19,23を指定すれば繰り返し回数、つまりADの個数を指定出来る
+for n in range(12, 23):  # 右の値15,19,23を指定すれば繰り返し回数、つまりADの個数を指定出来る
     if n % 4 == 0:  # sc 12,16,20行目
         col_value = sheet.col_values(int(n))
         del col_value[0:3]
@@ -399,6 +399,8 @@ for d in range(1 + len(DDSdata) + len(Pulsedata_hex)):
 print(addresslist)  # 5桁の16進数表記
 
 
+#############################################################################################
+
 # 全データを指定の二次元配列の形に直す部分
 csvdata = []
 
@@ -422,6 +424,6 @@ for j in range(len(Pulsedata_hex)):
 
 # CSVファイル生成部分
 
-with open("pulsedata_out.csv", "w")as f:
+with open("outdata_ver2.csv", "w")as f:
     writer = csv.writer(f, lineterminator="\n")
     writer.writerows(csvdata)
