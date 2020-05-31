@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
+# 設定するパラメータ　RF AD DDS の繰り返し回数と　1カウントをどの長さにするかのカウント値部分
+
 import csv
 import xlrd
 import pprint
-
 
 wb = xlrd.open_workbook(
     '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
@@ -27,7 +28,7 @@ RF_nscset = []
 RF_ecset = []
 RF_necset = []
 
-for n in range(11):  # 3,7,11を指定すれば繰り返し回数、つまりRFの個数を指定出来る
+for n in range(3):  # 3,7,11を指定すれば繰り返し回数、つまりRFの個数を指定出来る
     if n % 4 == 0:  # sc 0,4,8行目
         # col_valuesの長さは常にsheet.nrowsに等しい 。つまり、sheetの一番下の行数となってしまう
         col_value = sheet.col_values(int(n))
@@ -76,7 +77,7 @@ AD_nscset = []
 AD_ecset = []
 AD_necset = []
 
-for n in range(12, 23):  # 右の値15,19,23を指定すれば繰り返し回数、つまりADの個数を指定出来る
+for n in range(12, 15):  # 右の値15,19,23を指定すれば繰り返し回数、つまりADの個数を指定出来る
     if n % 4 == 0:  # sc 12,16,20行目
         col_value = sheet.col_values(int(n))
         del col_value[0:3]
@@ -123,7 +124,7 @@ typenamelist0 = []
 typenamelist = []
 
 
-for n in range(24, 38):  # 右の値30,38を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
+for n in range(24, 30):  # 右の値30,38を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
     if n % 8 == 0:  # 24(Y),32(AG)行目 #8にしないと28（AC）が含まれちゃう
         col_value = sheet.col_values(int(n))
         del col_value[0:3]
@@ -388,7 +389,7 @@ for m in range(len(Pulsedata)):
         hexdata = hexdata + hex_str
         n = n + 4
     Pulsedata_hex.append(hexdata)  # 4bitずつ16進数に変換
-print(Pulsedata_hex)  # 64bitのPulsedataを16bitの16進数に変換
+# print(Pulsedata_hex)  # 64bitのPulsedataを16bitの16進数に変換
 
 ################################################################################################
 
