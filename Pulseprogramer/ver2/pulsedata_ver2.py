@@ -396,7 +396,7 @@ print(Pulsedata_hex)  # 64bitのPulsedataを16bitの16進数に変換
 addresslist = []
 for d in range(1 + len(DDSdata) + len(Pulsedata_hex)):
     addresslist.append(format(d, 'x').zfill(5))
-print(addresslist)  # 5桁の16進数表記
+# print(addresslist)  # 5桁の16進数表記
 
 
 #############################################################################################
