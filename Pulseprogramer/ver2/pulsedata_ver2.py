@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# 設定するパラメータ　RF AD DDS の繰り返し回数と　1カウントをどの長さにするかのカウント値部分
+# 設定するパラメータ　PL AD DDS の繰り返し回数と　1カウントをどの長さにするかのカウント値部分
 
 import csv
 import xlrd
@@ -8,58 +8,58 @@ import pprint
 
 wb = xlrd.open_workbook(
     '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
-# print(type(wb))  #Bookオブジェクトを取得
-sheet = wb.sheet_by_name('Sheet1')
-# print(type(sheet)) #sheetオブジェクトを取得
+# print(pattern(wb))  #Bookオブジェクトを取得
+sheet1 = wb.sheet_by_name('Sheet1')
+# print(pattern(sheet)) #sheetオブジェクトを取得
 
 # Excelファイルの行(row)列(col)の先頭は0行0列
 
 # まずはver1のプログラムを生かせる形にExcelファイルを読み込む
 
-# RFの部分のみについて取り出しとsortを行う
-RF1 = 'RF1'
-RF2 = 'RF2'
-RF3 = 'RF3'
-RFnamelist = [RF1, RF2, RF3]
+# PLの部分のみについて取り出しとsortを行う
+PL1 = 'PL1'
+PL2 = 'PL2'
+PL3 = 'PL3'
+PLnamelist = [PL1, PL2, PL3]
 
 col_nvalue = []
-RF_scset = []
-RF_nscset = []
-RF_ecset = []
-RF_necset = []
+PL_scset = []
+PL_nscset = []
+PL_ecset = []
+PL_necset = []
 
-for n in range(3):  # 3,7,11を指定すれば繰り返し回数、つまりRFの個数を指定出来る
+for n in range(3):  # 3,7,11を指定すれば繰り返し回数、つまりPLの個数を指定出来る
     if n % 4 == 0:  # sc 0,4,8行目
         # col_valuesの長さは常にsheet.nrowsに等しい 。つまり、sheetの一番下の行数となってしまう
-        col_value = sheet.col_values(int(n))
+        col_value = sheet1.col_values(int(n))
         del col_value[0:3]
         col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
         # print(col_nvalue)
         for m in range(len(col_nvalue)):
             a = col_nvalue[m]
             b = int(a)
-            RF_scset.append(RFnamelist[int(n/4)])
-            RF_scset.append(b)
-            RF_nscset.append(RF_scset)
-            RF_scset = []
-        # print(RF_nscset) #RFのsc部分のデータ [[RF1,0],...[RF3,12]]
+            PL_scset.append(PLnamelist[int(n/4)])
+            PL_scset.append(b)
+            PL_nscset.append(PL_scset)
+            PL_scset = []
+        # print(PL_nscset) #PLのsc部分のデータ [[PL1,0],...[PL3,12]]
 
     elif (n - 2) % 4 == 0:  # ec 2,6,10行目
-        col_value = sheet.col_values(int(n))
+        col_value = sheet1.col_values(int(n))
         del col_value[0:3]
         col_nvalue = [s for s in col_value if s != '']
         # print(col_nvalue)
         for m in range(len(col_nvalue)):
             c = col_nvalue[m]
             d = int(c)
-            RF_ecset.append('')  # ecの方は何も入れない
-            RF_ecset.append(d)
-            RF_necset.append(RF_ecset)
-            RF_ecset = []
-        # print(RF_necset)  #RFのec部分のデータ　[['',2],...['',18]]
+            PL_ecset.append('')  # ecの方は何も入れない
+            PL_ecset.append(d)
+            PL_necset.append(PL_ecset)
+            PL_ecset = []
+        # print(PL_necset)  #PLのec部分のデータ　[['',2],...['',18]]
 
-allRFdatalist = RF_nscset + RF_necset
-# print(allRFdatalist)  # [['RF1', 0], ['', 2], ... ['', 18]]
+allPLdatalist = PL_nscset + PL_necset
+# print(allPLdatalist)  # [['PL1', 0], ['', 2], ... ['', 18]]
 
 
 ##################################################################
@@ -79,7 +79,7 @@ AD_necset = []
 
 for n in range(12, 15):  # 右の値15,19,23を指定すれば繰り返し回数、つまりADの個数を指定出来る
     if n % 4 == 0:  # sc 12,16,20行目
-        col_value = sheet.col_values(int(n))
+        col_value = sheet1.col_values(int(n))
         del col_value[0:3]
         col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
         for m in range(len(col_nvalue)):
@@ -89,10 +89,10 @@ for n in range(12, 15):  # 右の値15,19,23を指定すれば繰り返し回数
             AD_scset.append(b)
             AD_nscset.append(AD_scset)
             AD_scset = []
-        # print(AD_nscset)  # RFのsc部分のデータ [[RF1,0],...[RF3,12]]
+        # print(AD_nscset)  # PLのsc部分のデータ [[PL1,0],...[PL3,12]]
 
     elif (n - 2) % 4 == 0:  # ec 14,18,22行目
-        col_value = sheet.col_values(int(n))
+        col_value = sheet1.col_values(int(n))
         del col_value[0:3]
         col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
         for m in range(len(col_nvalue)):
@@ -102,7 +102,7 @@ for n in range(12, 15):  # 右の値15,19,23を指定すれば繰り返し回数
             AD_ecset.append(d)
             AD_necset.append(AD_ecset)
             AD_ecset = []
-        # print(AD_necset)  # RFのec部分のデータ　[['',2],...['',18]]
+        # print(AD_necset)  # PLのec部分のデータ　[['',2],...['',18]]
 
 allADdatalist = AD_nscset + AD_necset
 # print(allADdatalist)  # [['AD1', 10], ['', 1], ... ]
@@ -120,26 +120,32 @@ col_nvalue = []
 DDS_scset = []
 DDS_nscset = []
 DDS_40set = []
-typenamelist0 = []
-typenamelist = []
+patternnamelist0 = []
+patternnamelist = []
+patternnamelist_int = []
 
 
-for n in range(24, 30):  # 右の値30,38を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
-    if n % 8 == 0:  # 24(Y),32(AG)行目 #8にしないと28（AC）が含まれちゃう
-        col_value = sheet.col_values(int(n))
+wb = xlrd.open_workbook(
+    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+# print(pattern(wb))  #Bookオブジェクトを取得
+sheet2 = wb.sheet_by_name('Sheet2')
+
+for n in range(0, 14):  # 右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
+    if n % 8 == 0:  # 0(A),8(I)行目
+        col_value = sheet2.col_values(int(n))
         del col_value[0:3]
         col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
         for m in range(len(col_nvalue)):
             a = col_nvalue[m]
             b = int(a)
-            DDS_scset.append(DDSnamelist[int(n/8 - 3)])
+            DDS_scset.append(DDSnamelist[int(n/8)])
             DDS_scset.append(b)
             DDS_nscset.append(DDS_scset)
             DDS_scset = []
-        # print(DDS_nscset)  # RFのsc部分のデータ [[RF1,0],...[RF3,12]]
+        # print(DDS_nscset)  # PLのsc部分のデータ [[PL1,0],...[PL3,12]]
 
-    elif n % 8 == 4:  # 40bitdata 28(AC),36(AK)行目
-        col_value = sheet.col_values(int(n))
+    elif n % 8 == 4:  # 40bitdata 4(E),12(M)行目
+        col_value = sheet2.col_values(int(n))
         del col_value[0:3]
         col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
         for m in range(len(col_nvalue)):
@@ -147,18 +153,22 @@ for n in range(24, 30):  # 右の値30,38を指定すれば繰り返し回数、
             DDS_40set.append(bitdata_40)
         # print(DDS_40set)  # DDSの40bit部分のデータ
 
-    elif n % 8 == 5:  # DDSとtypenameの文字列を合体させる
-        col_value = sheet.col_values(int(n))
+    elif n % 8 == 5:  # DDSとpatternnameの文字列を合体させる
+        col_value = sheet2.col_values(int(n))
         del col_value[0:3]
-        typenamelist0 = [s for s in col_value if s != '']  # col_value内の’’を削除
-        typenamelist.append(typenamelist0)
-        typenamelist = [s for row in typenamelist for s in row]  # リスト内リストを外す
-        # print(typenamelist)
+        # col_value内の’’を削除
+        patternnamelist0 = [s for s in col_value if s != '']
+        patternnamelist_int = [int(m) for m in patternnamelist0]
+        patternnamelist_str = [str(l) for l in patternnamelist_int]
+        patternnamelist.append(patternnamelist_str)
+        patternnamelist = [
+            s for row in patternnamelist for s in row]  # リスト内リストを外す
+        # print(patternnamelist)
 
-for m in range(len(typenamelist)):
+for m in range(len(patternnamelist)):
     DDSname = DDS_nscset[m][0]
-    DDS_nscset[m][0] = (DDSname + typenamelist[m])
-# [['DDS1A', 20], ['DDS1B', 24], ['DDS2A', 20], ['DDS2B', 80]]
+    DDS_nscset[m][0] = (DDSname + patternnamelist[m])
+# [['DDS11', 20], ['DDS12', 24], ['DDS21', 20], ['DDS22', 80]]
 # print(DDS_nscset)
 
 
@@ -187,22 +197,22 @@ for n in range(len(DDSdata_hex)):
 
 ####################################################################################################
 
-# RF,AD,DDSの統合を行う
+# PL,AD,DDSの統合を行う
 
-allRFADDDSdatalist = allRFdatalist + allADdatalist + DDS_nscset
-allRFADDDSdatalist.sort(key=lambda count: count[1])  # count順になるようにsort
-# print(allRFADDDSdatalist) # [['RF1', 0], ['', 2]....['DDS1', 20], ['DDS2', 20], ['DDS1', 24], ['DDS2', 80]]
+allPLADDDSdatalist = allPLdatalist + allADdatalist + DDS_nscset
+allPLADDDSdatalist.sort(key=lambda count: count[1])  # count順になるようにsort
+# print(allPLADDDSdatalist) # [['PL1', 0], ['', 2]....['DDS1', 20], ['DDS2', 20], ['DDS1', 24], ['DDS2', 80]]
 
 
 # 対象とカウント値に分割
 targetlist0 = []
 countlist0 = []
 
-for n in range(len(allRFADDDSdatalist)):
-    targetlist0.append(allRFADDDSdatalist[n][0])
-    countlist0.append(allRFADDDSdatalist[n][1])
+for n in range(len(allPLADDDSdatalist)):
+    targetlist0.append(allPLADDDSdatalist[n][0])
+    countlist0.append(allPLADDDSdatalist[n][1])
 
-# print(targetlist0)  # ['RF1', '', 'RF1', '', 'AD1', '']
+# print(targetlist0)  # ['PL1', '', 'PL1', '', 'AD1', '']
 # print(countlist0)  # [0, 2, 5, 9, 10, 11]
 
 
@@ -224,42 +234,49 @@ for k in range(len(countlist0)):
 
 # 対象操作部分
 
-targetRF1 = []
-targetRF2 = []
-targetRF3 = []
+targetPL1 = []
+targetPL2 = []
+targetPL3 = []
 targetAD1 = []
 targetAD2 = []
 targetAD3 = []
-targetDDS1A = []
-targetDDS1B = []
-targetDDS1C = []
-targetDDS1D = []
-targetDDS1E = []
-targetDDS2A = []
-targetDDS2B = []
-targetDDS2C = []
-targetDDS2D = []
-targetDDS2E = []
+targetDDS11 = []
+targetDDS12 = []
+targetDDS13 = []
+targetDDS14 = []
+targetDDS15 = []
+targetDDS16 = []
+targetDDS17 = []
+targetDDS18 = []
+targetDDS21 = []
+targetDDS22 = []
+targetDDS23 = []
+targetDDS24 = []
+targetDDS25 = []
+targetDDS26 = []
+targetDDS27 = []
+targetDDS28 = []
+
 
 for tl in targetlist0:
-    if 'RF1' in tl:
+    if 'PL1' in tl:
         a = '1'
-        targetRF1.append(a)
+        targetPL1.append(a)
     else:
         a = '0'
-        targetRF1.append(a)
-    if 'RF2' in tl:
+        targetPL1.append(a)
+    if 'PL2' in tl:
         b = '1'
-        targetRF2.append(b)
+        targetPL2.append(b)
     else:
         b = '0'
-        targetRF2.append(b)
-    if 'RF3' in tl:
+        targetPL2.append(b)
+    if 'PL3' in tl:
         c = '1'
-        targetRF3.append(c)
+        targetPL3.append(c)
     else:
         c = '0'
-        targetRF3.append(c)
+        targetPL3.append(c)
 
     if 'AD1' in tl:
         d = '1'
@@ -280,87 +297,123 @@ for tl in targetlist0:
         f = '0'
         targetAD3.append(f)
 
-    if 'DDS1A' in tl:
+    if 'DDS11' in tl:
         g = '1'
-        targetDDS1A.append(g)
+        targetDDS11.append(g)
     else:
         g = '0'
-        targetDDS1A.append(g)
-    if 'DDS1B' in tl:
+        targetDDS11.append(g)
+    if 'DDS12' in tl:
         h = '1'
-        targetDDS1B.append(h)
+        targetDDS12.append(h)
     else:
         h = '0'
-        targetDDS1B.append(h)
-    if 'DDS1C' in tl:
+        targetDDS12.append(h)
+    if 'DDS13' in tl:
         i = '1'
-        targetDDS1C.append(i)
+        targetDDS13.append(i)
     else:
         i = '0'
-        targetDDS1C.append(i)
-    if 'DDS1D' in tl:
+        targetDDS13.append(i)
+    if 'DDS14' in tl:
         k = '1'
-        targetDDS1D.append(k)
+        targetDDS14.append(k)
     else:
         k = '0'
-        targetDDS1D.append(k)
-    if 'DDS1E' in tl:
+        targetDDS14.append(k)
+    if 'DDS15' in tl:
         l = '1'
-        targetDDS1E.append(l)
+        targetDDS15.append(l)
     else:
         l = '0'
-        targetDDS1E.append(l)
+        targetDDS15.append(l)
+    if 'DDS16' in tl:
+        l = '1'
+        targetDDS16.append(l)
+    else:
+        l = '0'
+        targetDDS16.append(l)
+    if 'DDS17' in tl:
+        l = '1'
+        targetDDS17.append(l)
+    else:
+        l = '0'
+        targetDDS17.append(l)
+    if 'DDS18' in tl:
+        l = '1'
+        targetDDS18.append(l)
+    else:
+        l = '0'
+        targetDDS18.append(l)
 
-    if 'DDS2A' in tl:
+    if 'DDS21' in tl:
         m = '1'
-        targetDDS2A.append(m)
+        targetDDS21.append(m)
     else:
         m = '0'
-        targetDDS2A.append(m)
-    if 'DDS2B' in tl:
+        targetDDS21.append(m)
+    if 'DDS22' in tl:
         n = '1'
-        targetDDS2B.append(n)
+        targetDDS22.append(n)
     else:
         n = '0'
-        targetDDS2B.append(n)
-    if 'DDS2C' in tl:
+        targetDDS22.append(n)
+    if 'DDS23' in tl:
         o = '1'
-        targetDDS2C.append(o)
+        targetDDS23.append(o)
     else:
         o = '0'
-        targetDDS2C.append(o)
-    if 'DDS2D' in tl:
+        targetDDS23.append(o)
+    if 'DDS24' in tl:
         p = '1'
-        targetDDS2D.append(p)
+        targetDDS24.append(p)
     else:
         p = '0'
-        targetDDS2D.append(p)
-    if 'DDS2E' in tl:
+        targetDDS24.append(p)
+    if 'DDS25' in tl:
         q = '1'
-        targetDDS2E.append(q)
+        targetDDS25.append(q)
     else:
         q = '0'
-        targetDDS2E.append(q)
+        targetDDS25.append(q)
+    if 'DDS26' in tl:
+        q = '1'
+        targetDDS26.append(q)
+    else:
+        q = '0'
+        targetDDS26.append(q)
+    if 'DDS27' in tl:
+        q = '1'
+        targetDDS27.append(q)
+    else:
+        q = '0'
+        targetDDS27.append(q)
+    if 'DDS28' in tl:
+        q = '1'
+        targetDDS28.append(q)
+    else:
+        q = '0'
+        targetDDS28.append(q)
 
 
 bitsdata = []
 
 for j in range(len(targetlist0)):
-    v_data = targetDDS2E[j] + targetDDS2D[j] + targetDDS2C[j] + targetDDS2B[j] + targetDDS2A[j] + \
-        targetDDS1E[j] + targetDDS1D[j] + targetDDS1C[j] + targetDDS1B[j] + targetDDS1A[j] + \
+    v_data = targetDDS28[j] + targetDDS27[j] + targetDDS26[j] + targetDDS25[j] + targetDDS24[j] + targetDDS23[j] + targetDDS22[j] + targetDDS21[j] + \
+        targetDDS18[j] + targetDDS17[j] + targetDDS16[j] + targetDDS15[j] + targetDDS14[j] + targetDDS13[j] + targetDDS12[j] + targetDDS11[j] + \
         targetAD3[j] + targetAD2[j] + targetAD1[j] + \
-        targetRF3[j] + targetRF2[j] + targetRF1[j]
+        targetPL3[j] + targetPL2[j] + targetPL1[j]
     bitsdata.append(v_data.zfill(32))  # 32桁　000000・・・・　あれば1　なければ0表示
 # print(bitsdata)
 
 ################################################################################################
-
+"""
 DDSinfo = []  # DDSのデータ数＋1を16桁の16進数で表記
 l_start = [s for s in targetlist0 if s.startswith('D')]
 DDScounter = len(l_start) + 1
 DDSinfo.append(format(DDScounter, 'x').zfill(16))  # 16進数で16桁表記
 # print(DDSinfo)
-
+"""
 ###################################################################################################
 
 # データ連結部分
@@ -404,14 +457,15 @@ for d in range(1 + len(DDSdata) + len(Pulsedata_hex)):
 
 # 全データを指定の二次元配列の形に直す部分
 csvdata = []
-
+"""
 start_csvlist = [addresslist[0], DDSinfo[0]]
 csvdata.append(start_csvlist)
 # print(csvdata) #先頭アドレスとDDSの数データ
+"""
 
 for i in range(len(DDSdata_hex)):
     csvdata0 = []
-    csvdata0 = [addresslist[i+1], DDSdata[i]]
+    csvdata0 = [addresslist[i], DDSdata[i]]
     csvdata.append(csvdata0)
 # print(csvdata) #DDSの部分までのCSV
 

@@ -8,7 +8,7 @@ import openpyxl as px
 wb = xlrd.open_workbook(
     '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(type(wb))  #Bookオブジェクトを取得
-sheet = wb.sheet_by_name('Sheet1')
+sheet = wb.sheet_by_name('Sheet2')
 
 
 ##########################################################################################
@@ -17,8 +17,8 @@ sheet = wb.sheet_by_name('Sheet1')
 Fout = []
 settingF = []
 
-for n in range(25, 34):  # 25だけか、25,34を指定すればDDS1だけかDDS2も使用するか繰り返し回数、つまりRFの個数を指定出来る
-    if n % 8 == 1:  # f 25(z),33(AH)行目
+for n in range(1, 10):  # 1だけか、1,10を指定すればDDS1だけかDDS2も使用するか繰り返し回数、つまりRFの個数を指定出来る
+    if n % 8 == 1:  # f 1(B),9(J)行目
         # col_valuesの長さは常にsheet.nrowsに等しい 。つまり、sheetの一番下の行数となってしまう
         col_value = sheet.col_values(int(n))
         del col_value[0:3]
@@ -41,8 +41,8 @@ for n in range(25, 34):  # 25だけか、25,34を指定すればDDS1だけかDDS
 Pout = []
 settingP = []
 
-for n in range(26, 35):  # 26だけか、26,35を指定すればDDS1だけかDDS2も使用するか繰り返し回数、つまりRFの個数を指定出来る
-    if n % 8 == 2:  # phaze 26(AA),34(AI)行目
+for n in range(2, 11):  # 2だけか、2,11を指定すればDDS1だけかDDS2も使用するか繰り返し回数、つまりRFの個数を指定出来る
+    if n % 8 == 2:  # phaze 2(C),10(K)行目
         col_value = sheet.col_values(int(n))
         del col_value[0:3]
         Pout = [s for s in col_value if s != '']  # Pout内の’’を削除
@@ -63,7 +63,7 @@ for n in range(26, 35):  # 26だけか、26,35を指定すればDDS1だけかDDS
 REFout = []
 settingREF = []
 
-for n in range(27, 36):
+for n in range(3, 12):  # 3だけか3,12でDDSの繰り返し回数指定
     if n % 8 == 3:
         col_value = sheet.col_values(int(n))
         del col_value[0:3]
@@ -99,14 +99,14 @@ DDS40bitdata2 = DDS40bitdata0[len(Fout): len(settingF)]
 
 wb = px.load_workbook(
     '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
-ws = wb.active
+ws = wb.get_sheet_by_name('Sheet2')
 
 
 for m in range(len(DDS40bitdata1)):
-    ws.cell(column=29, row=(m + 4), value=DDS40bitdata1[m])
+    ws.cell(column=5, row=(m + 4), value=DDS40bitdata1[m])
 
 for n in range(len(DDS40bitdata2)):
-    ws.cell(column=37, row=(n + 4), value=DDS40bitdata2[n])
+    ws.cell(column=13, row=(n + 4), value=DDS40bitdata2[n])
 
 wb.save(
     '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
