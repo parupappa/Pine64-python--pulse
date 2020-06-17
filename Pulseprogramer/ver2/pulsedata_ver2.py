@@ -130,7 +130,7 @@ wb = xlrd.open_workbook(
 # print(pattern(wb))  #Bookオブジェクトを取得
 sheet2 = wb.sheet_by_name('Sheet2')
 
-for n in range(0, 14):  # 右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
+for n in range(7):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
     if n % 8 == 0:  # 0(A),8(I)行目
         col_value = sheet2.col_values(int(n))
         del col_value[0:3]
