@@ -5,12 +5,22 @@
 import csv
 import xlrd
 import pprint
+import platform
 
-wb = xlrd.open_workbook(
+pf = platform.system()
+
+if pf == 'Windows':
+    wb = xlrd.open_workbook('C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+# print(pattern(wb))  #Bookオブジェクトを取得
+    sheet1 = wb.sheet_by_name('Sheet1')
+
+elif pf == 'Darwin' :
+    wb = xlrd.open_workbook(
     '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
-sheet1 = wb.sheet_by_name('Sheet1')
+    sheet1 = wb.sheet_by_name('Sheet1')
 # print(pattern(sheet)) #sheetオブジェクトを取得
+
 
 # Excelファイルの行(row)列(col)の先頭は0行0列
 
@@ -125,11 +135,26 @@ patternnamelist = []
 patternnamelist_int = []
 
 
+if pf == 'Windows':
+    wb = xlrd.open_workbook('C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+# print(pattern(wb))  #Bookオブジェクトを取得
+    sheet2 = wb.sheet_by_name('Sheet2')
+
+elif pf == 'Darwin' :
+    wb = xlrd.open_workbook(
+    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+# print(pattern(wb))  #Bookオブジェクトを取得
+    sheet2 = wb.sheet_by_name('Sheet2')
+# print(pattern(sheet)) #sheetオブジェクトを取得
+
+
+
+"""
 wb = xlrd.open_workbook(
     '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
 sheet2 = wb.sheet_by_name('Sheet2')
-
+"""
 for n in range(7):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
     if n % 8 == 0:  # 0(A),8(I)行目
         col_value = sheet2.col_values(int(n))
@@ -224,8 +249,8 @@ for n in range(len(allPLADDDSdatalist)):
 countlist = []
 
 for k in range(len(countlist0)):
-    # *100:[1us]単位のカウント値 *10000:[1カウント100us] *
-    countlist.append(countlist0[k] * 10000)
+    # *100:[1us]単位のカウント値 *10000:[1カウント100us] *100000000[1count :1s]
+    countlist.append(countlist0[k] * 100000000)
     countlist[k] = format(countlist[k], 'b').zfill(32)  # 2進数に変換して32桁になるように0埋め
 # print(countlist) #カウント値　32桁の2進数表記
 
