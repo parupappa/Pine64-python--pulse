@@ -10,13 +10,14 @@ import platform
 pf = platform.system()
 
 if pf == 'Windows':
-    wb = xlrd.open_workbook('C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+    wb = xlrd.open_workbook(
+        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
     sheet1 = wb.sheet_by_name('Sheet1')
 
-elif pf == 'Darwin' :
+elif pf == 'Darwin':
     wb = xlrd.open_workbook(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
     sheet1 = wb.sheet_by_name('Sheet1')
 # print(pattern(sheet)) #sheetオブジェクトを取得
@@ -136,17 +137,17 @@ patternnamelist_int = []
 
 
 if pf == 'Windows':
-    wb = xlrd.open_workbook('C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+    wb = xlrd.open_workbook(
+        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
     sheet2 = wb.sheet_by_name('Sheet2')
 
-elif pf == 'Darwin' :
+elif pf == 'Darwin':
     wb = xlrd.open_workbook(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
     sheet2 = wb.sheet_by_name('Sheet2')
 # print(pattern(sheet)) #sheetオブジェクトを取得
-
 
 
 """
@@ -226,16 +227,34 @@ for n in range(len(DDSdata_hex)):
 
 allPLADDDSdatalist = allPLdatalist + allADdatalist + DDS_nscset
 allPLADDDSdatalist.sort(key=lambda count: count[1])  # count順になるようにsort
-# print(allPLADDDSdatalist) # [['PL1', 0], ['', 2]....['DDS1', 20], ['DDS2', 20], ['DDS1', 24], ['DDS2', 80]]
+# [['PL1', 0], ['', 2]....['DDS1', 20], ['DDS2', 20], ['DDS1', 24], ['DDS2', 80]]
+# print(allPLADDDSdatalist)
+
+
+allPLADDDSdatalist_new = []
+
+i = 0
+while i < len(allPLADDDSdatalist):
+    j = 1
+
+    while i + j < len(allPLADDDSdatalist):
+        if allPLADDDSdatalist[i + j][1] != allPLADDDSdatalist[i][1]:
+            break
+        allPLADDDSdatalist[i][0] = allPLADDDSdatalist[i][0] + \
+            allPLADDDSdatalist[i + j][0]
+        j += 1
+    allPLADDDSdatalist_new.append(allPLADDDSdatalist[i])
+    i = i + j
+print(allPLADDDSdatalist_new)
 
 
 # 対象とカウント値に分割
 targetlist0 = []
 countlist0 = []
 
-for n in range(len(allPLADDDSdatalist)):
-    targetlist0.append(allPLADDDSdatalist[n][0])
-    countlist0.append(allPLADDDSdatalist[n][1])
+for n in range(len(allPLADDDSdatalist_new)):
+    targetlist0.append(allPLADDDSdatalist_new[n][0])
+    countlist0.append(allPLADDDSdatalist_new[n][1])
 
 # print(targetlist0)  # ['PL1', '', 'PL1', '', 'AD1', '']
 # print(countlist0)  # [0, 2, 5, 9, 10, 11]
@@ -473,7 +492,7 @@ for m in range(len(Pulsedata)):
 
 # アドレスデータ部分
 addresslist = []
-for d in range(1 + len(DDSdata) + len(Pulsedata_hex)):
+for d in range(16 + len(Pulsedata_hex)):
     addresslist.append(format(d, 'x').zfill(5))
 # print(addresslist)  # 5桁の16進数表記
 
@@ -492,12 +511,12 @@ for i in range(len(DDSdata_hex)):
     csvdata0 = []
     csvdata0 = [addresslist[i], DDSdata[i]]
     csvdata.append(csvdata0)
-# print(csvdata) #DDSの部分までのCSV
+# print(csvdata)  # DDSの部分までのCSV
 
 
 for j in range(len(Pulsedata_hex)):
     csvdata1 = []
-    csvdata1 = [addresslist[len(DDSdata) + j + 1], Pulsedata_hex[j]]
+    csvdata1 = [addresslist[16 + j], Pulsedata_hex[j]]
     csvdata.append(csvdata1)
 # print(csvdata) #全CSVdata
 
