@@ -7,6 +7,7 @@ import xlrd
 import pprint
 import platform
 
+# OSごとに開くフォルダを変える
 pf = platform.system()
 
 if pf == 'Windows':
