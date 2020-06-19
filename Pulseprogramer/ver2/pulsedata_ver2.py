@@ -13,13 +13,13 @@ if pf == 'Windows':
     wb = xlrd.open_workbook(
         'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
-    sheet1 = wb.sheet_by_name('Sheet1')
+    sheet1 = wb.sheet_by_name('Pulseパラメータ')
 
 elif pf == 'Darwin':
     wb = xlrd.open_workbook(
         '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
-    sheet1 = wb.sheet_by_name('Sheet1')
+    sheet1 = wb.sheet_by_name('Pulseパラメータ')
 # print(pattern(sheet)) #sheetオブジェクトを取得
 
 
@@ -140,13 +140,13 @@ if pf == 'Windows':
     wb = xlrd.open_workbook(
         'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
-    sheet2 = wb.sheet_by_name('Sheet2')
+    sheet2 = wb.sheet_by_name('DDSパラメータ')
 
 elif pf == 'Darwin':
     wb = xlrd.open_workbook(
         '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
-    sheet2 = wb.sheet_by_name('Sheet2')
+    sheet2 = wb.sheet_by_name('DDSパラメータ')
 # print(pattern(sheet)) #sheetオブジェクトを取得
 
 
@@ -154,7 +154,7 @@ elif pf == 'Darwin':
 wb = xlrd.open_workbook(
     '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
-sheet2 = wb.sheet_by_name('Sheet2')
+sheet2 = wb.sheet_by_name('DDSパラメータ')
 """
 for n in range(7):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
     if n % 8 == 0:  # 0(A),8(I)行目
@@ -231,12 +231,14 @@ allPLADDDSdatalist.sort(key=lambda count: count[1])  # count順になるよう�
 # print(allPLADDDSdatalist)
 
 
+#################################################################################################
+# allPLADDDSdatalistの被り部分を統合
+
 allPLADDDSdatalist_new = []
 
 i = 0
 while i < len(allPLADDDSdatalist):
     j = 1
-
     while i + j < len(allPLADDDSdatalist):
         if allPLADDDSdatalist[i + j][1] != allPLADDDSdatalist[i][1]:
             break
@@ -245,8 +247,9 @@ while i < len(allPLADDDSdatalist):
         j += 1
     allPLADDDSdatalist_new.append(allPLADDDSdatalist[i])
     i = i + j
-print(allPLADDDSdatalist_new)
+# print(allPLADDDSdatalist_new)
 
+#################################################################################################
 
 # 対象とカウント値に分割
 targetlist0 = []
@@ -448,7 +451,7 @@ for j in range(len(targetlist0)):
         targetAD3[j] + targetAD2[j] + targetAD1[j] + \
         targetPL3[j] + targetPL2[j] + targetPL1[j]
     bitsdata.append(v_data.zfill(32))  # 32桁　000000・・・・　あれば1　なければ0表示
-# print(bitsdata)
+print(bitsdata)
 
 ################################################################################################
 """

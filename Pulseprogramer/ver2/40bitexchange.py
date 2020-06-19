@@ -8,7 +8,7 @@ import openpyxl as px
 wb = xlrd.open_workbook(
     '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
 # print(type(wb))  #Bookオブジェクトを取得
-sheet = wb.sheet_by_name('Sheet2')
+sheet = wb.sheet_by_name('DDSパラメータ')
 
 
 ##########################################################################################
@@ -99,7 +99,7 @@ DDS40bitdata2 = DDS40bitdata0[len(Fout): len(settingF)]
 
 wb = px.load_workbook(
     '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
-ws = wb.get_sheet_by_name('Sheet2')
+ws = wb.get_sheet_by_name('DDSパラメータ')
 
 
 for m in range(len(DDS40bitdata1)):
