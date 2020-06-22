@@ -25,7 +25,7 @@ Datalist7 = []
 
 with open("data.txt", "r") as testdata:  # data.txtを開く
     strData = testdata.read().splitlines()
-print(strData)
+#print(strData)
 
 
 ############
@@ -34,6 +34,7 @@ while j < len(strData):
     while GPIO.input(Ready) == 0:
         ''' WAIT '''
         sleep(3)
+    print("OK")
 
     outstr = list(strData[j])
     for i in range(0, 8):
