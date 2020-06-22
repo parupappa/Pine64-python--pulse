@@ -31,7 +31,7 @@ with open("data.txt", "r") as testdata:  # data.txtを開く
 ############
 j = 0
 while j < len(strData):
-    while GPIO.input(Ready) == 0:
+    while GPIO.input(Ready) != 0:
         ''' WAIT '''
         sleep(3)
     print("OK")
