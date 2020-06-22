@@ -26,8 +26,6 @@ with open("data.txt", "r") as testdata:  # data.txtを開く
 print(strData)
 
 
-GPIO.cleanup()
-
 ############
 j = 0
 while j < len(Datalist0):
@@ -38,3 +36,5 @@ while j < len(Datalist0):
         GPIO.output(D[i], int(outstr[i]))
 
     j += 1
+
+GPIO.cleanup()
