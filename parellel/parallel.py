@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import RPi.GPIO as GPIO
+import time
 
 GPIO.setmode(GPIO.BCM)
 
@@ -31,6 +32,8 @@ j = 0
 while j < len(Datalist0):
     while GPIO.input(Ready) == 0:
         ''' WAIT '''
+        time.sleep(1)
+
     outstr = list(strData[j])
     for i in range(0, 8):
         GPIO.output(D[i], int(outstr[i]))
