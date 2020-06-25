@@ -6,6 +6,12 @@ import csv
 import xlrd
 import pprint
 import platform
+import RPi.GPIO as GPIO
+import time
+from time import sleep
+
+GPIO.setmode(GPIO.BCM)
+
 
 
 # OSごとに開くフォルダを変える
@@ -13,22 +19,19 @@ pf = platform.system()
 
 if pf == 'Windows':
     wb = xlrd.open_workbook(
-        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
 # print(pattern(wb))  #Bookオブジェクトを取得
     sheet1 = wb.sheet_by_name('Pulseパラメータ')
 
 elif pf == 'Darwin':
     wb = xlrd.open_workbook(
-        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
-# print(pattern(wb))  #Bookオブジェクトを取得
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimlator/pulse_simdata.xlsx')
     sheet1 = wb.sheet_by_name('Pulseパラメータ')
-# print(pattern(sheet)) #sheetオブジェクトを取得
 
+#########################################################################################
 
 # Excelファイルの行(row)列(col)の先頭は0行0列
-
 # まずはver1のプログラムを生かせる形にExcelファイルを読み込む
-
 # PLの部分のみについて取り出しとsortを行う
 PL1 = 'PL1'
 PL2 = 'PL2'
@@ -140,24 +143,15 @@ patternnamelist_int = []
 
 if pf == 'Windows':
     wb = xlrd.open_workbook(
-        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
-# print(pattern(wb))  #Bookオブジェクトを取得
+        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
     sheet2 = wb.sheet_by_name('DDSパラメータ')
 
 elif pf == 'Darwin':
     wb = xlrd.open_workbook(
-        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
-# print(pattern(wb))  #Bookオブジェクトを取得
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimlator/pulse_simdata.xlsx')
     sheet2 = wb.sheet_by_name('DDSパラメータ')
-# print(pattern(sheet)) #sheetオブジェクトを取得
 
 
-"""
-wb = xlrd.open_workbook(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
-# print(pattern(wb))  #Bookオブジェクトを取得
-sheet2 = wb.sheet_by_name('DDSパラメータ')
-"""
 for n in range(7):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
     if n % 8 == 0:  # 0(A),8(I)行目
         col_value = sheet2.col_values(int(n))
@@ -455,13 +449,9 @@ for j in range(len(targetlist0)):
     bitsdata.append(v_data.zfill(32))  # 32桁　000000・・・・　あれば1　なければ0表示
 print(bitsdata)
 
-################################################################################################
-"""
-DDSinfo = []  # DDSのデータ数＋1を16桁の16進数で表記
-l_start = [s for s in targetlist0 if s.startswith('D')]
-DDScounter = len(l_start) + 1
-DDSinfo.append(format(DDScounter, 'x').zfill(16))  # 16進数で16桁表記
-# print(DDSinfo)
+
+
+
 """
 ###################################################################################################
 
@@ -506,11 +496,11 @@ for d in range(16 + len(Pulsedata_hex)):
 
 # 全データを指定の二次元配列の形に直す部分
 csvdata = []
-"""
+
 start_csvlist = [addresslist[0], DDSinfo[0]]
 csvdata.append(start_csvlist)
 # print(csvdata) #先頭アドレスとDDSの数データ
-"""
+
 
 for i in range(len(DDSdata_hex)):
     csvdata0 = []
@@ -531,3 +521,4 @@ for j in range(len(Pulsedata_hex)):
 with open("outdata_ver2.csv", "w")as f:
     writer = csv.writer(f, lineterminator="\n")
     writer.writerows(csvdata)
+"""
