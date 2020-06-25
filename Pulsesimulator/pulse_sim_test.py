@@ -2,18 +2,25 @@
 
 # 設定するパラメータ　PL AD DDS の繰り返し回数と　1カウントをどの長さにするかのカウント値部分
 
-import platform
-import RPi.GPIO as GPIO
-import time
-from time import sleep
 import openpyxl as px
+from time import sleep
+import time
+import RPi.GPIO as GPIO
+import platform
+pf = platform.system()
 
 GPIO.setmode(GPIO.BCM)
 
 
-wb = px.load_workbook(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
-ws = wb.get_sheet_by_name('Pulseパラメータ')
+if pf == 'Linux':
+    wb = px.load_workbook(
+        '/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
+    ws = wb.get_sheet_by_name('Pulseパラメータ')
+
+elif pf == 'Darwin':
+    wb = px.load_workbook(
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
+    ws = wb.get_sheet_by_name('Pulseパラメータ')
 
 PL = [17, 27, 22]
 
