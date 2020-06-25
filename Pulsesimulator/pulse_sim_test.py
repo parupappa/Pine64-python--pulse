@@ -14,7 +14,7 @@ GPIO.setmode(GPIO.BCM)
 
 if pf == 'Linux':
     wb = px.load_workbook(
-        '/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
+        '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
     ws = wb.get_sheet_by_name('Pulseパラメータ')
 
 elif pf == 'Darwin':
