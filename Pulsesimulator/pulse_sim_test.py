@@ -55,7 +55,7 @@ while counter < 50:
         k += 1
     else:
         GPIO.output(PL[0], 0)
-        sleep(0.5)
+        sleep(1)
         print("待機中")
     counter += 1
     print(counter)
