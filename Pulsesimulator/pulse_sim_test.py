@@ -53,11 +53,12 @@ print(bc1)
 counter = 0
 while counter < 30:
     if sc1[counter] == counter:
-        GPIO.output(PL[0], HIGH)
+        GPIO.output(PL[0], 1)
         sleep(bc1[counter])
     else:
-        print("待っています")
-        sleep(1)
+        GPIO.output(PL[0], 0)
+        sleep(0.5)
+        print("待機中")
     counter += 1
 
 
