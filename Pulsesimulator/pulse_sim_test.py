@@ -33,28 +33,25 @@ bc1_int = []
 
 for row in csv.reader(csv_file):
     sc1.append(row[0])
-print(sc1)
 del sc1[0:3]
 for i in range(len(sc1)):
     sc1_int.append(int(sc1[i]))
 print(sc1_int)
 
 
-"""
-for cell_obj in list(ws.columns)[1]:
-    bc1_value = cell_obj.value
-    bc1.append(bc1_value)
+for row in csv.reader(csv_file):
+    bc1.append(row[0])
 del bc1[0:3]
-bc1 = [x for x in bc1 if x is not None]
-print(bc1)
+for i in range(len(bc1)):
+    bc1_int.append(int(bc1[i]))
+print(bc1_int)
 
-"""
 
 counter = 0
 while counter < 30:
-    if sc1[counter] == counter:
+    if sc1_int[counter] == counter:
         GPIO.output(PL[0], 1)
-        sleep(bc1[counter])
+        sleep(bc1_int[counter])
     else:
         GPIO.output(PL[0], 0)
         sleep(0.5)
