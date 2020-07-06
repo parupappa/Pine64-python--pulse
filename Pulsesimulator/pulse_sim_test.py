@@ -6,11 +6,11 @@ import csv
 import pandas as pd
 from time import sleep
 import time
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import platform
 pf = platform.system()
 
-# GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 
 
 if pf == 'Linux':
@@ -22,10 +22,10 @@ elif pf == 'Darwin':
 
 
 PL = [17, 27, 22]
-"""
+
 for i in range(len(PL)):
     GPIO.setup(PL[i], GPIO.OUT)
-"""
+
 
 sc1 = []
 bc1 = []
@@ -45,7 +45,6 @@ print(sc1_int)
 print(bc1_int)
 
 
-
 counter = 0
 while counter < len(sc1_int):
     if sc1_int[counter] == counter:
@@ -59,4 +58,3 @@ while counter < len(sc1_int):
 
 
 GPIO.cleanup()
-
