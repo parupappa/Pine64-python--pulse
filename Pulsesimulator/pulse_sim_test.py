@@ -49,9 +49,9 @@ counter = 0
 k = 0
 while counter < 50:
     if sc1_int[k] == counter:
-        k = bc1_int.index(counter)
+        j = bc1_int.index(counter)
         GPIO.output(PL[0], 1)
-        sleep(bc1_int[k])
+        sleep(bc1_int[j])
         k += 1
     else:
         GPIO.output(PL[0], 0)
