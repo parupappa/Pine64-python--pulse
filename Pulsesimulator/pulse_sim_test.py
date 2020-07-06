@@ -5,6 +5,7 @@
 import csv
 import pandas as pd
 from time import sleep
+import time
 import RPi.GPIO as GPIO
 import platform
 pf = platform.system()
@@ -39,8 +40,8 @@ for i in range(len(sc1)):
 print(sc1_int)
 
 
-for row in csv.reader(csv_file):
-    bc1.append(row[1])
+for row1 in csv.reader(csv_file):
+    bc1.append(row1[1])
 del bc1[0:3]
 for i in range(len(bc1)):
     bc1_int.append(int(bc1[i]))
