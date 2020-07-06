@@ -43,13 +43,13 @@ print(sc1_int)
 for row1 in csv.reader(csv_file):
     bc1.append(row1[1])
 del bc1[0:3]
-for i in range(len(bc1)):
-    bc1_int.append(int(bc1[i]))
+for j in range(len(bc1)):
+    bc1_int.append(int(bc1[j]))
 print(bc1_int)
 
 
 counter = 0
-while counter < 30:
+while counter < 50:
     if sc1_int[counter] == counter:
         GPIO.output(PL[0], 1)
         sleep(bc1_int[counter])
