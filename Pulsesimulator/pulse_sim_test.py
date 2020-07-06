@@ -9,7 +9,7 @@ import RPi.GPIO as GPIO
 import platform
 pf = platform.system()
 
-# GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 
 
 if pf == 'Linux':
