@@ -2,42 +2,45 @@
 
 # 設定するパラメータ　PL AD DDS の繰り返し回数と　1カウントをどの長さにするかのカウント値部分
 
-import openpyxl as px
+import csv
+import pandas as pd
 from time import sleep
-import time
 import RPi.GPIO as GPIO
 import platform
 pf = platform.system()
 
-GPIO.setmode(GPIO.BCM)
+# GPIO.setmode(GPIO.BCM)
 
 
 if pf == 'Linux':
-    wb = px.load_workbook(
-        '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
-    ws = wb.get_sheet_by_name('Pulseパラメータ')
-
+    csv_file = open(
+        '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simdata.csv')
 elif pf == 'Darwin':
-    wb = px.load_workbook(
-        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
-    ws = wb.get_sheet_by_name('Pulseパラメータ')
+    csv_file = open(
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.csv')
+
 
 PL = [17, 27, 22]
 
 for i in range(len(PL)):
-    GPIO.setup(PL[i], GPIO.OUt)
+    GPIO.setup(PL[i], GPIO.OUT)
 
 
 sc1 = []
 bc1 = []
+sc1_int = []
+bc1_int = []
 
-for cell_obj in list(ws.columns)[0]:
-    sc1_value = cell_obj.value
-    sc1.append(sc1_value)
-del sc1[0:3]
-sc1 = [x for x in sc1 if x is not None]
+for row in csv.reader(csv_file):
+    sc1.append(row[0])
 print(sc1)
+del sc1[0:3]
+for i in range(len(sc1)):
+    sc1_int.append(int(sc1[i]))
+print(sc1_int)
 
+
+"""
 for cell_obj in list(ws.columns)[1]:
     bc1_value = cell_obj.value
     bc1.append(bc1_value)
@@ -45,6 +48,7 @@ del bc1[0:3]
 bc1 = [x for x in bc1 if x is not None]
 print(bc1)
 
+"""
 
 counter = 0
 while counter < 30:
