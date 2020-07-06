@@ -47,7 +47,7 @@ print(bc1_int)
 
 counter = 0
 while counter < len(sc1_int):
-    if sc1_int[counter] == counter:
+    if counter == sc1_int[counter]:
         GPIO.output(PL[0], 1)
         sleep(bc1_int[counter])
         print(counter)
