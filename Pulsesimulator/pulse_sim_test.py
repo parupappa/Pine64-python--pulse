@@ -50,6 +50,7 @@ while counter < len(sc1_int):
     if sc1_int[counter] == counter:
         GPIO.output(PL[0], 1)
         sleep(bc1_int[counter])
+        print(counter)
     else:
         GPIO.output(PL[0], 0)
         sleep(0.5)
