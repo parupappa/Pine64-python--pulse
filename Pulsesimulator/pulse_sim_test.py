@@ -46,16 +46,18 @@ print(bc1_int)
 
 
 counter = 0
-while counter < len(sc1_int):
-    if counter == sc1_int[counter]:
+k = 0
+while counter < 50:
+    if sc1_int[k] == counter:
+        k = bc1_int.index(counter)
         GPIO.output(PL[0], 1)
-        sleep(bc1_int[counter])
-        print(counter)
+        sleep(bc1_int[k])
+        k += 1
     else:
         GPIO.output(PL[0], 0)
         sleep(0.5)
         print("待機中")
     counter += 1
-
+    print(counter)
 
 GPIO.cleanup()
