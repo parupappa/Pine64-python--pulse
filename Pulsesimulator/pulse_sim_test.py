@@ -40,7 +40,7 @@ print(sc1_int)
 
 
 for row in csv.reader(csv_file):
-    bc1.append(row[0])
+    bc1.append(row[1])
 del bc1[0:3]
 for i in range(len(bc1)):
     bc1_int.append(int(bc1[i]))
