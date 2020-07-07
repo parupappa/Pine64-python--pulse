@@ -14,12 +14,14 @@ GPIO.setmode(GPIO.BCM)
 
 
 if pf == 'Linux':
-    csv_file = open(
+    pulse_csv = open(
         '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simdata.csv')
 elif pf == 'Darwin':
-    csv_file = open(
+    pulse_csv = open(
         '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.csv')
 
+
+###########################################################################################
 
 PL = [17, 27, 22]
 
@@ -33,7 +35,7 @@ sc1_int = []
 bc1_int = []
 
 
-for row in csv.reader(csv_file):
+for row in csv.reader(pulse_csv):
     sc1.append(row[0])
     bc1.append(row[1])
 del sc1[0:3]
@@ -45,19 +47,65 @@ print(sc1_int)
 print(bc1_int)
 
 
+##################################################################################################
+# DDS40bit  データのシミュレーション
+if pf == 'Linux':
+    dds_csv = open(
+        '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simDDSdata.csv')
+elif pf == 'Darwin':
+    dds_csv = open(
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simDDSdata.csv')
+
+DDS = [26, 19]
+DDS_sc1 = []
+DDSsc1_int = []
+DDS_data = []
+chars_new = []
+
+for i in range(len(DDS)):
+    GPIO.setup(DDS[i], GPIO.OUT)
+
+for row in csv.reader(dds_csv):
+    DDS_sc1.append(row[0])
+    DDS_data.append(row[4])
+del DDS_sc1[0:3]
+del DDS_data[0:3]
+for i in range(len(DDS_sc1)):
+    DDSsc1_int.append(int(DDS_sc1[i]))
+
+
+for i in range(len(DDS_data)):
+    DDSsc1_int.append(int(DDS_sc1[i]))
+
+    chars = list(DDS_data[i].strip())
+    chars_new.append(chars)
+print(chars_new)
+
+##################################################################################################
+
+
 counter = 0
-k = 0  # sc1_intのインデックス
-while counter < sc1_int[-1]:
-    if sc1_int[k] == counter:
-        # j = sc1_int.index(counter)  # j:一致した時のインデックスをbcと共有する
+j = 0  # sc1_intのインデックス
+k = 0
+while counter < max(int(sc1_int[-1]), int(DDS_sc1[-1])):
+    if sc1_int[j] == counter:
         GPIO.output(PL[0], 1)
-        sleep(bc1_int[k])
+        sleep(bc1_int[j])
+        j += 1
+
+    if DDSsc1_int[k] == counter:
+        for n in range(len(chars_new)):
+            for m in range(len(chars)):
+                GPIO.output(DDS[0], chars_new[n][m])
+                sleep(1)
         k += 1
+
     else:
         GPIO.output(PL[0], 0)
         sleep(0.1)
         print("待機中")
     counter += 1
     print(counter)
+
 
 GPIO.cleanup()
