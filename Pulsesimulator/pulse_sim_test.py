@@ -79,6 +79,7 @@ for i in range(len(DDS_data)):
 
     chars = list(DDS_data[i].strip())
     chars_new.append(chars)
+chars_int = map((lambda x: int(x)), chars_new)
 print(chars_new)
 
 ##################################################################################################
