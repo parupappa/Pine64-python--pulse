@@ -47,15 +47,15 @@ print(bc1_int)
 
 counter = 0
 k = 0  # sc1_intのインデックス
-while counter < 50:
+while counter < sc1_int[-1]:
     if sc1_int[k] == counter:
-        j = sc1_int.index(counter)  # j:一致した時のインデックスをbcと共有する
+        # j = sc1_int.index(counter)  # j:一致した時のインデックスをbcと共有する
         GPIO.output(PL[0], 1)
-        sleep(bc1_int[j])
+        sleep(bc1_int[k])
         k += 1
     else:
         GPIO.output(PL[0], 0)
-        sleep(1)
+        sleep(0.1)
         print("待機中")
     counter += 1
     print(counter)
