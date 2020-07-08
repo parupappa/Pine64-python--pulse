@@ -6,6 +6,7 @@ import csv
 from time import sleep
 
 pf = platform.system()
+GPIO.setmode(GPIO.BCM)
 
 
 if pf == 'Linux':
