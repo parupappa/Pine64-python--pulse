@@ -3,6 +3,8 @@ import RPi.GPIO as GPIO
 import time
 import platform
 import csv
+from time import sleep
+
 pf = platform.system()
 
 
