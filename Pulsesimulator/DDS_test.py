@@ -62,6 +62,7 @@ while counter < (DDSsc1_int[-1]):
 
     else:
         print("待機中")
+        sleep(0.5)
     counter += 1
     print(counter)
 
