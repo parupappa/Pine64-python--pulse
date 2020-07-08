@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
+import RPi.GPIO as GPIO
 import time
 import platform
 import csv
 pf = platform.system()
-#import RPi.GPIO as GPIO
 
 
 if pf == 'Linux':
@@ -20,8 +20,8 @@ DDSsc1_int = []
 DDS_data = []
 DDS_list = []
 
-# for i in range(len(DDS)):
-#GPIO.setup(DDS[i], GPIO.OUT)
+for i in range(len(DDS)):
+    GPIO.setup(DDS[i], GPIO.OUT)
 
 
 for row in csv.reader(dds_csv):
@@ -63,4 +63,4 @@ while counter < (DDSsc1_int[-1]):
     print(counter)
 
 
-#GPIO.cleanup()""""
+GPIO.cleanup()
