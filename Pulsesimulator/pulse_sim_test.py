@@ -65,22 +65,27 @@ chars_new = []
 for i in range(len(DDS)):
     GPIO.setup(DDS[i], GPIO.OUT)
 
+
 for row in csv.reader(dds_csv):
     DDS_sc1.append(row[0])
     DDS_data.append(row[4])
 del DDS_sc1[0:3]
 del DDS_data[0:3]
+
+# 読み込んだデータをint型に変換
 for i in range(len(DDS_sc1)):
     DDSsc1_int.append(int(DDS_sc1[i]))
 
-
-for i in range(len(DDS_data)):
-    DDSsc1_int.append(int(DDS_sc1[i]))
-
+    # 40bitdataを一文字ずつにして配列に格納
     chars = list(DDS_data[i].strip())
     chars_new.append(chars)
-chars_int = map((lambda x: int(x)), chars_new)
+# 読み込んだ配列をint型に変換
+for j in range(len(chars_new)):
+    for i in range(len(chars_new[0])):
+        if str == type(chars_new[j][i]):
+            chars_new[j][i] = (int(chars_new[j][i]))
 print(chars_new)
+
 
 ##################################################################################################
 
@@ -95,14 +100,14 @@ while counter < max(int(sc1_int[-1]), int(DDS_sc1[-1])):
         j += 1
 
     if DDSsc1_int[k] == counter:
-        for n in range(len(chars_new)):
-            for m in range(len(chars)):
-                GPIO.output(DDS[0], chars_new[n][m])
-                sleep(1)
+        for m in range(len(chars_new[k])):
+            GPIO.output(DDS[0], chars_new[k][m])
+            sleep(1)
         k += 1
 
     else:
         GPIO.output(PL[0], 0)
+        GPIO.output(DDS[0], 0)
         sleep(0.1)
         print("待機中")
     counter += 1

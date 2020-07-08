@@ -29,12 +29,19 @@ for i in range(len(DDS_data)):
 
     chars = list(DDS_data[i].strip())
     chars_new.append(chars)
-# print(chars_new)
-chars_int = [int(s) for s in chars_new]
-print(chars_int)
+print(chars_new)
 
+for j in range(len(chars_new)):
+    for i in range(len(chars_new[0])):
+        if str == type(chars_new[j][i]):
+            chars_new[j][i] = (int(chars_new[j][i]))
 
+#chars_int = [int(s) for s in chars_new]
+print(chars_new)
+
+"""
 for i in range(len(chars_new)):
     for j in range(len(chars)):
         #GPIO.output(DDS[0], chars_new[i][j])
-        print("%d回目です" % j)
+        #print("%d回目です" % j)
+        """
