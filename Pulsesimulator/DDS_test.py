@@ -20,8 +20,8 @@ DDSsc1_int = []
 DDS_data = []
 DDS_list = []
 
-for i in range(len(DDS)):
-    GPIO.setup(DDS[i], GPIO.OUT)
+# for i in range(len(DDS)):
+GPIO.setup(DDS[0], GPIO.OUT)
 
 
 for row in csv.reader(dds_csv):
