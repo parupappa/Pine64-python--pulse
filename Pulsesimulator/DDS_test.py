@@ -14,7 +14,7 @@ elif pf == 'Darwin':
         '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simDDSdata.csv')
 
 
-DDS = [26]
+DDS = [17]
 DDS_sc1 = []
 DDSsc1_int = []
 DDS_data = []
