@@ -53,7 +53,7 @@ print(DDSsc1_int)
 counter = 0
 j = 0  # sc1_intのインデックス
 k = 0
-while counter < (DDSsc1_int[-1]):
+while counter <= (DDSsc1_int[-1]):
     if DDSsc1_int[k] == counter:
         for m in range(len(DDS_list[k])):
             GPIO.output(DDS[0], DDS_list[k][m])
@@ -62,7 +62,7 @@ while counter < (DDSsc1_int[-1]):
 
     else:
         print("待機中")
-        sleep(0.5)
+        sleep(0.2)
     counter += 1
     print(counter)
 
