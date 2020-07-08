@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+import time
 import platform
 import csv
 pf = platform.system()
+#import RPi.GPIO as GPIO
 
 
 if pf == 'Linux':
@@ -16,7 +18,11 @@ DDS = [26]
 DDS_sc1 = []
 DDSsc1_int = []
 DDS_data = []
-chars_new = []
+DDS_list = []
+
+# for i in range(len(DDS)):
+#GPIO.setup(DDS[i], GPIO.OUT)
+
 
 for row in csv.reader(dds_csv):
     DDS_sc1.append(row[0])
@@ -24,24 +30,37 @@ for row in csv.reader(dds_csv):
 del DDS_sc1[0:3]
 del DDS_data[0:3]
 
-for i in range(len(DDS_data)):
+# 読み込んだデータをint型に変換
+for i in range(len(DDS_sc1)):
     DDSsc1_int.append(int(DDS_sc1[i]))
 
+    # 40bitdataを一文字ずつにして配列に格納
     chars = list(DDS_data[i].strip())
-    chars_new.append(chars)
-print(chars_new)
+    DDS_list.append(chars)
+# 読み込んだ配列をint型に変換
+for j in range(len(DDS_list)):
+    for i in range(len(DDS_list[0])):
+        if str == type(DDS_list[j][i]):
+            DDS_list[j][i] = (int(DDS_list[j][i]))
 
-for j in range(len(chars_new)):
-    for i in range(len(chars_new[0])):
-        if str == type(chars_new[j][i]):
-            chars_new[j][i] = (int(chars_new[j][i]))
+print(DDS_list)
+print(DDSsc1_int)
+##################################################################################################
 
-#chars_int = [int(s) for s in chars_new]
-print(chars_new)
+counter = 0
+j = 0  # sc1_intのインデックス
+k = 0
+while counter < (DDSsc1_int[-1]):
+    if DDSsc1_int[k] == counter:
+        for m in range(len(DDS_list[k])):
+            GPIO.output(DDS[0], DDS_list[k][m])
+            sleep(1)
+        k += 1
 
-"""
-for i in range(len(chars_new)):
-    for j in range(len(chars)):
-        #GPIO.output(DDS[0], chars_new[i][j])
-        #print("%d回目です" % j)
-        """
+    else:
+        print("待機中")
+    counter += 1
+    print(counter)
+
+
+#GPIO.cleanup()""""
