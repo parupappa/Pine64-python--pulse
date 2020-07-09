@@ -44,8 +44,8 @@ del bc1[0:3]
 for i in range(len(sc1)):
     sc1_int.append(int(sc1[i]))
     bc1_int.append(int(bc1[i]))
-print(sc1_int)
-print(bc1_int)
+#print(sc1_int)
+#print(bc1_int)
 
 
 ##################################################################################################
@@ -85,7 +85,7 @@ for j in range(len(DDS_list)):
     for i in range(len(DDS_list[0])):
         if str == type(DDS_list[j][i]):
             DDS_list[j][i] = (int(DDS_list[j][i]))
-print(DDS_list)
+#print(DDS_list)
 
 
 ##################################################################################################
