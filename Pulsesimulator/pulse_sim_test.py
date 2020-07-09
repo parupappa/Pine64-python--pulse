@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# 設定するパラメータ　PL AD DDS の繰り返し回数と　1カウントをどの長さにするかのカウント値部分
 
+import sys  # sys.exit()でここまでのプログラムを実行
 import csv
 import pandas as pd
 from time import sleep
@@ -9,7 +9,6 @@ import time
 import RPi.GPIO as GPIO
 import platform
 pf = platform.system()
-
 GPIO.setmode(GPIO.BCM)
 
 
@@ -60,7 +59,7 @@ DDS = [26, 19]
 DDS_sc1 = []
 DDSsc1_int = []
 DDS_data = []
-chars_new = []
+DDS_list = []
 
 for i in range(len(DDS)):
     GPIO.setup(DDS[i], GPIO.OUT)
@@ -78,13 +77,13 @@ for i in range(len(DDS_sc1)):
 
     # 40bitdataを一文字ずつにして配列に格納
     chars = list(DDS_data[i].strip())
-    chars_new.append(chars)
+    DDS_list.append(chars)
 # 読み込んだ配列をint型に変換
-for j in range(len(chars_new)):
-    for i in range(len(chars_new[0])):
-        if str == type(chars_new[j][i]):
-            chars_new[j][i] = (int(chars_new[j][i]))
-print(chars_new)
+for j in range(len(DDS_list)):
+    for i in range(len(DDS_list[0])):
+        if str == type(DDS_list[j][i]):
+            DDS_list[j][i] = (int(DDS_list[j][i]))
+print(DDS_list)
 
 
 ##################################################################################################
@@ -93,6 +92,7 @@ print(chars_new)
 counter = 0
 j = 0  # sc1_intのインデックス
 k = 0
+
 while counter < max(int(sc1_int[-1]), int(DDS_sc1[-1])):
     if sc1_int[j] == counter:
         GPIO.output(PL[0], 1)
@@ -100,8 +100,8 @@ while counter < max(int(sc1_int[-1]), int(DDS_sc1[-1])):
         j += 1
 
     if DDSsc1_int[k] == counter:
-        for m in range(len(chars_new[k])):
-            GPIO.output(DDS[0], chars_new[k][m])
+        for m in range(len(DDS_list[k])):
+            GPIO.output(DDS[0], DDS_list[k][m])
             sleep(1)
         k += 1
 
