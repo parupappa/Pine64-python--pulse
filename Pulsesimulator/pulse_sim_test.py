@@ -2,7 +2,6 @@
 
 # PLとDDSの1チャネルのシミュレーションプログラム
 
-
 import sys  # sys.exit()でここまでのプログラムを実行
 import csv
 import pandas as pd
@@ -44,8 +43,8 @@ del bc1[0:3]
 for i in range(len(sc1)):
     sc1_int.append(int(sc1[i]))
     bc1_int.append(int(bc1[i]))
-#print(sc1_int)
-#print(bc1_int)
+# print(sc1_int)
+# print(bc1_int)
 
 
 ##################################################################################################
@@ -85,7 +84,7 @@ for j in range(len(DDS_list)):
     for i in range(len(DDS_list[0])):
         if str == type(DDS_list[j][i]):
             DDS_list[j][i] = (int(DDS_list[j][i]))
-#print(DDS_list)
+# print(DDS_list)
 
 
 ##################################################################################################
@@ -93,10 +92,10 @@ for j in range(len(DDS_list)):
 
 counter = 0
 j = 0  # sc1_intのインデックス
-k = 0
+k = 0  # DDSsc1_intのインデックス
 
 while True:
-    while counter < max(sc1_int[-1] + 1, DDSsc1_int[-1] + 1):
+    while counter <= max(sc1_int[-1], DDSsc1_int[-1]):
         if counter <= sc1_int[-1]:
             if sc1_int[j] == counter:
                 GPIO.output(PL[0], 1)
