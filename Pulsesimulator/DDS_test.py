@@ -1,6 +1,7 @@
-#DDS部分のみの動作確認プログラム
-
 # -*- coding: utf-8 -*-
+
+# DDS部分のみの動作確認プログラム
+
 import RPi.GPIO as GPIO
 import time
 import platform

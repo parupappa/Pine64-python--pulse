@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
+
 # PLとDDSの1チャネルのシミュレーションプログラム
 
-# -*- coding: utf-8 -*-
 
 import sys  # sys.exit()でここまでのプログラムを実行
 import csv
