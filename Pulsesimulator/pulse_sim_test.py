@@ -94,7 +94,7 @@ j = 0  # sc1_intのインデックス
 k = 0
 
 while counter < max(sc1_int[-1], DDSsc1_int[-1]):
-    if sc1_int[j] == counter and sc1_int[-1] <= counter:
+    if sc1_int[j] == counter and counter <= sc1_int[-1]:
         GPIO.output(PL[0], 1)
         sleep(bc1_int[j])
         j += 1
