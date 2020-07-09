@@ -93,7 +93,7 @@ counter = 0
 j = 0  # sc1_intのインデックス
 k = 0
 
-while counter < max(int(sc1_int[-1]), int(DDSsc1_int[-1])):
+while counter < max(sc1_int[-1], DDSsc1_int[-1]):
     if sc1_int[j] == counter:
         GPIO.output(PL[0], 1)
         sleep(bc1_int[j])
