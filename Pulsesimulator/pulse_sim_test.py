@@ -97,7 +97,7 @@ while counter < max(sc1_int[-1] + 1, DDSsc1_int[-1] + 1):
     if counter <= sc1_int[-1]:
         if sc1_int[j] == counter:
             GPIO.output(PL[0], 1)
-            sleep(bc1_int[j] / 2)
+            sleep(bc1_int[j] * 0.5)
             j += 1
         else:
             pass
