@@ -1,5 +1,6 @@
-# -*- coding: utf-8 -*-
+# PLとDDSの1チャネルのシミュレーションプログラム
 
+# -*- coding: utf-8 -*-
 
 import sys  # sys.exit()でここまでのプログラムを実行
 import csv
@@ -93,28 +94,30 @@ counter = 0
 j = 0  # sc1_intのインデックス
 k = 0
 
-while counter < max(sc1_int[-1] + 1, DDSsc1_int[-1] + 1):
-    if counter <= sc1_int[-1]:
-        if sc1_int[j] == counter:
-            GPIO.output(PL[0], 1)
-            sleep(bc1_int[j] * 0.5)
-            j += 1
+while True:
+    while counter < max(sc1_int[-1] + 1, DDSsc1_int[-1] + 1):
+        if counter <= sc1_int[-1]:
+            if sc1_int[j] == counter:
+                GPIO.output(PL[0], 1)
+                sleep(bc1_int[j] * 0.5)
+                j += 1
+            else:
+                pass
+
+        if DDSsc1_int[k] == counter:
+            for m in range(len(DDS_list[k])):
+                GPIO.output(DDS[0], DDS_list[k][m])
+                sleep(0.5)
+            k += 1
+
         else:
-            pass
-
-    if DDSsc1_int[k] == counter:
-        for m in range(len(DDS_list[k])):
-            GPIO.output(DDS[0], DDS_list[k][m])
-            sleep(0.5)
-        k += 1
-
-    else:
-        GPIO.output(PL[0], 0)
-        GPIO.output(DDS[0], 0)
-        sleep(0.1)
-        print("待機中")
-    counter += 1
-    print(counter)
+            GPIO.output(PL[0], 0)
+            GPIO.output(DDS[0], 0)
+            sleep(0.1)
+            print("待機中")
+        counter += 1
+        print(counter)
+    counter = 0
 
 
 GPIO.cleanup()

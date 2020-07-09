@@ -1,3 +1,5 @@
+#DDS部分のみの動作確認プログラム
+
 # -*- coding: utf-8 -*-
 import RPi.GPIO as GPIO
 import time
