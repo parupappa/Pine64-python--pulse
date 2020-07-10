@@ -13,13 +13,13 @@ pf = platform.system()
 GPIO.setmode(GPIO.BCM)
 
 
-fname = '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simdata.csv'
-
+fname_Lin = '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simdata.csv'
+fname_Dar = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.csv'
 
 if pf == 'Linux':
-    pulse_csv = open(fname)
+    pulse_csv = open(fname_Lin)
 elif pf == 'Darwin':
-    pulse_csv = open(fname)
+    pulse_csv = open(fname_Dar)
 
 ###########################################################################################
 
@@ -50,9 +50,9 @@ for i in range(len(sc1)):
 ##################################################################################################
 # DDS40bit  データのシミュレーション
 if pf == 'Linux':
-    dds_csv = open(fname)
+    dds_csv = open(fname_Lin)
 elif pf == 'Darwin':
-    dds_csv = open(fname)
+    dds_csv = open(fname_Dar)
 
 DDS = [26, 19]
 DDS_sc1 = []
