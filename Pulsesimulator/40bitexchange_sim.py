@@ -4,9 +4,9 @@
 import xlrd
 import openpyxl as px
 
+fname = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsm'
 
-wb = xlrd.open_workbook(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
+wb = xlrd.open_workbook(fname)
 # print(type(wb))  #Bookオブジェクトを取得
 sheet = wb.sheet_by_name('DDSパラメータ')
 
@@ -97,8 +97,7 @@ DDS40bitdata2 = DDS40bitdata0[len(Fout): len(settingF)]
 # excelファイルに書き込み
 # いったんファイルを閉じて開かないと更新されない
 
-wb = px.load_workbook(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
+wb = px.load_workbook(fname, keep_vba=True)
 ws = wb.get_sheet_by_name('DDSパラメータ')
 
 
@@ -108,5 +107,4 @@ for m in range(len(DDS40bitdata1)):
 for n in range(len(DDS40bitdata2)):
     ws.cell(column=13, row=(n + 4), value=DDS40bitdata2[n])
 
-wb.save(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsx')
+wb.save(fname)
