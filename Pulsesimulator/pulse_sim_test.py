@@ -50,9 +50,11 @@ for i in range(len(sc1)):
 ##################################################################################################
 # DDS40bit  データのシミュレーション
 if pf == 'Linux':
-    dds_csv = open(fname_Lin)
+    dds_csv = open(
+        '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simDDSdata.csv')
 elif pf == 'Darwin':
-    dds_csv = open(fname_Dar)
+    dds_csv = open(
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simDDSdata.csv')
 
 DDS = [26, 19]
 DDS_sc1 = []
