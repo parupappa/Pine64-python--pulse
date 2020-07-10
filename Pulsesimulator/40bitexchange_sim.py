@@ -6,7 +6,7 @@ import openpyxl as px
 
 
 wb = xlrd.open_workbook(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
+    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsm')
 # print(type(wb))  #Bookオブジェクトを取得
 sheet = wb.sheet_by_name('DDSパラメータ')
 
@@ -98,7 +98,7 @@ DDS40bitdata2 = DDS40bitdata0[len(Fout): len(settingF)]
 # いったんファイルを閉じて開かないと更新されない
 
 wb = px.load_workbook(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
+    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsm')
 ws = wb.get_sheet_by_name('DDSパラメータ')
 
 
@@ -109,4 +109,4 @@ for n in range(len(DDS40bitdata2)):
     ws.cell(column=13, row=(n + 4), value=DDS40bitdata2[n])
 
 wb.save(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
+    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simdata.xlsm')

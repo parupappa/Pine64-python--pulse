@@ -13,13 +13,13 @@ pf = platform.system()
 
 if pf == 'Windows':
     wb = xlrd.open_workbook(
-        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
 # print(pattern(wb))  #Bookオブジェクトを取得
     sheet1 = wb.sheet_by_name('Pulseパラメータ')
 
 elif pf == 'Darwin':
     wb = xlrd.open_workbook(
-        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
 # print(pattern(wb))  #Bookオブジェクトを取得
     sheet1 = wb.sheet_by_name('Pulseパラメータ')
 # print(pattern(sheet)) #sheetオブジェクトを取得
