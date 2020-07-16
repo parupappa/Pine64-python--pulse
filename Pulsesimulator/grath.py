@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 import matplotlib as mtl
 import matplotlib.pyplot as plt
 import openpyxl as px

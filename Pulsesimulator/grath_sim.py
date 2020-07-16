@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 import matplotlib as mtl
 import matplotlib.pyplot as plt
 import openpyxl as px
@@ -23,13 +26,21 @@ del PLec1[0:3]
 x_pri = PLsc1 + PLec1
 x_list = sorted(x_pri)
 x_value1 = sorted(x_list + x_list)
-print(x_value1)
 
 y_list = [0, 1, 1, 0]
 y_value1 = []
 for i in range(len(PLsc1)):
     y_value1 += y_list
+
+
+if x_value1[0] != 0:
+    x_value1.insert(0, 0)
+    y_value1.insert(0, 0)
+else:
+    pass
+print(x_value1)
 print(y_value1)
+
 
 ##################################################
 
@@ -48,12 +59,19 @@ del ADec1[0:3]
 x_pri = ADsc1 + ADec1
 x_list = sorted(x_pri)
 x_value4 = sorted(x_list + x_list)
-print(x_value4)
 
 y_value4 = []
 for i in range(len(ADsc1)):
     y_value4 += y_list
+
+if x_value4[0] != 0:
+    x_value4.insert(0, 0)
+    y_value4.insert(0, 0)
+else:
+    pass
+print(x_value4)
 print(y_value4)
+
 
 ####################################################
 
@@ -62,24 +80,13 @@ x1, y1 = x_value1, y_value1
 x4, y4 = x_value4, y_value4
 fig = plt.figure()
 
-ax1 = fig.add_subplot(2, 1, 1)  # ２行１列の１番目
+
+ax1 = fig.add_subplot(211, title='PL1', yticks=[0, 1], yticklabels=["0", "1"])
+ax4 = fig.add_subplot(212, title='AD1',  xlabel='counter', yticks=[
+                      0, 1], yticklabels=["0", "1"], sharex=ax1)
+
+
 ax1.plot(x1, y1)
-ax1.set_title("PL1para")
+ax4.plot(x4, y4)
 
-ax2 = fig.add_subplot(2, 1, 2)  # ２行１列の２番目
-ax2.plot(x4, y4)
-ax2.set_title("AD1para")
-
-# y軸を共有する、１行２列のサブプロットを追加する
-fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, sharex=True)
-plt.tight_layout()
-plt.show()
-
-
-"""
-plt.plot(x_value1, y_value1)
-plt.title("PL1para")
-plt.xlabel("counter")
-plt.ylabel('0 or 1')
-"""
-plt.savefig("hoge.png")  # この行を追記
+fig.savefig('simulation', facecolor=fig.get_facecolor())
