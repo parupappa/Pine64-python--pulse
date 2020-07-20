@@ -99,7 +99,7 @@ while True:
         if counter <= sc1_int[-1]:
             if sc1_int[j] == counter:
                 GPIO.output(PL[0], 1)
-                sleep(bc1_int[j] * 0.01)
+                sleep(bc1_int[j] * 0.5)
                 j += 1
                 print("%d , PLsigunalout now" % (counter))
 
@@ -109,14 +109,14 @@ while True:
         if DDSsc1_int[k] == counter:
             for m in range(len(DDS_list[k])):
                 GPIO.output(DDS[0], DDS_list[k][m])
-                sleep(0.01)
+                sleep(0.5)
                 print("%d , DDSsigunalout now" % (counter))
             k += 1
 
         else:
             GPIO.output(PL[0], 0)
             GPIO.output(DDS[0], 0)
-            sleep(0.01)
+            sleep(0.5)
             print("%d,waitting now" % (counter))
         counter += 1
         # print(counter)
