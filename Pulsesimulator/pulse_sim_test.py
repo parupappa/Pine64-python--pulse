@@ -109,7 +109,7 @@ while True:
         if DDSsc1_int[k] == counter:
             for m in range(len(DDS_list[k])):
                 GPIO.output(DDS[0], DDS_list[k][m])
-                sleep(0.01)
+                sleep(0.5)
                 print("%d,DDSsigunalout now" % (counter))
             k += 1
 
