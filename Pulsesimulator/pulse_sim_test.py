@@ -101,6 +101,8 @@ while True:
                 GPIO.output(PL[0], 1)
                 sleep(bc1_int[j] * 0.01)
                 j += 1
+                print("%d , PLsigunalout now" % (counter))
+
             else:
                 pass
 
@@ -108,15 +110,16 @@ while True:
             for m in range(len(DDS_list[k])):
                 GPIO.output(DDS[0], DDS_list[k][m])
                 sleep(0.01)
+                print("%d , DDSsigunalout now" % (counter))
             k += 1
 
         else:
             GPIO.output(PL[0], 0)
             GPIO.output(DDS[0], 0)
             sleep(0.01)
-            print("待機中")
+            print("%d,waitting now" % (counter))
         counter += 1
-        print(counter)
+        # print(counter)
     else:
         counter = 0
         j = 0
