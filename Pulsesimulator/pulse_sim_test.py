@@ -99,7 +99,7 @@ while True:
         if counter <= sc1_int[-1]:
             if sc1_int[j] == counter:
                 GPIO.output(PL[0], 1)
-                sleep(bc1_int[j] * 0.00001)
+                sleep(bc1_int[j] * 0.001)
                 j += 1
                 print("%d,PLsigunalout now" % (counter))
 
