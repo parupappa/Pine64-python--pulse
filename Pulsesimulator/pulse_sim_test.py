@@ -99,7 +99,7 @@ while True:
         if counter <= sc1_int[-1]:
             if sc1_int[j] == counter:
                 GPIO.output(PL[0], 1)
-                sleep(bc1_int[j] * 0.25)
+                sleep(bc1_int[j] * 0.01)
                 j += 1
             else:
                 pass
@@ -107,13 +107,13 @@ while True:
         if DDSsc1_int[k] == counter:
             for m in range(len(DDS_list[k])):
                 GPIO.output(DDS[0], DDS_list[k][m])
-                sleep(0.25)
+                sleep(0.01)
             k += 1
 
         else:
             GPIO.output(PL[0], 0)
             GPIO.output(DDS[0], 0)
-            sleep(0.1)
+            sleep(0.01)
             print("待機中")
         counter += 1
         print(counter)
