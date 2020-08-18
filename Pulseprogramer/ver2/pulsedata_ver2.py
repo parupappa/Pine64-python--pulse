@@ -141,24 +141,17 @@ patternnamelist_int = []
 
 if pf == 'Windows':
     wb = xlrd.open_workbook(
-        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
 # print(pattern(wb))  #Bookオブジェクトを取得
     sheet2 = wb.sheet_by_name('DDSパラメータ')
 
 elif pf == 'Darwin':
     wb = xlrd.open_workbook(
-        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
 # print(pattern(wb))  #Bookオブジェクトを取得
     sheet2 = wb.sheet_by_name('DDSパラメータ')
-# print(pattern(sheet)) #sheetオブジェクトを取得
 
 
-"""
-wb = xlrd.open_workbook(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsx')
-# print(pattern(wb))  #Bookオブジェクトを取得
-sheet2 = wb.sheet_by_name('DDSパラメータ')
-"""
 for n in range(7):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
     if n % 8 == 0:  # 0(A),8(I)行目
         col_value = sheet2.col_values(int(n))
@@ -221,7 +214,7 @@ for m in range(len(DDS_40set)):
 
 for n in range(len(DDSdata_hex)):
     DDSdata.append(DDSdata_hex[n].zfill(16))
-# print(DDSdata)
+#print(DDSdata)
 
 
 ####################################################################################################
