@@ -214,7 +214,7 @@ for m in range(len(DDS_40set)):
 
 for n in range(len(DDSdata_hex)):
     DDSdata.append(DDSdata_hex[n].zfill(16))
-#print(DDSdata)
+# print(DDSdata)
 
 
 ####################################################################################################
@@ -447,7 +447,7 @@ for j in range(len(targetlist0)):
         targetAD3[j] + targetAD2[j] + targetAD1[j] + \
         targetPL3[j] + targetPL2[j] + targetPL1[j]
     bitsdata.append(v_data.zfill(32))  # 32桁　000000・・・・　あれば1　なければ0表示
-print(bitsdata)
+# print(bitsdata)
 
 ################################################################################################
 """
@@ -493,7 +493,7 @@ for m in range(len(Pulsedata)):
 addresslist = []
 for d in range(16 + len(Pulsedata_hex)):
     addresslist.append(format(d, 'x').zfill(5))
-# print(addresslist)  # 5桁の16進数表記
+#print(addresslist)  # 5桁の16進数表記
 
 
 #############################################################################################
