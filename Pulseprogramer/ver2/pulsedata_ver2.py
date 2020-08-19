@@ -493,7 +493,7 @@ for m in range(len(Pulsedata)):
 addresslist = []
 for d in range(16 + len(Pulsedata_hex)):
     addresslist.append(format(d, 'x').zfill(5))
-#print(addresslist)  # 5桁の16進数表記
+print(addresslist)  # 5桁の16進数表記
 
 
 #############################################################################################
