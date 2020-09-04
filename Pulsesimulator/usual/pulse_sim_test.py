@@ -2,6 +2,17 @@
 
 # PLとDDSの1チャネルのシミュレーションプログラム
 
+'''from モジュール名 import 関数/クラス等
+違いは
+    import hoge
+    hoge.foo() # foo 関数が実行される。
+
+関数の呼び出しに違いがある
+
+    from hoge import foo
+    foo()
+'''
+
 import sys  # sys.exit()でここまでのプログラムを実行
 import csv
 import pandas as pd
@@ -24,6 +35,7 @@ elif pf == 'Darwin':
 ###########################################################################################
 
 PL = [17, 27, 22]
+
 
 for i in range(len(PL)):
     GPIO.setup(PL[i], GPIO.OUT)
