@@ -39,6 +39,7 @@ PL3_bc3 = []
 PL_sc = [PL1_sc1, PL2_sc2, PL3_sc3]
 PL_bc = [PL1_bc1, PL2_bc2, PL3_bc3]
 
+
 sc_counter = 0
 bc_counter = 0
 
@@ -51,15 +52,33 @@ for n in range(11):
         # リスト内包表記 #リストにappend したい時
         PL_sc[sc_counter] = [int(s) for s in PL_sc[sc_counter]]
         sc_counter += 1
+        print(sc_counter)
 
-    if n % 4 == 1:
+    elif n % 4 == 1:
         for row in csv.reader(pulse_csv):
             PL_bc[bc_counter].append(row[n])
         del PL_bc[bc_counter][0:3]
         PL_bc[bc_counter] = [int(s) for s in PL_bc[bc_counter]]
-        bc_counter += 1
+        sc_counter += 1
+    else:
+        pass
+
 
 print(PL_sc)
 print(PL_bc)
+
+PL1_sc1 = []
+PL2_sc2 = []
+PL3_sc3 = []
+
+PL_sc = [PL1_sc1, PL2_sc2, PL3_sc3]
+
+'''
+for row in csv.reader(pulse_csv):
+    for i in range(3):
+        PL_sc[i].append(row[i])
+    print(i)
+print(PL_sc)
+'''
 
 ##################################################################################################
