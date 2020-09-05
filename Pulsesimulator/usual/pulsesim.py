@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # パルスシミュレーターの完成形プログラム
 
+from sys import exit
 import pandas as pd
 import csv
 from time import sleep  # time モジュールから sleep メソッドを取得
@@ -27,10 +28,10 @@ elif pf == 'Darwin':
 # インデント減らしたい時、Shift + Tab
 
 PL = [17, 27, 22]
-
-# for i in PL:
-#GPIO.setup(i, GPIO.OUT)
-
+'''
+for i in PL:
+GPIO.setup(i, GPIO.OUT)
+'''
 
 PL1_sc1 = []
 PL1_bc1 = []
@@ -71,15 +72,6 @@ for n in range(11):
 
 # print(PL_sc)
 # print(PL_bc)
-
-
-'''
-# 全ての行と 1-3 列目を取得
-aiu = csv_dataframe.iloc[:, 0:2]
-# print(aiu)
-
-print(list(aiu[1]))
-'''
 
 ########################################################################
 # インデント減らしたい時、Shift + Tab
@@ -124,25 +116,25 @@ for n in range(13, 24):
     else:
         pass
 
-print(AD_sc)
-print(AD_bc)
+# print(AD_sc)
+# print(AD_bc)
 
 ###########################################################################
 # DDS40bit  データのシミュレーション
 
 # pandas でcsvデータの二次元表を取得
 csv_DDSdataframe = pd.read_csv(
-    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv', sep=',', encoding='utf-8', index_col=False, header=None)
+    '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv', sep=',', encoding='utf-8', index_col=False, header=None)
 
 
 if pf == 'Linux':
     dds_csv = open(
-        '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/pulse_simDDSdata.csv')
+        '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv')
 elif pf == 'Darwin':
     dds_csv = open(
-        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/pulse_simDDSdata.csv')
+        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv')
 
-DDS = [26, 19]
+DDSpoat = [26, 19]
 
 
 '''
@@ -152,24 +144,48 @@ for i in range(len(DDS)):
 
 
 DDS1_sc = []
-DDS1_bc = []
+DDS1_data = []
 DDS2_sc = []
-DDS2_bc = []
+DDS2_data = []
 
 DDS_sc = [DDS1_sc, DDS2_sc]
-DDS_bc = [DDS1_bc, DDS2_bc]
+DDS_data = [DDS1_data, DDS2_data]
 
+index_DDSsc = 0
+index_DDSdata = 0
 
-# 読み込んだデータをint型に変換
-for i in range(len(DDS_sc1)):
-    DDSsc1_int.append(int(DDS_sc1[i]))
+hinann = []
 
-    # 40bitdataを一文字ずつにして配列に格納
-    chars = list(DDS_data[i].strip())
-    DDS_list.append(chars)
-# 読み込んだ配列をint型に変換
-for j in range(len(DDS_list)):
-    for i in range(len(DDS_list[0])):
-        if str == type(DDS_list[j][i]):
-            DDS_list[j][i] = (int(DDS_list[j][i]))
-# print(DDS_list)
+for n in range(14):
+    if n % 8 == 0:  # DDSscについての記述
+        DDS_sc[index_DDSsc] = list(csv_DDSdataframe[n])
+        del DDS_sc[index_DDSsc][0:3]
+        DDS_sc[index_DDSsc] = [t.replace(" ", "") for t in DDS_sc[index_DDSsc]]
+        DDS_sc[index_DDSsc] = [a for a in DDS_sc[index_DDSsc]
+                               if a != '']
+        DDS_sc[index_DDSsc] = [int(s)
+                               for s in DDS_sc[index_DDSsc]]  # リスト要素 str を intに変換
+        index_DDSsc += 1
+
+    elif n % 8 == 4:
+        DDS_data[index_DDSdata] = list(csv_DDSdataframe[n])
+        del DDS_data[index_DDSdata][0:3]
+
+        for i in range(len(DDS_data[index_DDSdata])):
+            chars = DDS_data[index_DDSdata][i]
+
+            DDS_data[index_DDSdata][i] = list(chars)
+            hinann.append(DDS_data[index_DDSdata][i])
+            DDS_data[index_DDSdata][i] = [a for a in hinann[-1]
+                                          if a != ' ']
+            DDS_data[index_DDSdata][i] = [int(s)
+                                          for s in DDS_data[index_DDSdata][i]]
+        index_DDSdata += 1
+
+    else:
+        pass
+
+# print(DDS_sc)
+# print(DDS_data)
+
+########################################################################################
