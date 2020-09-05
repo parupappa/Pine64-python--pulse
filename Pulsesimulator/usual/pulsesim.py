@@ -5,7 +5,7 @@ from sys import exit
 import pandas as pd
 import csv
 from time import sleep  # time モジュールから sleep メソッドを取得
-#import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 import platform
 # GPIO.setmode(GPIO.BCM)
 
@@ -27,7 +27,7 @@ elif pf == 'Darwin':
 ###########################################################################################
 # インデント減らしたい時、Shift + Tab
 
-PL = [17, 27, 22]
+PLpoat = [17, 27, 22]
 '''
 for i in PL:
 GPIO.setup(i, GPIO.OUT)
@@ -76,10 +76,10 @@ for n in range(11):
 ########################################################################
 # インデント減らしたい時、Shift + Tab
 
-AD = [10, 9, 11]
+ADpoat = [10, 9, 11]
 
 # for i in AD:
-#GPIO.setup(i, GPIO.OUT)
+# GPIO.setup(i, GPIO.OUT)
 
 AD1_sc1 = []
 AD1_bc1 = []
@@ -189,3 +189,96 @@ for n in range(14):
 # print(DDS_data)
 
 ########################################################################################
+
+
+counter = 0
+index = [0 for i in range(8)]
+j = 0  # sc1_intのインデックス
+k = 0  # DDSsc1_intのインデックス
+
+while True:
+    while counter <= max(max(PL_sc, AD_sc, DDS_sc, key=max)):
+        if counter <= PL1_sc[-1]:
+            if PL1_sc[index[0]] == counter:
+                GPIO.output(PLpoat[0], 1)
+                sleep(PL1_bc[index[0]] * 0.001)
+                index[0] += 1
+                print('%d', end=' : PL1出力中' % (counter))
+
+        if counter <= PL2_sc[-1]:
+            if PL2_sc[index[1]] == counter:
+                GPIO.output(PLpoat[1], 1)
+                sleep(PL2_bc[index[1]] * 0.001)
+                index[1] += 1
+                print('%d',  end=' : PL2出力中' % (counter))
+
+        if counter <= PL3_sc[-1]:
+            if PL3_sc[index[2]] == counter:
+                GPIO.output(PLpoat[2], 1)
+                sleep(PL3_bc[index[2]] * 0.001)
+                index[2] += 1
+                print('%d', end=' : PL3出力中' % (counter))
+
+#############################################################
+
+        if counter <= AD1_sc[-1]:
+            if AD1_sc[index[3]] == counter:
+                GPIO.output(ADpoat[0], 1)
+                sleep(AD1_bc[index[3]] * 0.001)
+                index[3] += 1
+                print('%d', end=' : AD1出力中' % (counter))
+
+        if counter <= AD2_sc[-1]:
+            if AD2_sc[index[4]] == counter:
+                GPIO.output(ADpoat[1], 1)
+                sleep(AD2_bc[index[4]] * 0.001)
+                index[4] += 1
+                print('%d',  end=' : AD2出力中' % (counter))
+
+        if counter <= AD3_sc[-1]:
+            if AD3_sc[index[5]] == counter:
+                GPIO.output(ADpoat[2], 1)
+                sleep(AD3_bc[index[5]] * 0.001)
+                index[5] += 1
+                print('%d', end=' : AD3出力中' % (counter))
+
+##############################################################
+
+        if DDS1_sc[k] == counter:
+            for m in range(len(DDS1_data[k])):
+                GPIO.output(DDSpoat[0], DDS1_data[k][m])
+                sleep(0.5)
+                print("%d", end=' : DDS1出力中' % (counter))
+            k += 1
+
+        if DDS2_sc[x] == counter:
+            for m in range(len(DDS2_data[x])):
+                GPIO.output(DDSpoat[1], DDS2_data[x][m])
+                sleep(0.5)
+                print("%d", end=' : DDS2出力中' % (counter))
+            x += 1
+
+        else:
+            GPIO.output(PLpoat[0], 0)
+            GPIO.output(PLpoat[1], 0)
+            GPIO.output(PLpoat[2], 0)
+
+            GPIO.output(ADpoat[0], 0)
+            GPIO.output(ADpoat[1], 0)
+            GPIO.output(ADpoat[2], 0)
+
+            GPIO.output(DDSpoat[0], 0)
+            GPIO.output(DDSpoat[1], 0)
+
+            sleep(0.5)
+            print('%d', end='LOWレベル' % (counter))
+        counter += 1
+        # print(counter)
+    else:
+        counter = 0
+        index = [0 for i in range(8)]
+        k = 0
+        x = 0
+
+
+# GPIO.cleanup()
