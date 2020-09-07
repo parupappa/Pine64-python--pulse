@@ -79,7 +79,7 @@ for n in range(11):
 ADpoat = [10, 9, 11]
 
 for i in AD:
-GPIO.setup(i, GPIO.OUT)
+    GPIO.setup(i, GPIO.OUT)
 
 AD1_sc1 = []
 AD1_bc1 = []
