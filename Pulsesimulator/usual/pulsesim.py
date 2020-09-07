@@ -29,7 +29,7 @@ elif pf == 'Darwin':
 
 PLpoat = [17, 27, 22]
 
-for i in PL:
+for i in PLpoat:
     GPIO.setup(i, GPIO.OUT)
 
 
@@ -78,7 +78,7 @@ for n in range(11):
 
 ADpoat = [10, 9, 11]
 
-for i in AD:
+for i in ADpoat:
     GPIO.setup(i, GPIO.OUT)
 
 AD1_sc1 = []
@@ -137,8 +137,8 @@ elif pf == 'Darwin':
 DDSpoat = [26, 19]
 
 
-for i in range(len(DDS)):
-    GPIO.setup(DDS[i], GPIO.OUT)
+for i in range(len(DDSpoat)):
+    GPIO.setup(DDSpoat[i], GPIO.OUT)
 
 
 DDS1_sc = []
@@ -197,7 +197,7 @@ k = 0  # DDSsc1_intのインデックス
 while True:
     while counter <= max(max(PL_sc, AD_sc, DDS_sc, key=max)):
         if counter <= PL1_sc1[-1]:
-            if PL1_sc[index[0]] == counter:
+            if PL1_sc1[index[0]] == counter:
                 GPIO.output(PLpoat[0], 1)
                 sleep(PL1_bc1[index[0]] * 0.001)
                 index[0] += 1
