@@ -201,21 +201,22 @@ while True:
                 GPIO.output(PLpoat[0], 1)
                 sleep(PL1_bc1[index[0]] * 0.001)
                 index[0] += 1
-                print('%d', end=' : PL1出力中' % (counter))
+                print('%d' % counter, end=': PL1出力中')
 
         if counter <= PL2_sc2[-1]:
             if PL2_sc2[index[1]] == counter:
                 GPIO.output(PLpoat[1], 1)
                 sleep(PL2_bc2[index[1]] * 0.001)
                 index[1] += 1
-                print('%d',  end=' : PL2出力中' % (counter))
+                print('%d' % counter, end=': PL2出力中')
 
         if counter <= PL3_sc3[-1]:
             if PL3_sc3[index[2]] == counter:
                 GPIO.output(PLpoat[2], 1)
                 sleep(PL3_bc3[index[2]] * 0.001)
                 index[2] += 1
-                print('%d', end=' : PL3出力中' % (counter))
+                print('%d' % counter, end=': PL3出力中')
+
 
 #############################################################
 
@@ -224,21 +225,22 @@ while True:
                 GPIO.output(ADpoat[0], 1)
                 sleep(AD1_bc1[index[3]] * 0.001)
                 index[3] += 1
-                print('%d', end=' : AD1出力中' % (counter))
+                print('%d' % counter, end=': AD1出力中')
 
         if counter <= AD2_sc2[-1]:
             if AD2_sc2[index[4]] == counter:
                 GPIO.output(ADpoat[1], 1)
                 sleep(AD2_bc2[index[4]] * 0.001)
                 index[4] += 1
-                print('%d',  end=' : AD2出力中' % (counter))
+                print('%d' % counter, end=': AD2出力中')
 
         if counter <= AD3_sc3[-1]:
             if AD3_sc3[index[5]] == counter:
                 GPIO.output(ADpoat[2], 1)
                 sleep(AD3_bc3[index[5]] * 0.001)
                 index[5] += 1
-                print('%d', end=' : AD3出力中' % (counter))
+                print('%d' % counter, end=': AD3出力中')
+
 
 ##############################################################
 
@@ -246,14 +248,16 @@ while True:
             for m in range(len(DDS1_data[k])):
                 GPIO.output(DDSpoat[0], DDS1_data[k][m])
                 sleep(0.5)
-                print("%d", end=' : DDS1出力中' % (counter))
+                print('%d' % counter, end=': DDS1出力中')
+
             k += 1
 
         if DDS2_sc[x] == counter:
             for m in range(len(DDS2_data[x])):
                 GPIO.output(DDSpoat[1], DDS2_data[x][m])
                 sleep(0.5)
-                print("%d", end=' : DDS2出力中' % (counter))
+                print('%d' % counter, end=': DDS2出力中')
+
             x += 1
 
         else:
@@ -269,7 +273,8 @@ while True:
             GPIO.output(DDSpoat[1], 0)
 
             sleep(0.5)
-            print('%d', end='LOWレベル' % (counter))
+            print('%d' % counter, end=': LOWlevel')
+
         counter += 1
         # print(counter)
     else:
@@ -279,4 +284,4 @@ while True:
         x = 0
 
 
-# GPIO.cleanup()
+GPIO.cleanup()
