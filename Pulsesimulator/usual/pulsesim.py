@@ -28,10 +28,10 @@ elif pf == 'Darwin':
 # インデント減らしたい時、Shift + Tab
 
 PLpoat = [17, 27, 22]
-'''
+
 for i in PL:
 GPIO.setup(i, GPIO.OUT)
-'''
+
 
 PL1_sc1 = []
 PL1_bc1 = []
@@ -78,8 +78,8 @@ for n in range(11):
 
 ADpoat = [10, 9, 11]
 
-# for i in AD:
-# GPIO.setup(i, GPIO.OUT)
+for i in AD:
+GPIO.setup(i, GPIO.OUT)
 
 AD1_sc1 = []
 AD1_bc1 = []
@@ -137,10 +137,10 @@ elif pf == 'Darwin':
 DDSpoat = [26, 19]
 
 
-'''
+
 for i in range(len(DDS)):
     GPIO.setup(DDS[i], GPIO.OUT)
-'''
+
 
 
 DDS1_sc = []
