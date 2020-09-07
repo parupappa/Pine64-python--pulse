@@ -30,7 +30,7 @@ elif pf == 'Darwin':
 PLpoat = [17, 27, 22]
 
 for i in PL:
-GPIO.setup(i, GPIO.OUT)
+    GPIO.setup(i, GPIO.OUT)
 
 
 PL1_sc1 = []
@@ -137,10 +137,8 @@ elif pf == 'Darwin':
 DDSpoat = [26, 19]
 
 
-
 for i in range(len(DDS)):
     GPIO.setup(DDS[i], GPIO.OUT)
-
 
 
 DDS1_sc = []
