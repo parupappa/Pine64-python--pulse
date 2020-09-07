@@ -193,52 +193,52 @@ for n in range(14):
 
 counter = 0
 index = [0 for i in range(8)]
-j = 0  # sc1_intのインデックス
+x = 0  # sc1_intのインデックス
 k = 0  # DDSsc1_intのインデックス
 
 while True:
     while counter <= max(max(PL_sc, AD_sc, DDS_sc, key=max)):
-        if counter <= PL1_sc[-1]:
+        if counter <= PL1_sc1[-1]:
             if PL1_sc[index[0]] == counter:
                 GPIO.output(PLpoat[0], 1)
-                sleep(PL1_bc[index[0]] * 0.001)
+                sleep(PL1_bc1[index[0]] * 0.001)
                 index[0] += 1
                 print('%d', end=' : PL1出力中' % (counter))
 
-        if counter <= PL2_sc[-1]:
-            if PL2_sc[index[1]] == counter:
+        if counter <= PL2_sc2[-1]:
+            if PL2_sc2[index[1]] == counter:
                 GPIO.output(PLpoat[1], 1)
-                sleep(PL2_bc[index[1]] * 0.001)
+                sleep(PL2_bc2[index[1]] * 0.001)
                 index[1] += 1
                 print('%d',  end=' : PL2出力中' % (counter))
 
-        if counter <= PL3_sc[-1]:
-            if PL3_sc[index[2]] == counter:
+        if counter <= PL3_sc3[-1]:
+            if PL3_sc3[index[2]] == counter:
                 GPIO.output(PLpoat[2], 1)
-                sleep(PL3_bc[index[2]] * 0.001)
+                sleep(PL3_bc3[index[2]] * 0.001)
                 index[2] += 1
                 print('%d', end=' : PL3出力中' % (counter))
 
 #############################################################
 
-        if counter <= AD1_sc[-1]:
-            if AD1_sc[index[3]] == counter:
+        if counter <= AD1_sc1[-1]:
+            if AD1_sc1[index[3]] == counter:
                 GPIO.output(ADpoat[0], 1)
-                sleep(AD1_bc[index[3]] * 0.001)
+                sleep(AD1_bc1[index[3]] * 0.001)
                 index[3] += 1
                 print('%d', end=' : AD1出力中' % (counter))
 
-        if counter <= AD2_sc[-1]:
-            if AD2_sc[index[4]] == counter:
+        if counter <= AD2_sc2[-1]:
+            if AD2_sc2[index[4]] == counter:
                 GPIO.output(ADpoat[1], 1)
-                sleep(AD2_bc[index[4]] * 0.001)
+                sleep(AD2_bc2[index[4]] * 0.001)
                 index[4] += 1
                 print('%d',  end=' : AD2出力中' % (counter))
 
-        if counter <= AD3_sc[-1]:
-            if AD3_sc[index[5]] == counter:
+        if counter <= AD3_sc3[-1]:
+            if AD3_sc3[index[5]] == counter:
                 GPIO.output(ADpoat[2], 1)
-                sleep(AD3_bc[index[5]] * 0.001)
+                sleep(AD3_bc3[index[5]] * 0.001)
                 index[5] += 1
                 print('%d', end=' : AD3出力中' % (counter))
 
