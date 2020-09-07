@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # パルスシミュレーターの完成形プログラム
 
-from sys import exit
+
 import pandas as pd
 import csv
 from time import sleep  # time モジュールから sleep メソッドを取得
