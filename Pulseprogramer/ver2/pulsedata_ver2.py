@@ -42,7 +42,7 @@ PL_nscset = []
 PL_ecset = []
 PL_necset = []
 
-for n in range(3):  # 3,7,11を指定すれば繰り返し回数、つまりPLの個数を指定出来る
+for n in range(11):  # 3,7,11を指定すれば繰り返し回数、つまりPLの個数を指定出来る
     if n % 4 == 0:  # sc 0,4,8行目
         # col_valuesの長さは常にsheet.nrowsに等しい 。つまり、sheetの一番下の行数となってしまう
         col_value = sheet1.col_values(int(n))
@@ -91,7 +91,7 @@ AD_nscset = []
 AD_ecset = []
 AD_necset = []
 
-for n in range(12, 15):  # 右の値15,19,23を指定すれば繰り返し回数、つまりADの個数を指定出来る
+for n in range(12, 23):  # 右の値15,19,23を指定すれば繰り返し回数、つまりADの個数を指定出来る
     if n % 4 == 0:  # sc 12,16,20行目
         col_value = sheet1.col_values(int(n))
         del col_value[0:3]
@@ -152,7 +152,7 @@ elif pf == 'Darwin':
     sheet2 = wb.sheet_by_name('DDSパラメータ')
 
 
-for n in range(7):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
+for n in range(0,14):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
     if n % 8 == 0:  # 0(A),8(I)行目
         col_value = sheet2.col_values(int(n))
         del col_value[0:3]
