@@ -1,35 +1,25 @@
 # -*- coding: utf-8 -*-
-
 # 設定するパラメータ　PL AD DDS の繰り返し回数と　1カウントをどの長さにするかのカウント値部分
 
 import csv
 import xlrd
 import openpyxl
-import pprint
 import platform
-
-
-# OSごとに開くフォルダを変える
 pf = platform.system()
 
-if pf == 'Windows':
-    wb = xlrd.open_workbook(
-        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
-# print(pattern(wb))  #Bookオブジェクトを取得
-    sheet1 = wb.sheet_by_name('Pulseパラメータ')
+Lin_pass = 'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
+Mac_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
 
-elif pf == 'Darwin':
-    wb = xlrd.open_workbook(
-        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
-# print(pattern(wb))  #Bookオブジェクトを取得
+
+if pf == 'Windows':
+    wb = xlrd.open_workbook(Lin_pass)
     sheet1 = wb.sheet_by_name('Pulseパラメータ')
-# print(pattern(sheet)) #sheetオブジェクトを取得
+elif pf == 'Darwin':
+    wb = xlrd.open_workbook(Mac_pass)
+    sheet1 = wb.sheet_by_name('Pulseパラメータ')
 
 
 # Excelファイルの行(row)列(col)の先頭は0行0列
-
-# まずはver1のプログラムを生かせる形にExcelファイルを読み込む
-
 # PLの部分のみについて取り出しとsortを行う
 PL1 = 'PL1'
 PL2 = 'PL2'
@@ -140,19 +130,15 @@ patternnamelist_int = []
 
 
 if pf == 'Windows':
-    wb = xlrd.open_workbook(
-        'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
-# print(pattern(wb))  #Bookオブジェクトを取得
+    wb = xlrd.open_workbook(Lin_pass)
     sheet2 = wb.sheet_by_name('DDSパラメータ')
 
 elif pf == 'Darwin':
-    wb = xlrd.open_workbook(
-        '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm')
-# print(pattern(wb))  #Bookオブジェクトを取得
+    wb = xlrd.open_workbook(Mac_pass)
     sheet2 = wb.sheet_by_name('DDSパラメータ')
 
 
-for n in range(0,14):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
+for n in range(0, 14):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
     if n % 8 == 0:  # 0(A),8(I)行目
         col_value = sheet2.col_values(int(n))
         del col_value[0:3]

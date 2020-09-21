@@ -1,11 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# プログラム実装時変更するところ
-# for の回数　3ヶ所
-# for 例文　range(2) 0 1
-#   range(10 ,13 ) 10 11 12
-
-
 import openpyxl as px
 
 fname = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
@@ -46,7 +40,7 @@ while f_idx < 2:
 
 frq_data1, frq_data2 = settingF[0:8], settingF[8: 16]
 frq_data = [frq_data1, frq_data2]
-#print(frq_data)
+# print(frq_data)
 
 ##############################################################################
 # 位相制御5bit
@@ -80,7 +74,7 @@ while p_idx < 2:
 
 pha_data1, pha_data2 = settingP[0:8], settingP[8:16]
 pha_data = [pha_data1, pha_data2]
-#print(pha_data)
+# print(pha_data)
 
 ######################################################################################
 # パワーダウン　ロジック　6＊REFの3bit部分
@@ -108,7 +102,7 @@ while REF_idx < 2:
 
 power_data1, power_data2 = settingREF[0:8], settingREF[8:16]
 power_data = [power_data1, power_data2]
-#print(power_data)
+# print(power_data)
 #####################################################################################
 
 # 各部分の統合
@@ -151,4 +145,3 @@ for n in range(len(DDS40bitdata2)):
     sheet.cell(column=10, row=(n + 4), value=DDS40bitdata2[n])
 
 wb.save(fname)
-
