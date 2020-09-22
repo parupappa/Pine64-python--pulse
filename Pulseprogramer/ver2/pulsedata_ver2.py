@@ -7,12 +7,12 @@ import openpyxl
 import platform
 pf = platform.system()
 
-Lin_pass = 'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
+Linux_pass = 'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
 Mac_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
 
 
 if pf == 'Windows':
-    wb = xlrd.open_workbook(Lin_pass)
+    wb = xlrd.open_workbook(Linux_pass)
     sheet1 = wb.sheet_by_name('Pulseパラメータ')
 elif pf == 'Darwin':
     wb = xlrd.open_workbook(Mac_pass)
@@ -21,9 +21,7 @@ elif pf == 'Darwin':
 
 # Excelファイルの行(row)列(col)の先頭は0行0列
 # PLの部分のみについて取り出しとsortを行う
-PL1 = 'PL1'
-PL2 = 'PL2'
-PL3 = 'PL3'
+PL1, PL2, PL3 = 'PL1', 'PL3', 'PL3'
 PLnamelist = [PL1, PL2, PL3]
 
 col_nvalue = []
@@ -70,9 +68,7 @@ allPLdatalist = PL_nscset + PL_necset
 
 # ADの部分のみについて取り出し、sortを行う
 
-AD1 = 'AD1'
-AD2 = 'AD2'
-AD3 = 'AD3'
+AD1, AD2, AD3 = 'AD1', 'AD2', 'AD3'
 ADnamelist = [AD1, AD2, AD3]
 
 col_nvalue = []
@@ -116,8 +112,7 @@ allADdatalist = AD_nscset + AD_necset
 
 # DDSの部分のみについて取り出し、scと40bitデータを16進数に直し分けて格納
 
-DDS1 = 'DDS1'
-DDS2 = 'DDS2'
+DDS1, DDS2 = 'DDS1', 'DDS2'
 DDSnamelist = [DDS1, DDS2]
 
 col_nvalue = []
@@ -129,13 +124,22 @@ patternnamelist = []
 patternnamelist_int = []
 
 
+bitdata1_40 = []
+bitdata2_40 = []
+
 if pf == 'Windows':
-    wb = xlrd.open_workbook(Lin_pass)
+    wb = xlrd.open_workbook(Linux_pass)
     sheet2 = wb.sheet_by_name('DDSパラメータ')
 
 elif pf == 'Darwin':
     wb = xlrd.open_workbook(Mac_pass)
     sheet2 = wb.sheet_by_name('DDSパラメータ')
+
+
+for n in range(11):
+    if n % 6 == 3:
+        40bitdata1 = sheet2.col_values(int(n))
+        del col_value[0:3]
 
 
 for n in range(0, 14):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
@@ -150,7 +154,7 @@ for n in range(0, 14):  # 7だけか、右の値 0, 14 を指定すれば繰り�
             DDS_scset.append(b)
             DDS_nscset.append(DDS_scset)
             DDS_scset = []
-        # print(DDS_nscset)  # PLのsc部分のデータ [[PL1,0],...[PL3,12]]
+        # print(DDS_nscset)
 
     elif n % 8 == 4:  # 40bitdata 4(E),12(M)行目
         col_value = sheet2.col_values(int(n))
