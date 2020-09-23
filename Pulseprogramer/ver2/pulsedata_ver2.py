@@ -24,8 +24,6 @@ elif pf == 'Darwin':
 # PLの部分のみについて取り出しとsortを行う
 PL1, PL2, PL3 = 'PL1', 'PL3', 'PL3'
 PLnamelist = [PL1, PL2, PL3]
-
-col_nvalue = []
 PL_scset = []
 PL_nscset = []
 PL_ecset = []
@@ -36,13 +34,11 @@ for n in range(11):  # 3,7,11を指定すれば繰り返し回数、つまりPL�
         # col_valuesの長さは常にsheet.nrowsに等しい 。つまり、sheetの一番下の行数となってしまう
         col_value = sheet1.col_values(int(n))
         del col_value[0:3]
-        col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
+        col_nvalue_PLsc = [s for s in col_value if s != '']  # col_value内の’’を削除
         # print(col_nvalue)
-        for m in range(len(col_nvalue)):
-            a = col_nvalue[m]
-            b = int(a)
+        for value in col_nvalue_PLsc:
             PL_scset.append(PLnamelist[int(n/4)])
-            PL_scset.append(b)
+            PL_scset.append(int(value))
             PL_nscset.append(PL_scset)
             PL_scset = []
         # print(PL_nscset) #PLのsc部分のデータ [[PL1,0],...[PL3,12]]
@@ -50,16 +46,14 @@ for n in range(11):  # 3,7,11を指定すれば繰り返し回数、つまりPL�
     elif (n - 2) % 4 == 0:  # ec 2,6,10行目
         col_value = sheet1.col_values(int(n))
         del col_value[0:3]
-        col_nvalue = [s for s in col_value if s != '']
+        col_nvalue_PLec = [s for s in col_value if s != '']
         # print(col_nvalue)
-        for m in range(len(col_nvalue)):
-            c = col_nvalue[m]
-            d = int(c)
+        for value in col_nvalue_PLec:
             PL_ecset.append('')  # ecの方は何も入れない
-            PL_ecset.append(d)
+            PL_ecset.append(int(value))
             PL_necset.append(PL_ecset)
             PL_ecset = []
-        # print(PL_necset)  #PLのec部分のデータ　[['',2],...['',18]]
+        # print(PL_necset)  #PLのec部分のデータ [['',2],...['',18]]
 
 allPLdatalist = PL_nscset + PL_necset
 # print(allPLdatalist)  # [['PL1', 0], ['', 2], ... ['', 18]]
@@ -72,7 +66,6 @@ allPLdatalist = PL_nscset + PL_necset
 AD1, AD2, AD3 = 'AD1', 'AD2', 'AD3'
 ADnamelist = [AD1, AD2, AD3]
 
-col_nvalue = []
 AD_scset = []
 AD_nscset = []
 AD_ecset = []
@@ -82,12 +75,10 @@ for n in range(12, 23):  # 右の値15,19,23を指定すれば繰り返し回数
     if n % 4 == 0:  # sc 12,16,20行目
         col_value = sheet1.col_values(int(n))
         del col_value[0:3]
-        col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
-        for m in range(len(col_nvalue)):
-            a = col_nvalue[m]
-            b = int(a)
+        col_nvalue_ADsc = [s for s in col_value if s != '']
+        for value in col_nvalue_ADsc:
             AD_scset.append(ADnamelist[int(n/4 - 3)])
-            AD_scset.append(b)
+            AD_scset.append(int(value))
             AD_nscset.append(AD_scset)
             AD_scset = []
         # print(AD_nscset)  # PLのsc部分のデータ [[PL1,0],...[PL3,12]]
@@ -95,15 +86,13 @@ for n in range(12, 23):  # 右の値15,19,23を指定すれば繰り返し回数
     elif (n - 2) % 4 == 0:  # ec 14,18,22行目
         col_value = sheet1.col_values(int(n))
         del col_value[0:3]
-        col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
-        for m in range(len(col_nvalue)):
-            c = col_nvalue[m]
-            d = int(c)
-            AD_ecset.append('')  # ecの方は何も入れない
-            AD_ecset.append(d)
+        col_nvalue_ADec = [s for s in col_value if s != '']
+        for value in col_nvalue_ADec:
+            AD_ecset.append('')
+            AD_ecset.append(int(value))
             AD_necset.append(AD_ecset)
             AD_ecset = []
-        # print(AD_necset)  # PLのec部分のデータ　[['',2],...['',18]]
+        # print(AD_necset)  # PLのec部分のデータ [['',2],...['',18]]
 
 allADdatalist = AD_nscset + AD_necset
 # print(allADdatalist)  # [['AD1', 10], ['', 1], ... ]
@@ -289,41 +278,36 @@ targetDDS26 = ['1' if 'DDS26' in tl else '0' for tl in targetlist0]
 targetDDS27 = ['1' if 'DDS27' in tl else '0' for tl in targetlist0]
 targetDDS28 = ['1' if 'DDS28' in tl else '0' for tl in targetlist0]
 
+
 bitsdata_32 = []
-print(targetPL1)
-print(targetPL2)
-print(targetPL3)
+
 for j in range(len(targetPL1)):
     v_data = targetDDS28[j] + targetDDS27[j] + targetDDS26[j] + targetDDS25[j] + targetDDS24[j] + targetDDS23[j] + targetDDS22[j] + targetDDS21[j] + \
         targetDDS18[j] + targetDDS17[j] + targetDDS16[j] + targetDDS15[j] + targetDDS14[j] + targetDDS13[j] + targetDDS12[j] + targetDDS11[j] + \
         targetAD3[j] + targetAD2[j] + targetAD1[j] + \
         targetPL3[j] + targetPL2[j] + targetPL1[j]
     bitsdata_32.append(v_data.zfill(32))  # 32桁 000000・・・・あれば1 なければ0表示
-print(bitsdata_32)
+# print(bitsdata_32)
 
 ###################################################################################################
 
 # データ連結部分
 # データを16進数に変換
-
 # bitsdata[32bit] + countlist[32bit]を合体させ64bitのデータを生成
 
 Pulsedata = []
 
-for c in range(len(bitsdata)):
-    pulsedata = (bitsdata[c] + countlist[c])
+for i in range(len(bitsdata_32)):
+    pulsedata = (bitsdata_32[i] + countlist[i])
     Pulsedata.append(pulsedata)
-# print(Pulsedata) #64ビットの[bitsdata + countlist0]
+# print(Pulsedata)  # 64ビットの[bitsdata + countlist0]
 
-hexdata = ''
 Pulsedata_hex = []
-n = 0
-for m in range(len(Pulsedata)):
-    str = Pulsedata[m]
+for sixfour_bits in Pulsedata:
     hexdata = ''
     n = 0
     while n + 3 < 64:
-        four_str = str[n:n+4]
+        four_str = sixfour_bits[n:n+4]
         four_int = int("0b"+four_str, 0)
         hex_str = format(four_int, 'x')
         hexdata = hexdata + hex_str
@@ -331,34 +315,35 @@ for m in range(len(Pulsedata)):
     Pulsedata_hex.append(hexdata)  # 4bitずつ16進数に変換
 # print(Pulsedata_hex)  # 64bitのPulsedataを16bitの16進数に変換
 
+
 ################################################################################################
 
 # アドレスデータ部分
 addresslist = []
 for d in range(16 + len(Pulsedata_hex)):
     addresslist.append(format(d, 'x').zfill(5))
-print(addresslist)  # 5桁の16進数表記
+# print(addresslist)  # 5桁の16進数表記
 
 
 #############################################################################################
 
 # 全データを指定の二次元配列の形に直す部分
 csvdata = []
-"""
-start_csvlist = [addresslist[0], DDSinfo[0]]
-csvdata.append(start_csvlist)
-# print(csvdata) #先頭アドレスとDDSの数データ
-"""
+csvdata0 = []
+csvdata1 = []
+dictvalue = []
+# print(bitdata_dict)
 
-for i in range(len(DDSdata_hex)):
-    csvdata0 = []
-    csvdata0 = [addresslist[i], DDSdata[i]]
+for dict_value in bitdata_dict.values():
+    dictvalue.append(dict_value)
+# print(dictvalue)
+
+for i in range(len(dictvalue)):
+    csvdata0 = [addresslist[i], dictvalue[i]]
     csvdata.append(csvdata0)
 # print(csvdata)  # DDSの部分までのCSV
 
-
 for j in range(len(Pulsedata_hex)):
-    csvdata1 = []
     csvdata1 = [addresslist[16 + j], Pulsedata_hex[j]]
     csvdata.append(csvdata1)
 # print(csvdata) #全CSVdata
