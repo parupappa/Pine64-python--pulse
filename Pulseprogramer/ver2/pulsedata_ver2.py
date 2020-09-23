@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # 設定するパラメータ　PL AD DDS の繰り返し回数と　1カウントをどの長さにするかのカウント値部分
 
+import sys
 import csv
 import xlrd
 import openpyxl
@@ -17,7 +18,7 @@ if pf == 'Windows':
 elif pf == 'Darwin':
     wb = xlrd.open_workbook(Mac_pass)
     sheet1 = wb.sheet_by_name('Pulseパラメータ')
-
+'''
 
 # Excelファイルの行(row)列(col)の先頭は0行0列
 # PLの部分のみについて取り出しとsortを行う
@@ -108,7 +109,7 @@ allADdatalist = AD_nscset + AD_necset
 # print(allADdatalist)  # [['AD1', 10], ['', 1], ... ]
 
 #####################################################################################
-
+'''
 
 # DDSの部分のみについて取り出し、scと40bitデータを16進数に直し分けて格納
 
@@ -124,8 +125,8 @@ patternnamelist = []
 patternnamelist_int = []
 
 
-bitdata1_40 = []
-bitdata2_40 = []
+fourty_bitdata = []
+pattern_data = []
 
 if pf == 'Windows':
     wb = xlrd.open_workbook(Linux_pass)
@@ -138,8 +139,24 @@ elif pf == 'Darwin':
 
 for n in range(11):
     if n % 6 == 3:
-        40bitdata1 = sheet2.col_values(int(n))
+        col_value = sheet2.col_values(int(n))
         del col_value[0:3]
+        fourty_bitdata.extend(col_value)
+
+    elif n % 6 == 4:
+        col_value = sheet2.col_values(int(n))
+        del col_value[0:3]
+        pattern_data.extend(col_value)
+    pattern_data = [int(f) for f in pattern_data]
+
+# bitパターンの辞書を定義
+bitdata_dict = {}
+for i in range(len(fourty_bitdata)):
+    if i < 8:
+        bitdata_dict['1' + str(pattern_data[i])] = fourty_bitdata[i]
+    else:
+        bitdata_dict['2' + str(pattern_data[i])] = fourty_bitdata[i]
+print(bitdata_dict)
 
 
 for n in range(0, 14):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
