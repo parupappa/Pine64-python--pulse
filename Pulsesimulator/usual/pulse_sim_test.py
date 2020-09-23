@@ -98,7 +98,7 @@ for j in range(len(DDS_list)):
             DDS_list[j][i] = (int(DDS_list[j][i]))
 print(DDS_list)
 
-sys.exit()
+
 
 ##################################################################################################
 
