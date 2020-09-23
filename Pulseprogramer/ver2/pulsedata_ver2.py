@@ -18,7 +18,7 @@ if pf == 'Windows':
 elif pf == 'Darwin':
     wb = xlrd.open_workbook(Mac_pass)
     sheet1 = wb.sheet_by_name('Pulseパラメータ')
-'''
+
 
 # Excelファイルの行(row)列(col)の先頭は0行0列
 # PLの部分のみについて取り出しとsortを行う
@@ -109,7 +109,7 @@ allADdatalist = AD_nscset + AD_necset
 # print(allADdatalist)  # [['AD1', 10], ['', 1], ... ]
 
 #####################################################################################
-'''
+
 
 # DDSの部分のみについて取り出し、scと40bitデータを16進数に直し分けて格納
 
@@ -125,9 +125,6 @@ patternnamelist = []
 patternnamelist_int = []
 
 
-fourty_bitdata = []
-pattern_data = []
-
 if pf == 'Windows':
     wb = xlrd.open_workbook(Linux_pass)
     sheet2 = wb.sheet_by_name('DDSパラメータ')
@@ -136,6 +133,9 @@ elif pf == 'Darwin':
     wb = xlrd.open_workbook(Mac_pass)
     sheet2 = wb.sheet_by_name('DDSパラメータ')
 
+
+fourty_bitdata = []
+pattern_data = []
 
 for n in range(11):
     if n % 6 == 3:
@@ -149,88 +149,70 @@ for n in range(11):
         pattern_data.extend(col_value)
     pattern_data = [int(f) for f in pattern_data]
 
-# bitパターンの辞書を定義
-bitdata_dict = {}
-for i in range(len(fourty_bitdata)):
-    if i < 8:
-        bitdata_dict['1' + str(pattern_data[i])] = fourty_bitdata[i]
-    else:
-        bitdata_dict['2' + str(pattern_data[i])] = fourty_bitdata[i]
-print(bitdata_dict)
-
-
-for n in range(0, 14):  # 7だけか、右の値 0, 14 を指定すれば繰り返し回数、つまりDDSの個数を指定出来る
-    if n % 8 == 0:  # 0(A),8(I)行目
-        col_value = sheet2.col_values(int(n))
-        del col_value[0:3]
-        col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
-        for m in range(len(col_nvalue)):
-            a = col_nvalue[m]
-            b = int(a)
-            DDS_scset.append(DDSnamelist[int(n/8)])
-            DDS_scset.append(b)
-            DDS_nscset.append(DDS_scset)
-            DDS_scset = []
-        # print(DDS_nscset)
-
-    elif n % 8 == 4:  # 40bitdata 4(E),12(M)行目
-        col_value = sheet2.col_values(int(n))
-        del col_value[0:3]
-        col_nvalue = [s for s in col_value if s != '']  # col_value内の’’を削除
-        for m in range(len(col_nvalue)):
-            bitdata_40 = col_nvalue[m]
-            DDS_40set.append(bitdata_40)
-        # print(DDS_40set)  # DDSの40bit部分のデータ
-
-    elif n % 8 == 5:  # DDSとpatternnameの文字列を合体させる
-        col_value = sheet2.col_values(int(n))
-        del col_value[0:3]
-        # col_value内の’’を削除
-        patternnamelist0 = [s for s in col_value if s != '']
-        patternnamelist_int = [int(m) for m in patternnamelist0]
-        patternnamelist_str = [str(l) for l in patternnamelist_int]
-        patternnamelist.append(patternnamelist_str)
-        patternnamelist = [
-            s for row in patternnamelist for s in row]  # リスト内リストを外す
-        # print(patternnamelist)
-
-for m in range(len(patternnamelist)):
-    DDSname = DDS_nscset[m][0]
-    DDS_nscset[m][0] = (DDSname + patternnamelist[m])
-# [['DDS11', 20], ['DDS12', 24], ['DDS21', 20], ['DDS22', 80]]
-# print(DDS_nscset)
-
-
 # 40bitのDDSdataを16進数10bitに変換
-
-hexdata = ''  # hexは16進の意味
 DDSdata_hex = []  # 16進数10bitのDDSdata
 DDSdata = []  # 0埋めした16進数16bitのDDSdata
-n = 0
-for m in range(len(DDS_40set)):
-    str = DDS_40set[m]
+for fourty_data in fourty_bitdata:
     hexdata = ''
     n = 0
     while n + 3 < 40:
-        four_str = str[n:n + 4]
+        four_str = fourty_data[n:n + 4]
         four_int = int("0b"+four_str, 0)  # 2進数four_strを数値に変換
         hex_str = format(four_int, 'x')  # 数値four_intを16進数に変換
         hexdata = hexdata + hex_str
-        n = n + 4
+        n += 4
     DDSdata_hex.append(hexdata)  # 4bitずつ16進数に変換
 
 for n in range(len(DDSdata_hex)):
     DDSdata.append(DDSdata_hex[n].zfill(16))
 # print(DDSdata)
 
+# bitパターンの辞書を定義
+bitdata_dict = {}
+for i in range(len(DDSdata)):
+    if i < 8:
+        bitdata_dict['DDS1' + str(pattern_data[i])] = DDSdata[i]
+    else:
+        bitdata_dict['DDS2' + str(pattern_data[i])] = DDSdata[i]
+# print(bitdata_dict)
+
+
+DDS1_sc1 = sheet1.col_values(24)
+DDS2_sc2 = sheet1.col_values(27)
+DDS1_pattern = sheet1.col_values(25)
+DDS2_pattern = sheet1.col_values(28)
+
+del DDS1_sc1[0:3], DDS1_pattern[0:3], DDS2_sc2[0:3], DDS2_pattern[0:3]
+DDS1_sc1 = [int(s) for s in DDS1_sc1 if s != '']
+DDS2_sc2 = [int(s) for s in DDS2_sc2 if s != '']
+DDS1_pattern = [int(s) for s in DDS1_pattern if s != '']
+DDS2_pattern = [int(s) for s in DDS2_pattern if s != '']
+
+DDS1data_new = []
+for i in range(len(DDS1_sc1)):
+    DDS1name = 'DDS1' + str(DDS1_pattern[i])
+    DDS1data = [DDS1name, DDS1_sc1[i]]
+    DDS1data_new.append(DDS1data)
+# print(DDS1data_new)
+DDS2data_new = []
+for i in range(len(DDS2_sc2)):
+    DDS2name = 'DDS2' + str(DDS2_pattern[i])
+    DDS2data = [DDS2name, DDS2_sc2[i]]
+    DDS2data_new.append(DDS2data)
+# print(DDS2data_new)
+
+
+DDSdata = DDS1data_new + DDS2data_new
+DDSdata_new = sorted(DDSdata, key=lambda DDSdata: DDSdata[1])  # ソート
+# print(DDSdata_new)
+
 
 ####################################################################################################
 
 # PL,AD,DDSの統合を行う
 
-allPLADDDSdatalist = allPLdatalist + allADdatalist + DDS_nscset
+allPLADDDSdatalist = allPLdatalist + allADdatalist + DDSdata_new
 allPLADDDSdatalist.sort(key=lambda count: count[1])  # count順になるようにsort
-# [['PL1', 0], ['', 2]....['DDS1', 20], ['DDS2', 20], ['DDS1', 24], ['DDS2', 80]]
 # print(allPLADDDSdatalist)
 
 
@@ -261,209 +243,64 @@ countlist0 = []
 for n in range(len(allPLADDDSdatalist_new)):
     targetlist0.append(allPLADDDSdatalist_new[n][0])
     countlist0.append(allPLADDDSdatalist_new[n][1])
-
 # print(targetlist0)  # ['PL1', '', 'PL1', '', 'AD1', '']
 # print(countlist0)  # [0, 2, 5, 9, 10, 11]
 
-
-#######################################################################################################
-
-
 # カウント値操作部分
-
 countlist = []
-
 for k in range(len(countlist0)):
-    # *100:[1us]単位のカウント値 *10000:[1カウント100us] *100000000[1count :1s]
+    # *100:[1count : 1us] *10000:[1count : 100us] *100000000[1count :1s]
     countlist.append(countlist0[k] * 100000000)
     countlist[k] = format(countlist[k], 'b').zfill(32)  # 2進数に変換して32桁になるように0埋め
-# print(countlist) #カウント値　32桁の2進数表記
-
+# print(countlist) #カウント値 32桁の2進数表記
 #################################################################################################
 
 
 # 対象操作部分
 
-targetPL1 = []
-targetPL2 = []
-targetPL3 = []
-targetAD1 = []
-targetAD2 = []
-targetAD3 = []
-targetDDS11 = []
-targetDDS12 = []
-targetDDS13 = []
-targetDDS14 = []
-targetDDS15 = []
-targetDDS16 = []
-targetDDS17 = []
-targetDDS18 = []
-targetDDS21 = []
-targetDDS22 = []
-targetDDS23 = []
-targetDDS24 = []
-targetDDS25 = []
-targetDDS26 = []
-targetDDS27 = []
-targetDDS28 = []
+targetPL1, targetPL2, targetPL3 = [],  [], []
+targetAD1, targetAD2, targetAD3 = [], [], []
+targetDDS11, targetDDS12, targetDDS13, targetDDS14, targetDDS15, targetDDS16, targetDDS17, targetDDS18 = [
+], [], [], [], [], [], [], []
+targetDDS21, targetDDS22, targetDDS23, targetDDS24, targetDDS25, targetDDS26, targetDDS27, targetDDS28 = [
+], [], [], [], [], [], [], []
 
 
-for tl in targetlist0:
-    if 'PL1' in tl:
-        a = '1'
-        targetPL1.append(a)
-    else:
-        a = '0'
-        targetPL1.append(a)
-    if 'PL2' in tl:
-        b = '1'
-        targetPL2.append(b)
-    else:
-        b = '0'
-        targetPL2.append(b)
-    if 'PL3' in tl:
-        c = '1'
-        targetPL3.append(c)
-    else:
-        c = '0'
-        targetPL3.append(c)
+targetPL1 = ['1' if 'PL1' in tl else '0' for tl in targetlist0]
+targetPL2 = ['1' if 'PL2' in tl else '0' for tl in targetlist0]
+targetPL3 = ['1' if 'PL3' in tl else '0' for tl in targetlist0]
+targetAD1 = ['1' if 'AD1' in tl else '0' for tl in targetlist0]
+targetAD2 = ['1' if 'AD2' in tl else '0' for tl in targetlist0]
+targetAD3 = ['1' if 'AD3' in tl else '0' for tl in targetlist0]
+targetDDS11 = ['1' if 'DDS11' in tl else '0' for tl in targetlist0]
+targetDDS12 = ['1' if 'DDS12' in tl else '0' for tl in targetlist0]
+targetDDS13 = ['1' if 'DDS13' in tl else '0' for tl in targetlist0]
+targetDDS14 = ['1' if 'DDS14' in tl else '0' for tl in targetlist0]
+targetDDS15 = ['1' if 'DDS15' in tl else '0' for tl in targetlist0]
+targetDDS16 = ['1' if 'DDS16' in tl else '0' for tl in targetlist0]
+targetDDS17 = ['1' if 'DDS17' in tl else '0' for tl in targetlist0]
+targetDDS18 = ['1' if 'DDS18' in tl else '0' for tl in targetlist0]
+targetDDS21 = ['1' if 'DDS21' in tl else '0' for tl in targetlist0]
+targetDDS22 = ['1' if 'DDS22' in tl else '0' for tl in targetlist0]
+targetDDS23 = ['1' if 'DDS23' in tl else '0' for tl in targetlist0]
+targetDDS24 = ['1' if 'DDS24' in tl else '0' for tl in targetlist0]
+targetDDS25 = ['1' if 'DDS25' in tl else '0' for tl in targetlist0]
+targetDDS26 = ['1' if 'DDS26' in tl else '0' for tl in targetlist0]
+targetDDS27 = ['1' if 'DDS27' in tl else '0' for tl in targetlist0]
+targetDDS28 = ['1' if 'DDS28' in tl else '0' for tl in targetlist0]
 
-    if 'AD1' in tl:
-        d = '1'
-        targetAD1.append(d)
-    else:
-        d = '0'
-        targetAD1.append(d)
-    if 'AD2' in tl:
-        e = '1'
-        targetAD2.append(e)
-    else:
-        e = '0'
-        targetAD2.append(e)
-    if 'AD3' in tl:
-        f = '1'
-        targetAD3.append(f)
-    else:
-        f = '0'
-        targetAD3.append(f)
-
-    if 'DDS11' in tl:
-        g = '1'
-        targetDDS11.append(g)
-    else:
-        g = '0'
-        targetDDS11.append(g)
-    if 'DDS12' in tl:
-        h = '1'
-        targetDDS12.append(h)
-    else:
-        h = '0'
-        targetDDS12.append(h)
-    if 'DDS13' in tl:
-        i = '1'
-        targetDDS13.append(i)
-    else:
-        i = '0'
-        targetDDS13.append(i)
-    if 'DDS14' in tl:
-        k = '1'
-        targetDDS14.append(k)
-    else:
-        k = '0'
-        targetDDS14.append(k)
-    if 'DDS15' in tl:
-        l = '1'
-        targetDDS15.append(l)
-    else:
-        l = '0'
-        targetDDS15.append(l)
-    if 'DDS16' in tl:
-        l = '1'
-        targetDDS16.append(l)
-    else:
-        l = '0'
-        targetDDS16.append(l)
-    if 'DDS17' in tl:
-        l = '1'
-        targetDDS17.append(l)
-    else:
-        l = '0'
-        targetDDS17.append(l)
-    if 'DDS18' in tl:
-        l = '1'
-        targetDDS18.append(l)
-    else:
-        l = '0'
-        targetDDS18.append(l)
-
-    if 'DDS21' in tl:
-        m = '1'
-        targetDDS21.append(m)
-    else:
-        m = '0'
-        targetDDS21.append(m)
-    if 'DDS22' in tl:
-        n = '1'
-        targetDDS22.append(n)
-    else:
-        n = '0'
-        targetDDS22.append(n)
-    if 'DDS23' in tl:
-        o = '1'
-        targetDDS23.append(o)
-    else:
-        o = '0'
-        targetDDS23.append(o)
-    if 'DDS24' in tl:
-        p = '1'
-        targetDDS24.append(p)
-    else:
-        p = '0'
-        targetDDS24.append(p)
-    if 'DDS25' in tl:
-        q = '1'
-        targetDDS25.append(q)
-    else:
-        q = '0'
-        targetDDS25.append(q)
-    if 'DDS26' in tl:
-        q = '1'
-        targetDDS26.append(q)
-    else:
-        q = '0'
-        targetDDS26.append(q)
-    if 'DDS27' in tl:
-        q = '1'
-        targetDDS27.append(q)
-    else:
-        q = '0'
-        targetDDS27.append(q)
-    if 'DDS28' in tl:
-        q = '1'
-        targetDDS28.append(q)
-    else:
-        q = '0'
-        targetDDS28.append(q)
-
-
-bitsdata = []
-
-for j in range(len(targetlist0)):
+bitsdata_32 = []
+print(targetPL1)
+print(targetPL2)
+print(targetPL3)
+for j in range(len(targetPL1)):
     v_data = targetDDS28[j] + targetDDS27[j] + targetDDS26[j] + targetDDS25[j] + targetDDS24[j] + targetDDS23[j] + targetDDS22[j] + targetDDS21[j] + \
         targetDDS18[j] + targetDDS17[j] + targetDDS16[j] + targetDDS15[j] + targetDDS14[j] + targetDDS13[j] + targetDDS12[j] + targetDDS11[j] + \
         targetAD3[j] + targetAD2[j] + targetAD1[j] + \
         targetPL3[j] + targetPL2[j] + targetPL1[j]
-    bitsdata.append(v_data.zfill(32))  # 32桁　000000・・・・　あれば1　なければ0表示
-# print(bitsdata)
+    bitsdata_32.append(v_data.zfill(32))  # 32桁 000000・・・・あれば1 なければ0表示
+print(bitsdata_32)
 
-################################################################################################
-"""
-DDSinfo = []  # DDSのデータ数＋1を16桁の16進数で表記
-l_start = [s for s in targetlist0 if s.startswith('D')]
-DDScounter = len(l_start) + 1
-DDSinfo.append(format(DDScounter, 'x').zfill(16))  # 16進数で16桁表記
-# print(DDSinfo)
-"""
 ###################################################################################################
 
 # データ連結部分
