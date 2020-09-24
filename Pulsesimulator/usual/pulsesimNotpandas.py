@@ -8,6 +8,7 @@ from time import sleep  # time モジュールから sleep メソッドを取得
 import platform
 # GPIO.setmode(GPIO.BCM)
 
+
 pf = platform.system()
 
 Linux_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
@@ -55,7 +56,8 @@ for n in range(11):
                              if a != '']  # リスト内の空白要素を削除
         PL_sc[index_PLsc] = [int(s)
                              for s in PL_sc[index_PLsc]]  # リスト要素 str を intに変換
-        PL_nsc[index_PLsc] = PL_sc[index_PLsc]
+        for i in PL_sc[index_PLsc]:
+            PL_nsc[index_PLsc].append(i)
         index_PLsc += 1
 
     elif n % 4 == 1:
@@ -63,14 +65,15 @@ for n in range(11):
         PL_bc[index_PLbc] = [t.replace(" ", "") for t in PL_bc[index_PLbc]]
         PL_bc[index_PLbc] = [a for a in PL_bc[index_PLbc] if a != '']
         PL_bc[index_PLbc] = [int(s) for s in PL_bc[index_PLbc]]
-        PL_nbc[index_PLbc] = PL_bc[index_PLbc]
+        for i in PL_bc[index_PLbc]:
+            PL_nbc[index_PLbc].append(i)
         index_PLbc += 1
     else:
         pass
 
 
-print(PL_nsc)
-print(PL_nbc)
+# print(PL_nsc)
+# print(PL_nbc)
 
 ########################################################################
 
@@ -113,7 +116,8 @@ for n in range(12, 24):
                              if a != '']  # リスト内の空白要素を削除
         AD_sc[index_ADsc] = [int(s)
                              for s in AD_sc[index_ADsc]]  # リスト要素 str を intに変換
-        AD_nsc[index_ADsc] = AD_sc[index_ADsc]
+        for i in AD_sc[index_ADsc]:
+            AD_nsc[index_ADsc].append(i)
         index_ADsc += 1
 
     elif n % 4 == 1:
@@ -121,13 +125,14 @@ for n in range(12, 24):
         AD_bc[index_ADbc] = [t.replace(" ", "") for t in AD_bc[index_ADbc]]
         AD_bc[index_ADbc] = [a for a in AD_bc[index_ADbc] if a != '']
         AD_bc[index_ADbc] = [int(s) for s in AD_bc[index_ADbc]]
-        AD_nbc[index_ADbc] = AD_bc[index_ADbc]
+        for i in AD_bc[index_ADbc]:
+            AD_nbc[index_ADbc].append(i)
         index_ADbc += 1
     else:
         pass
 
-print(AD_nsc)
-print(AD_nbc)
+# print(AD_nsc)
+# print(AD_nbc)
 ###########################################################################
 # DDS40bit  データのシミュレーション
 
@@ -176,7 +181,8 @@ for n in range(14):
                                if a != '']
         DDS_sc[index_DDSsc] = [int(s)
                                for s in DDS_sc[index_DDSsc]]  # リスト要素 str を intに変換
-        DDS_nsc[index_DDSsc] = DDS_sc[index_DDSsc]
+        for i in DDS_sc[index_DDSsc]:
+            DDS_nsc[index_DDSsc].append(i)
         index_DDSsc += 1
 
     elif n % 8 == 4:
@@ -188,6 +194,7 @@ for n in range(14):
             hinann.append(DDS_data[index_DDSdata][i])
             DDS_data[index_DDSdata][i] = [a for a in hinann[-1]
                                           if a != ' ']
+            hinann = []
             DDS_data[index_DDSdata][i] = [int(s)
                                           for s in DDS_data[index_DDSdata][i]]
             DDS_ndata[index_DDSdata].append(DDS_data[index_DDSdata][i])
@@ -197,8 +204,16 @@ for n in range(14):
     else:
         pass
 
+# ゴリ押しでリストをDDS_dataリスト作成
+DDS1_newdata = []
+DDS2_newdata = []
+for j in range(2):
+    DDS1_newdata.append(DDS_ndata[0][j])
+    DDS2_newdata.append(DDS_ndata[1][j])
+DDS_newdata = [DDS1_newdata, DDS2_newdata]
 print(DDS_nsc)
-print(DDS_ndata)
+print(DDS_newdata)
+
 
 ########################################################################################
 
@@ -208,72 +223,71 @@ index = [0 for i in range(8)]
 j, k = 0, 0
 
 
-print(max(max(max(PL_sc), max(AD_sc), max(DDS_sc), key=max)))
-print(PL1_nsc1[-1])
-
 while True:
+
     while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
         if counter <= int(PL1_nsc1[-1]):
             if PL1_nsc1[index[0]] == counter:
                 #GPIO.output(PLpoat[0], 1)
-                sleep(PL1_bc1[index[0]] * 0.001)
+                sleep(PL1_nbc1[index[0]] * 0.1)
                 index[0] += 1
                 print('%d' % counter)  # end=':PL1出力中')
 
         if counter <= int(PL2_nsc2[-1]):
             if PL2_nsc2[index[1]] == counter:
                 #GPIO.output(PLpoat[1], 1)
-                sleep(PL2_nbc2[index[1]] * 0.001)
+                sleep(PL2_nbc2[index[1]] * 0.1)
                 index[1] += 1
                 print('%d' % counter)  # end=':PL2出力中')
 
         if counter <= int(PL3_nsc3[-1]):
             if PL3_nsc3[index[2]] == counter:
                 #GPIO.output(PLpoat[2], 1)
-                sleep(PL3_bc3[index[2]] * 0.001)
+                sleep(PL3_nbc3[index[2]] * 0.1)
                 index[2] += 1
                 print('%d' % counter)  # end=':PL3出力中')
 
 
 #############################################################
 
-        if counter <= int(AD_sc_new[0][-1]):
-            if AD_sc_new[0][index[3]] == counter:
+        if counter <= int(AD1_nsc1[-1]):
+            if AD1_nsc1[index[3]] == counter:
                 #GPIO.output(ADpoat[0], 1)
-                sleep(AD1_bc1[index[3]] * 0.001)
+                sleep(AD1_nbc1[index[3]] * 0.1)
                 index[3] += 1
                 print('%d' % counter)  # end=':AD1出力中')
 
-        if counter <= int(AD_sc_new[1][-1]):
-            if AD_sc_new[1][index[4]] == counter:
+        if counter <= int(AD2_nsc2[-1]):
+            if AD2_nsc2[index[4]] == counter:
                 #GPIO.output(ADpoat[1], 1)
-                sleep(AD2_bc2[index[4]] * 0.001)
+                sleep(AD2_nbc2[index[4]] * 0.1)
                 index[4] += 1
                 print('%d' % counter)  # end=':AD2出力中')
 
-        if counter <= int(AD3_sc3[-1]):
-            if AD3_sc3[index[5]] == counter:
+        if counter <= int(AD3_nsc3[-1]):
+            if AD3_nsc3[index[5]] == counter:
                 #GPIO.output(ADpoat[2], 1)
-                sleep(AD3_bc3[index[5]] * 0.001)
+                sleep(AD3_nbc3[index[5]] * 0.1)
                 index[5] += 1
                 print('%d' % counter)  # end=':AD3出力中')
 
 
 ##############################################################
+        if k <= len(DDS1_nsc)-1:
+            if DDS1_nsc[k] == counter:
+                for m in range(len(DDS1_ndata[k])):
+                    #GPIO.output(DDSpoat[0], DDS1_ndata[k][m])
+                    sleep(0.05)
+                    print('%d' % counter)  # end=':DDS1出力中')
+                k += 1
 
-        if DDS1_sc[k] == counter:
-            for m in range(len(DDS1_data[k])):
-                #GPIO.output(DDSpoat[0], DDS1_data[k][m])
-                sleep(0.5)
-                print('%d' % counter)  # end=':DDS1出力中')
-            k += 1
-
-        if DDS2_sc[j] == counter:
-            for m in range(len(DDS2_data[j])):
-                #GPIO.output(DDSpoat[1], DDS2_data[x][m])
-                sleep(0.5)
-                print('%d' % counter)  # end=':DDS2出力中')
-            j += 1
+        if j <= len(DDS2_nsc) - 1:
+            if DDS2_nsc[j] == counter:
+                for m in range(len(DDS2_ndata[j])):
+                    #GPIO.output(DDSpoat[1], DDS2_ndata[j][m])
+                    sleep(0.05)
+                    print('%d' % counter)  # end=':DDS2出力中')
+                j += 1
 
         else:
             '''
@@ -288,7 +302,7 @@ while True:
             GPIO.output(DDSpoat[0], 0)
             GPIO.output(DDSpoat[1], 0)
             '''
-            sleep(0.5)
+            sleep(0.01)
             print('%d' % counter)  # end=':LOWlevel')
         counter += 1
         # print(counter)
