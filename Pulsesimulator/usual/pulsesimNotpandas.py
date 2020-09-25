@@ -204,15 +204,9 @@ for n in range(14):
     else:
         pass
 
-# ゴリ押しでリストをDDS_dataリスト作成
-DDS1_newdata = []
-DDS2_newdata = []
-for j in range(2):
-    DDS1_newdata.append(DDS_ndata[0][j])
-    DDS2_newdata.append(DDS_ndata[1][j])
-DDS_newdata = [DDS1_newdata, DDS2_newdata]
-print(DDS_nsc)
-print(DDS_newdata)
+
+# print(DDS_nsc)
+# print(DDS_ndata)
 
 
 ########################################################################################

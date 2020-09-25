@@ -351,6 +351,6 @@ for j in range(len(Pulsedata_hex)):
 
 # CSVファイル生成部分
 
-with open("outdata_ver2.csv", "w")as f:
+with open("Outdata_for_FPGA.csv", "w")as f:
     writer = csv.writer(f, lineterminator="\n")
     writer.writerows(csvdata)
