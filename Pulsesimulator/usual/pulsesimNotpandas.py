@@ -217,6 +217,17 @@ counter = 0
 index = [0 for i in range(8)]
 j, k = 0, 0
 
+GPIO.output(PLpoat[0], 0)
+GPIO.output(PLpoat[1], 0)
+GPIO.output(PLpoat[2], 0)
+
+GPIO.output(ADpoat[0], 0)
+GPIO.output(ADpoat[1], 0)
+GPIO.output(ADpoat[2], 0)
+
+GPIO.output(DDSpoat[0], 0)
+GPIO.output(DDSpoat[1], 0)
+
 
 while True:
 
