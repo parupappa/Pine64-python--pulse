@@ -304,6 +304,9 @@ while True:
                     sleep(0.5)
                     print('%d' % counter)  # end=':DDS1出力中')
                 k += 1
+            else:
+                GPIO.output(DDSpoat[0], 0)
+                sleep(0.5)
 
         if j <= len(DDS2_nsc) - 1:
             if DDS2_nsc[j] == counter:
@@ -312,22 +315,10 @@ while True:
                     sleep(0.5)
                     print('%d' % counter)  # end=':DDS2出力中')
                 j += 1
+            else:
+                GPIO.output(DDSpoat[1], 0)
+                sleep(0.5)
 
-        else:
-
-            GPIO.output(PLpoat[0], 0)
-            GPIO.output(PLpoat[1], 0)
-            GPIO.output(PLpoat[2], 0)
-
-            GPIO.output(ADpoat[0], 0)
-            GPIO.output(ADpoat[1], 0)
-            GPIO.output(ADpoat[2], 0)
-
-            GPIO.output(DDSpoat[0], 0)
-            GPIO.output(DDSpoat[1], 0)
-
-            sleep(0.5)
-            print('%d' % counter)  # end=':LOWlevel')
         counter += 1
         # print(counter)
     else:
