@@ -85,7 +85,7 @@ for i in ADpoat:
     GPIO.setup(i, GPIO.OUT)
 
 if pf == 'Linux':
-    pulse_csv = open(Linux_pass)
+    pulse_csv = open(Rasberrypi_pass)
 elif pf == 'Darwin':
     pulse_csv = open(Mac_pass)
 
