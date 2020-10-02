@@ -146,7 +146,7 @@ if pf == 'Linux':
 elif pf == 'Darwin':
     DDS_csv = open(Macdds_pass)
 
-DDSpoat = [26, 19]
+DDSpoat = [19, 26]
 
 for i in range(len(DDSpoat)):
     GPIO.setup(DDSpoat[i], GPIO.OUT)
