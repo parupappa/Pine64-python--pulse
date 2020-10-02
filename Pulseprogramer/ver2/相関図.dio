@@ -1,11 +1,11 @@
-<mxfile host="embed.diagrams.net" modified="2020-09-26T01:09:02.363Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.49.2 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="ozmTapGebtbZw6nKnxB1" version="13.7.5" type="embed">
+<mxfile host="embed.diagrams.net" modified="2020-10-02T02:10:07.199Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.49.2 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="TTMWapiscgldiF-o1mjV" version="13.7.7" type="embed">
     <diagram id="6hGFLwfOUW9BJ-s0fimq" name="Page-1">
-        <mxGraphModel dx="1135" dy="653" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1102" dy="653" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="43" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=12;dashed=1;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="150" width="440" height="420" as="geometry"/>
+                    <mxGeometry x="60" y="140" width="440" height="430" as="geometry"/>
                 </mxCell>
                 <mxCell id="12" value="" style="group" parent="1" vertex="1" connectable="0">
                     <mxGeometry x="100" y="320" width="120" height="80" as="geometry"/>
@@ -133,7 +133,7 @@
                     <mxGeometry x="180" y="300" width="40" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="63" value="" style="group" parent="1" vertex="1" connectable="0">
-                    <mxGeometry x="70" y="670" width="850" height="150" as="geometry"/>
+                    <mxGeometry x="70" y="600" width="850" height="150" as="geometry"/>
                 </mxCell>
                 <mxCell id="54" value="&lt;font style=&quot;font-size: 20px&quot;&gt;　①　シーケンスパラメータを入力する&lt;br&gt;&lt;br&gt;　②　createDDS40bits.py の実行&lt;br&gt;&lt;br&gt;　③　pulsedata_ver2.py の実行&lt;/font&gt;" style="text;html=1;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;strokeColor=#f0f0f0;" parent="63" vertex="1">
                     <mxGeometry width="383.5365853658537" height="150" as="geometry"/>
