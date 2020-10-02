@@ -4,9 +4,9 @@
 from sys import exit
 import csv
 from time import sleep  # time モジュールから sleep メソッドを取得
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import platform
-# GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 
 
 pf = platform.system()
@@ -24,8 +24,8 @@ elif pf == 'Darwin':
 
 PLpoat = [17, 27, 22]
 
-# for i in PLpoat:
-#GPIO.setup(i, GPIO.OUT)
+for i in PLpoat:
+    GPIO.setup(i, GPIO.OUT)
 
 
 PL1_sc1, PL1_bc1, PL2_sc2, PL2_bc2, PL3_sc3, PL3_bc3 = [], [], [], [], [], []
@@ -79,8 +79,8 @@ for n in range(11):
 
 ADpoat = [10, 9, 11]
 
-# for i in ADpoat:
-#    GPIO.setup(i, GPIO.OUT)
+for i in ADpoat:
+    GPIO.setup(i, GPIO.OUT)
 
 if pf == 'Linux':
     pulse_csv = open(Linux_pass)
@@ -148,9 +148,8 @@ elif pf == 'Darwin':
 
 DDSpoat = [26, 19]
 
-
-# for i in range(len(DDSpoat)):
-#    GPIO.setup(DDSpoat[i], GPIO.OUT)
+for i in range(len(DDSpoat)):
+    GPIO.setup(DDSpoat[i], GPIO.OUT)
 
 
 DDS1_sc, DDS1_data, DDS2_sc, DDS2_data = [], [], [], []
@@ -222,21 +221,21 @@ while True:
     while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
         if counter <= int(PL1_nsc1[-1]):
             if PL1_nsc1[index[0]] == counter:
-                #GPIO.output(PLpoat[0], 1)
+                GPIO.output(PLpoat[0], 1)
                 sleep(PL1_nbc1[index[0]] * 0.1)
                 index[0] += 1
                 print('%d' % counter)  # end=':PL1出力中')
 
         if counter <= int(PL2_nsc2[-1]):
             if PL2_nsc2[index[1]] == counter:
-                #GPIO.output(PLpoat[1], 1)
+                GPIO.output(PLpoat[1], 1)
                 sleep(PL2_nbc2[index[1]] * 0.1)
                 index[1] += 1
                 print('%d' % counter)  # end=':PL2出力中')
 
         if counter <= int(PL3_nsc3[-1]):
             if PL3_nsc3[index[2]] == counter:
-                #GPIO.output(PLpoat[2], 1)
+                GPIO.output(PLpoat[2], 1)
                 sleep(PL3_nbc3[index[2]] * 0.1)
                 index[2] += 1
                 print('%d' % counter)  # end=':PL3出力中')
@@ -246,21 +245,21 @@ while True:
 
         if counter <= int(AD1_nsc1[-1]):
             if AD1_nsc1[index[3]] == counter:
-                #GPIO.output(ADpoat[0], 1)
+                GPIO.output(ADpoat[0], 1)
                 sleep(AD1_nbc1[index[3]] * 0.1)
                 index[3] += 1
                 print('%d' % counter)  # end=':AD1出力中')
 
         if counter <= int(AD2_nsc2[-1]):
             if AD2_nsc2[index[4]] == counter:
-                #GPIO.output(ADpoat[1], 1)
+                GPIO.output(ADpoat[1], 1)
                 sleep(AD2_nbc2[index[4]] * 0.1)
                 index[4] += 1
                 print('%d' % counter)  # end=':AD2出力中')
 
         if counter <= int(AD3_nsc3[-1]):
             if AD3_nsc3[index[5]] == counter:
-                #GPIO.output(ADpoat[2], 1)
+                GPIO.output(ADpoat[2], 1)
                 sleep(AD3_nbc3[index[5]] * 0.1)
                 index[5] += 1
                 print('%d' % counter)  # end=':AD3出力中')
@@ -270,7 +269,7 @@ while True:
         if k <= len(DDS1_nsc)-1:
             if DDS1_nsc[k] == counter:
                 for m in range(len(DDS1_ndata[k])):
-                    #GPIO.output(DDSpoat[0], DDS1_ndata[k][m])
+                    GPIO.output(DDSpoat[0], DDS1_ndata[k][m])
                     sleep(0.05)
                     print('%d' % counter)  # end=':DDS1出力中')
                 k += 1
@@ -278,13 +277,13 @@ while True:
         if j <= len(DDS2_nsc) - 1:
             if DDS2_nsc[j] == counter:
                 for m in range(len(DDS2_ndata[j])):
-                    #GPIO.output(DDSpoat[1], DDS2_ndata[j][m])
+                    GPIO.output(DDSpoat[1], DDS2_ndata[j][m])
                     sleep(0.05)
                     print('%d' % counter)  # end=':DDS2出力中')
                 j += 1
 
         else:
-            '''
+
             GPIO.output(PLpoat[0], 0)
             GPIO.output(PLpoat[1], 0)
             GPIO.output(PLpoat[2], 0)
@@ -295,7 +294,7 @@ while True:
 
             GPIO.output(DDSpoat[0], 0)
             GPIO.output(DDSpoat[1], 0)
-            '''
+
             sleep(0.01)
             print('%d' % counter)  # end=':LOWlevel')
         counter += 1
@@ -306,5 +305,4 @@ while True:
         k = 0
         j = 0
 
-
-# GPIO.cleanup()
+GPIO.cleanup()
