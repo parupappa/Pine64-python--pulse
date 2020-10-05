@@ -21,7 +21,7 @@ import time
 #import RPi.GPIO as GPIO
 import platform
 pf = platform.system()
-#GPIO.setmode(GPIO.BCM)
+# GPIO.setmode(GPIO.BCM)
 
 
 fname_Lin = '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
@@ -37,8 +37,8 @@ elif pf == 'Darwin':
 PL = [17, 27, 22]
 
 
-#for i in range(len(PL)):
- #   GPIO.setup(PL[i], GPIO.OUT)
+# for i in range(len(PL)):
+#   GPIO.setup(PL[i], GPIO.OUT)
 
 
 sc1 = []
@@ -74,7 +74,7 @@ DDSsc1_int = []
 DDS_data = []
 DDS_list = []
 
-#for i in range(len(DDS)):
+# for i in range(len(DDS)):
 #    GPIO.setup(DDS[i], GPIO.OUT)
 
 
@@ -99,7 +99,6 @@ for j in range(len(DDS_list)):
 print(DDS_list)
 
 
-
 ##################################################################################################
 
 
@@ -112,7 +111,7 @@ while True:
         if counter <= sc1_int[-1]:
             if sc1_int[j] == counter:
                 GPIO.output(PL[0], 1)
-                sleep(bc1_int[j] * 0.001)
+                sleep(bc1_int[j] * 0.5)
                 j += 1
                 print("%d,PLsigunalout now" % (counter))
 
