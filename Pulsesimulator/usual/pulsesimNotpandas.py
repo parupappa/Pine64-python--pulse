@@ -239,7 +239,6 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
         else:
             GPIO.output(PLpoat[0], 0)
             sleep(0.5)
-
     else:
         GPIO.output(PLpoat[0], 0)
 
@@ -277,6 +276,11 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
         else:
             GPIO.output(ADpoat[0], 0)
             sleep(0.5)
+
+    else:
+        GPIO.output(ADpoat[0], 0)
+
+
         '''
     elif counter <= int(AD2_nsc2[-1]):
         if AD2_nsc2[index[4]] == counter:
