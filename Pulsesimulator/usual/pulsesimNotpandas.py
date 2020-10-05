@@ -240,7 +240,7 @@ while True:
                 print('%d' % counter)  # end=':PL1出力中')
             else:
                 GPIO.output(PLpoat[0], 0)
-
+'''
         if counter <= int(PL2_nsc2[-1]):
             if PL2_nsc2[index[1]] == counter:
                 GPIO.output(PLpoat[1], 1)
@@ -306,7 +306,7 @@ while True:
                     sleep(0.5)
                     print('%d' % counter)  # end=':DDS2出力中')
                 j += 1
-
+'''
         else:
             GPIO.output(PLpoat[0], 0)
             GPIO.output(PLpoat[1], 0)
