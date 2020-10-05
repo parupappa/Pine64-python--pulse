@@ -239,7 +239,8 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
         else:
             GPIO.output(PLpoat[0], 0)
             sleep(0.5)
-        '''
+
+
     if counter <= int(PL2_nsc2[-1]):
         if PL2_nsc2[index[1]] == counter:
             GPIO.output(PLpoat[1], 1)
@@ -248,6 +249,9 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':PL2出力中')
         else:
             GPIO.output(PLpoat[1], 0)
+            sleep(0.5)
+
+
 
     if counter <= int(PL3_nsc3[-1]):
         if PL3_nsc3[index[2]] == counter:
@@ -257,6 +261,8 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':PL3出力中')
         else:
             GPIO.output(PLpoat[2], 0)
+            sleep(0.5)
+
 
 
 #############################################################
@@ -269,6 +275,8 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':AD1出力中')
         else:
             GPIO.output(ADpoat[0], 0)
+            sleep(0.5)
+
 
     if counter <= int(AD2_nsc2[-1]):
         if AD2_nsc2[index[4]] == counter:
@@ -278,6 +286,8 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':AD2出力中')
         else:
             GPIO.output(ADpoat[1], 0)
+            sleep(0.5)
+
 
     if counter <= int(AD3_nsc3[-1]):
         if AD3_nsc3[index[5]] == counter:
@@ -287,6 +297,8 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':AD3出力中')
         else:
             GPIO.output(ADpoat[2], 0)
+            sleep(0.5)
+
 
 
 ##############################################################
@@ -305,7 +317,7 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
                 sleep(0.5)
                 print('%d' % counter)  # end=':DDS2出力中')
             j += 1
-'''
+
     else:
         GPIO.output(PLpoat[0], 0)
         GPIO.output(PLpoat[1], 0)
