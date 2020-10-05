@@ -263,7 +263,7 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
 
 #############################################################
 
-    elif counter <= int(AD1_nsc1[-1]):
+    if counter <= int(AD1_nsc1[-1]):
         if AD1_nsc1[index[3]] == counter:
             GPIO.output(ADpoat[0], 1)
             sleep(AD1_nbc1[index[3]] * 0.5)
