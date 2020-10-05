@@ -74,7 +74,7 @@ for n in range(11):
         pass
 
 
-# print(PL_nsc)
+print(PL_nsc)
 # print(PL_nbc)
 
 ########################################################################
@@ -133,7 +133,7 @@ for n in range(12, 24):
     else:
         pass
 
-# print(AD_nsc)
+print(AD_nsc)
 # print(AD_nbc)
 ###########################################################################
 # DDS40bit  データのシミュレーション
