@@ -233,12 +233,11 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
     if counter <= int(PL1_nsc1[-1]):
         if PL1_nsc1[index[0]] == counter:
             GPIO.output(PLpoat[0], 1)
-            sleep(PL1_nbc1[index[0]] * 0.01)
+            sleep(PL1_nbc1[index[0]] * 0.1)
             index[0] += 1
             print('%d' % counter)  # end=':PL1出力中')
         else:
             GPIO.output(PLpoat[0], 0)
-
     else:
         GPIO.output(PLpoat[0], 0)
 
@@ -271,7 +270,7 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
     if counter <= int(AD1_nsc1[-1]):
         if AD1_nsc1[index[3]] == counter:
             GPIO.output(ADpoat[0], 1)
-            sleep(AD1_nbc1[index[3]] * 0.01)
+            sleep(AD1_nbc1[index[3]] * 0.1)
             index[3] += 1
             print('%d' % counter)  # end=':AD1出力中')
         else:
