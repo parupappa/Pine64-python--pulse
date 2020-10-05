@@ -293,17 +293,17 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             GPIO.output(ADpoat[2], 0)
             sleep(0.5)
 
-
+'''
 ##############################################################
-    elif k <= len(DDS1_nsc)-1:
+    if k <= len(DDS1_nsc)-1:
         if DDS1_nsc[k] == counter:
             for m in range(len(DDS1_ndata[k])):
                 GPIO.output(DDSpoat[0], DDS1_ndata[k][m])
                 sleep(0.5)
                 print('%d' % counter)  # end=':DDS1出力中')
             k += 1
-
-    elif j <= len(DDS2_nsc) - 1:
+        '''
+    if j <= len(DDS2_nsc) - 1:
         if DDS2_nsc[j] == counter:
             for m in range(len(DDS2_ndata[j])):
                 GPIO.output(DDSpoat[1], DDS2_ndata[j][m])
