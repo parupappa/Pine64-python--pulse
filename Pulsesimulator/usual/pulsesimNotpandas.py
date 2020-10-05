@@ -314,6 +314,14 @@ while True:
                     print('%d' % counter)  # end=':DDS2出力中')
                 j += 1
 
+        else:
+            GPIO.output(PLpoat[0], 0)
+            GPIO.output(PLpoat[1], 0)
+            GPIO.output(PLpoat[2], 0)
+            GPIO.output(ADpoat[0], 0)
+            GPIO.output(ADpoat[1], 0)
+            GPIO.output(ADpoat[2], 0)
+
         counter += 1
         # print(counter)
     else:
