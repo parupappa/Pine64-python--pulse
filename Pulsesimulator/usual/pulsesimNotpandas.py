@@ -238,7 +238,7 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':PL1出力中')
         else:
             GPIO.output(PLpoat[0], 0)
-            sleep(0.5)
+
     else:
         GPIO.output(PLpoat[0], 0)
 
@@ -250,7 +250,7 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':PL2出力中')
         else:
             GPIO.output(PLpoat[1], 0)
-            sleep(0.5)
+
     else:
         GPIO.output(PLpoat[1], 0)
 
@@ -262,7 +262,7 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':PL3出力中')
         else:
             GPIO.output(PLpoat[2], 0)
-            sleep(0.5)
+
     else:
         GPIO.output(PLpoat[2], 0)
 
@@ -276,7 +276,7 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':AD1出力中')
         else:
             GPIO.output(ADpoat[0], 0)
-            sleep(0.5)
+
     else:
         GPIO.output(ADpoat[0], 0)
 
@@ -288,7 +288,7 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':AD2出力中')
         else:
             GPIO.output(ADpoat[1], 0)
-            sleep(0.5)
+
     else:
         GPIO.output(ADpoat[1], 0)
 
@@ -300,7 +300,7 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
             print('%d' % counter)  # end=':AD3出力中')
         else:
             GPIO.output(ADpoat[2], 0)
-            sleep(0.5)
+            
     else:
         GPIO.output(ADpoat[2], 0)
 
