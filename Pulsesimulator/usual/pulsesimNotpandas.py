@@ -144,7 +144,7 @@ Macdds_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/
 Rasdds_pass = '/home/pi/python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv'
 
 if pf == 'Linux':
-    DDS_csv = open(Linux_pass)
+    DDS_csv = open(Lindds_pass)
 elif pf == 'Darwin':
     DDS_csv = open(Macdds_pass)
 
