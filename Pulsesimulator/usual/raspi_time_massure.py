@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 from random import randint
 
 #data = [randint(0,1) for i in range(20)]
-data = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+data = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
 print(data)
 
 GPIO.setmode(GPIO.BCM)
