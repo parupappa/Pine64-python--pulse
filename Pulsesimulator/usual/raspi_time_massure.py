@@ -12,7 +12,7 @@ data = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 print(data)
 
 GPIO.setmode(GPIO.BCM)
-PL = [17]
+GPIO.setup(17, GPIO.OUT)
 
 
 for i in data:
