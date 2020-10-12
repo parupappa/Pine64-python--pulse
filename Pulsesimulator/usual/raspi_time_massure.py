@@ -17,6 +17,6 @@ PL = [17]
 
 for i in data:
     GPIO.output(17, i)
-    print(data)
+    print(i)
 
 GPIO.cleanup()
