@@ -17,6 +17,7 @@ GPIO.setup(17, GPIO.OUT)
 
 for i in data:
     GPIO.output(17, i)
+    sleep(0.00001)
     print(i)
 
 GPIO.cleanup()
