@@ -320,7 +320,7 @@ for sixfour_bits in Pulsedata:
 
 # アドレスデータ部分
 addresslist = []
-for d in range(16 + len(Pulsedata_hex)):
+for d in range(17 + len(Pulsedata_hex)):
     addresslist.append(format(d, 'x').zfill(5))
 # print(addresslist)  # 5桁の16進数表記
 
@@ -338,15 +338,24 @@ for dict_value in bitdata_dict.values():
     dictvalue.append(dict_value)
 # print(dictvalue)
 
+loop_count_list = sheet1.col_values(31)
+del loop_count_list[0]
+loop_count_list = [int(s) for s in loop_count_list if s != '']
+loop_count = loop_count_list[0]
+loop_count_hex = format(loop_count, 'x')
+csv_first_data = str(loop_count_hex).zfill(16)
+
+csvdata = [[addresslist[0], csv_first_data]]
+
 for i in range(len(dictvalue)):
-    csvdata0 = [addresslist[i], dictvalue[i]]
-    csvdata.append(csvdata0)
+    csvdata_until_dds = [addresslist[i + 1], dictvalue[i]]
+    csvdata.append(csvdata_until_dds)
 # print(csvdata)  # DDSの部分までのCSV
 
 for j in range(len(Pulsedata_hex)):
-    csvdata1 = [addresslist[16 + j], Pulsedata_hex[j]]
-    csvdata.append(csvdata1)
-# print(csvdata) #全CSVdata
+    csvdata_pulse = [addresslist[17 + j], Pulsedata_hex[j]]
+    csvdata.append(csvdata_pulse)
+#print(csvdata)  # 全CSVdata
 
 
 # CSVファイル生成部分
