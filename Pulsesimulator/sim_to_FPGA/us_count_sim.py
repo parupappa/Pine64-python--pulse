@@ -18,10 +18,10 @@ GPIO.setup(enable_poat, GPIO.OUT)
 GPIO.setup(start_poat, GPIO.OUT)
 
 
-width_pulse = int(input("出力したいパルス幅を数字のみで入力してください : "))
-print("パルス幅:%d" % width_pulse)
+width_pulse = int(input("please input width_pulse only number": "))
+print("width_pulse:%d" % width_pulse)
 print("--------------------------------------------------")
-unit = input("パルス幅の単位を入力してください(s,ms,us,ns) : ")
+unit = input("please input pulse unit(s,ms,us,ns) : ")
 
 if unit == "s":
     count_value = width_pulse * (10**6) * 10
@@ -40,15 +40,15 @@ print(data_8bit)
 for i in data_8bit:
     GPIO.output(data_poat, int(i))
     GPIO.output(enable_poat, 1)
-    print("enable_poat出力")
+    print("enable_poat output")
 
-print("データ送信とFPGAへのデータセットをしました")
+print("set of permit_data ")
 print("--------------------------------------------------")
 
 
-print("start信号を送信します")
+print("will translate start_signal")
 print("--------------------------------------------------")
 
 GPIO.output(start_poat, 1)
-print("送信しました")
+print("done")
 print("--------------------------------------------------")
