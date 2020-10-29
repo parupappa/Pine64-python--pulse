@@ -1,4 +1,3 @@
-
 import struct
 import math
 import platform
