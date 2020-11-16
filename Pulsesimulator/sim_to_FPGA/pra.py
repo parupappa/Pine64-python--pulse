@@ -59,6 +59,7 @@ for i in data_16bit:
 start_botn = input("please push s  : " )
 if start_botn == "s":
     GPIO.output(start_poat, 1)
+    sleep(0.001)
     GPIO.output(start_poat, 0)
 else:
     print("plese push s")
