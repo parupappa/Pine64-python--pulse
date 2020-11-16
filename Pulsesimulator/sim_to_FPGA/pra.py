@@ -48,7 +48,7 @@ for i in data_16bit:
         
         GPIO.output(enable_poat, 1)
         GPIO.output(enable_poat, 0)
-        GPIO.output(data_poat, 0)
+        
     else:
         GPIO.output(data_poat, 0)
         
