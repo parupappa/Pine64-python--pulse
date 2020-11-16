@@ -6,6 +6,8 @@ import RPi.GPIO as GPIO
 from time import sleep
 GPIO.setmode(GPIO.BCM)
 
+
+
 data_poat = 17
 enable_poat = 27
 start_poat = 22
@@ -14,6 +16,8 @@ start_poat = 22
 GPIO.setup(data_poat, GPIO.OUT)
 GPIO.setup(enable_poat, GPIO.OUT)
 GPIO.setup(start_poat, GPIO.OUT)
+
+
 
 s = "s"
 ms = "ms"
@@ -34,29 +38,33 @@ elif unit == "ns":
     count_value = width_pulse / 100
 
 
-data_8bit = list(format(count_value, 'b').zfill(8))
-
-print(data_8bit)
-
-for i in data_8bit:
-    GPIO.output(data_poat, int(i))
-    sleep(0.5)
-    GPIO.output(enable_poat, 1)
-    print("enable_poat output")
-
-print("set of permit_data ")
-print("--------------------------------------------------")
+data_16bit = list(format(count_value, 'b').zfill(16))
+print(data_16bit)
 
 
-print("will translate start_signal")
-print("--------------------------------------------------")
+for i in data_16bit:
+    if i == '1':
+        GPIO.output(data_poat, 1)
+        
+        GPIO.output(enable_poat, 1)
+        GPIO.output(enable_poat, 0)
+        GPIO.output(data_poat, 0)
+    else:
+        GPIO.output(data_poat, 0)
+        
+        GPIO.output(enable_poat, 1)
+        GPIO.output(enable_poat, 0)
+        
+    
+start_botn = input("please push s  : " )
+if start_botn == "s":
+    GPIO.output(start_poat, 1)
+    GPIO.output(start_poat, 0)
+else:
+    print("plese push s")
 
-GPIO.output(start_poat, 1)
-print("done")
-print("--------------------------------------------------")
 
-GPIO.output(data_poat, 0)
-GPIO.output(enable_poat, 0)
-GPIO.output(start_poat, 0)
+
+
 
 GPIO.cleanup()
