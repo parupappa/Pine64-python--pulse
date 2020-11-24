@@ -1,0 +1,207 @@
+<mxfile host="65bd71144e" modified="2020-11-24T00:18:21.275Z" agent="5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36" etag="eA-_jVvaHm4n9VqdxRcH" version="13.10.1" type="embed">
+    <diagram id="6hGFLwfOUW9BJ-s0fimq" name="Page-1">
+        <mxGraphModel dx="1092" dy="813" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="84" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=12;dashed=1;" vertex="1" parent="1">
+                    <mxGeometry x="1209" y="211.5" width="322" height="317" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="" style="shape=flexArrow;endArrow=classic;html=1;fontSize=12;" parent="1" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="1062" y="369.5" as="sourcePoint"/>
+                        <mxPoint x="1202" y="369.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="46" value="&lt;font style=&quot;font-size: 25px&quot;&gt;pull&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1103" y="333.5" width="49" height="22" as="geometry"/>
+                </mxCell>
+                <mxCell id="63" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="141" y="694" width="850" height="236" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="&lt;font style=&quot;font-size: 20px&quot;&gt;&amp;nbsp; &amp;nbsp; ①　シーケンスパラメータを入力する&lt;br&gt;&lt;br&gt;&amp;nbsp; &amp;nbsp; ②　createDDS40bits_sim.py の実行&lt;br&gt;&lt;br&gt;&amp;nbsp; &amp;nbsp; ③　画面上のwriteCSVボタンを実行&lt;br&gt;&lt;br&gt;&amp;nbsp; &amp;nbsp; ④　pulsedata_ver2.py の実行&lt;/font&gt;" style="text;html=1;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;strokeColor=#f0f0f0;" parent="63" vertex="1">
+                    <mxGeometry width="383.5365853658537" height="236" as="geometry"/>
+                </mxCell>
+                <mxCell id="62" value="&lt;ul style=&quot;font-size: 15px&quot;&gt;&lt;li&gt;&lt;font style=&quot;font-size: 15px&quot;&gt;出力したい任意のパルスシーケンスパラメータを入力する&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 15px&quot;&gt;周波数・位相を加味した40bitのDDS制御ワードを生成し、DDSパラメータのSheetに記述する&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 15px&quot;&gt;Raspberry pi が読み込めるようにファイルをCSV形式に変換して出力する&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;ul style=&quot;font-size: 15px&quot;&gt;&lt;li&gt;&lt;font style=&quot;font-size: 15px&quot;&gt;2つのCSVファイルを読みこみ、記述されたデータに基づいたパルスシーケンスを出力する&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;strokeColor=#f0f0f0;" parent="63" vertex="1">
+                    <mxGeometry x="383" y="1.5733333333333333" width="467" height="234.42666666666668" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=12;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="81" y="79" width="654" height="553" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="106" y="319" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Pulseパラメータ" style="rounded=0;whiteSpace=wrap;html=1;" parent="12" vertex="1">
+                    <mxGeometry y="20" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="&lt;font style=&quot;font-size: 14px&quot;&gt;Sheet1&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="12" vertex="1">
+                    <mxGeometry x="-5" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="296" y="319" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="DDSパラメータ" style="rounded=0;whiteSpace=wrap;html=1;" parent="13" vertex="1">
+                    <mxGeometry y="20" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="&lt;font style=&quot;font-size: 14px&quot;&gt;Sheet2&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="13" vertex="1">
+                    <mxGeometry x="-5" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.15;exitY=0.99;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="4" edge="1">
+                    <mxGeometry x="-29" y="126" as="geometry">
+                        <mxPoint x="183" y="338" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="183" y="268"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" parent="1" source="8" edge="1">
+                    <mxGeometry x="-29" y="126" as="geometry">
+                        <mxPoint x="386" y="339" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.923;exitY=1.03;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="4" edge="1">
+                    <mxGeometry x="-29" y="126" as="geometry">
+                        <mxPoint x="386" y="339" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="563" y="335" width="138" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="" style="group" parent="26" vertex="1" connectable="0">
+                    <mxGeometry x="-31.9125" width="169.91250000000002" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="&lt;div&gt;&lt;span&gt;&amp;nbsp; createDDS40bits_sim.py&lt;/span&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=17;align=left;" parent="25" vertex="1">
+                    <mxGeometry x="-0.0014843750000022027" width="181.59398437500002" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image=data:image/png,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAD8UlEQVRoge2YTWhcVRSAv3MnaSY/SqlSNEVTartppBZN8Ye2aYwTNUh3jQqCKEoWbqKWtO6yakmoNOBWFF0EaSsFu3CKiROjRUu7aaOpolQ0hEhpQQ1pJpP37nExVUnnzcx7uS9DC/NtZjj3/N775t1zBqpUqXJbI/G4UeHg6HaD6VLlMYEtQDPQCPjANYEZFc4ZOOklvx5nYMDGEdm9gP2j20xCRoDWsCaKnlYv8RLvdlx1DZ9wsh441WD8Nd8BD0QxE2SzEd2lqU0fMj6uLikYF+OahcZdwIaV2KrweE12Z5dLfHAsQOW/5Ges0VaLbQEmw9pbeMIlPrgWYPXO/DdJc/ipKQZTv6NyPLwDucMlPkCNq4M8+gzvjG4lJ/OI7ovHZzhiKoANxsoPsXmLgNMjdCvgtGd2qHMYGC6lY/rH+hCOltLRibo+dJlOFmQStYdlT+5kSf/h060oSdAdiHyqE8nXSimWPoGDmc1GdT/oTmAj+dagkgiqR3Us+YV0Zn8LUih6Aon+L/catRdAe8m3CZVO/l+aSNBbbDG4gLfHWlR0BGhYrazySLiGTvT5YkuBBZhafYtK7Ljqrzc+y8XapJnGe4IWgk9ApdspsXD8aa137EYa28pqG+/hQHGBpC+zlojd5QqYN8gLHHn6ip5pWg8aZsO2BAkLC0h624lt0FmGRWUa5X1recgbfPI0AL43DDSVtRZZFyQueI0mMPdGbNB/EuSQr94oQ6lZkFDmqhi+qjuC6ouholitDxIXFKCq6yIcwIi9vvgq73UvhjXQM03r8XJ7mDD9iD4S1g7Ra0HiggJEyWqI/BUyWm9eZrDb028amvH9A8Be4D5KTXreEvkNijqImdkgadBNHFjpTVhV+wYDnZ5matvwvTTIXREziobxLwSKbxb4Yn4u50uUswylLmmGJAlzYtWThwXql6aCFgrfQpev/gjMl/Kmwvd567oulJYYEixHWtpYClooLOB4j69wtozDfIHKRufUyuNh7aFii4E3saDHQrk2q96OeyC90rF0vngKAVj0E2Bm1dIqTRa4BPoRxrZJe/aDUsrB88Bg6i85MPa6wmdFdcozLO2Lb67QNjRFHwF/sPNzC50KGeD6aieyUpx6noBZNirOp3SrzsShqWQBM4i2grkfuBiX00oWkJbduSlpX5hG9ERcTt3+S1OZi9CUPauZNQ9Sm/gb3/b8b++GWwFivyVM65qnGSOT+Mvm+Gmn+Dg+QrI7NwUS7tYuZA5NnHKJD3H8Bhqzr4B+HNHqMshz0jH/h2v42GZfHa/dAWYfwqMILSh3A3Ugc6heQfgF9BwmkWZ24bz04McVu0qVKrcx/wCMzkVJG0VvSgAAAABJRU5ErkJggg==;fontSize=10;" parent="25" vertex="1">
+                    <mxGeometry x="146.90896015625" y="22.06" width="25.875000000000004" height="25.875000000000004" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="156" y="149" width="260" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="" style="group" parent="29" vertex="1" connectable="0">
+                    <mxGeometry width="260" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="&lt;font style=&quot;font-size: 15px&quot;&gt;Excelファイル&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="14" vertex="1">
+                    <mxGeometry x="-9.997142857142855" width="110" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image=data:image/png,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABg0lEQVRIie2UO0jDUBSG/2vSB00bsUiRilAcnRwcrMXXpENXcXDUSQVBcHCr6Cx0kIpzh+JucRKjSMCq4CTipOhUpFX7SpP2OkiljyS3RF3Ub7q5J+f/4JAc4B8GxKzoi87IAB3Wq3kCfZK9Sxw3iJVvxiIjANBh7tcPZ0ODtRND8HV+XMDXDp7VYIqCDtUXC/ePDS8Tns9xneI1ABTz2VeNVM/aFjSH60E1za2paggA1KIiUXshxOppGREhBIujs+jt9MHJ27EyMQcHb2PlGMI3X1BK4RVErE/N4y79gIDXD0VTv08AANtHcZyvxRHqH8RkdMFyuKHAxnEoaxoI+RhZPYL8BACoaKCKv8QU6H6mW+FlJK4OEU8dYDO8ZNBKTbeAocDtcOE5/4KdkwRip/tI5zLwOIV2snRpGVFOKSCSjH0+byR3LYc3CAjIBetf4EqVNxB6CQD2rJqpusvHLIHpHHumB6hRTegWJd7lMNimwO2eRIDfsOwYAiJbzLXa9xd5B87WbtE/CwxzAAAAAElFTkSuQmCC;" parent="14" vertex="1">
+                    <mxGeometry x="213" y="58" width="24" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="" style="group;rotation=-90;" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="436" y="301" width="79" height="66" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="" style="shape=flexArrow;endArrow=classic;html=1;width=14;endSize=7.66;" parent="32" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="73" y="73" as="sourcePoint"/>
+                        <mxPoint x="7" y="73" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="51" value="実行" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;fontSize=14;" parent="32" vertex="1">
+                    <mxGeometry x="14.5" y="28" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="手順①" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="376" y="159" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="手順②" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeWidth=7;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="627" y="299" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="入力" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="396" y="299" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="入力" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="186" y="299" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="&lt;font style=&quot;font-size: 20px&quot;&gt;pulse_simdata.xlsm&lt;/font&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
+                    <mxGeometry x="146" y="177" width="260" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image=data:image/png,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABg0lEQVRIie2UO0jDUBSG/2vSB00bsUiRilAcnRwcrMXXpENXcXDUSQVBcHCr6Cx0kIpzh+JucRKjSMCq4CTipOhUpFX7SpP2OkiljyS3RF3Ub7q5J+f/4JAc4B8GxKzoi87IAB3Wq3kCfZK9Sxw3iJVvxiIjANBh7tcPZ0ODtRND8HV+XMDXDp7VYIqCDtUXC/ePDS8Tns9xneI1ABTz2VeNVM/aFjSH60E1za2paggA1KIiUXshxOppGREhBIujs+jt9MHJ27EyMQcHb2PlGMI3X1BK4RVErE/N4y79gIDXD0VTv08AANtHcZyvxRHqH8RkdMFyuKHAxnEoaxoI+RhZPYL8BACoaKCKv8QU6H6mW+FlJK4OEU8dYDO8ZNBKTbeAocDtcOE5/4KdkwRip/tI5zLwOIV2snRpGVFOKSCSjH0+byR3LYc3CAjIBetf4EqVNxB6CQD2rJqpusvHLIHpHHumB6hRTegWJd7lMNimwO2eRIDfsOwYAiJbzLXa9xd5B87WbtE/CwxzAAAAAElFTkSuQmCC;" vertex="1" parent="1">
+                    <mxGeometry x="370" y="218" width="24" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="" style="shape=flexArrow;endArrow=classic;html=1;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="181" y="408" as="sourcePoint"/>
+                        <mxPoint x="181" y="463" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="71" value="&lt;font style=&quot;font-size: 12px&quot;&gt;画面上のwriteCSV実行&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=15;" vertex="1" parent="1">
+                    <mxGeometry x="196.5" y="440" width="132" height="23" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="" style="shape=flexArrow;endArrow=classic;html=1;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="357" y="406" as="sourcePoint"/>
+                        <mxPoint x="357" y="467" as="targetPoint"/>
+                        <Array as="points"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="73" value="手順③" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=20;strokeWidth=4;" vertex="1" parent="1">
+                    <mxGeometry x="219" y="410" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&amp;nbsp;pluse_simdata.csv&lt;/font&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;strokeWidth=3;fontSize=12;align=left;size=21;" vertex="1" parent="1">
+                    <mxGeometry x="128" y="481" width="126" height="75" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" value="&lt;font style=&quot;font-size: 11px&quot;&gt;&amp;nbsp;pluse_simDDSdata.csv&lt;/font&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;strokeWidth=3;fontSize=12;align=left;size=21;" vertex="1" parent="1">
+                    <mxGeometry x="305" y="481" width="126" height="75" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="&lt;font style=&quot;font-size: 20px&quot;&gt;Mac（PC) 上での動作&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=20;" vertex="1" parent="1">
+                    <mxGeometry x="123" y="42" width="208" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="80" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.github;fontSize=15;" vertex="1" parent="1">
+                    <mxGeometry x="939" y="316" width="98" height="101" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" value="" style="shape=flexArrow;endArrow=classic;html=1;fontSize=12;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="801" y="380" as="sourcePoint"/>
+                        <mxPoint x="924" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="82" value="git hub" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=25;" vertex="1" parent="1">
+                    <mxGeometry x="948" y="242" width="85" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="83" value="&lt;font style=&quot;font-size: 15px&quot;&gt;git 経由でソースコードを管理し反映&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=25;" vertex="1" parent="1">
+                    <mxGeometry x="858" y="279" width="253" height="37" as="geometry"/>
+                </mxCell>
+                <mxCell id="85" value="push" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=25;" vertex="1" parent="1">
+                    <mxGeometry x="809" y="337" width="64" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" value="Raspberry pi 上での動作" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=25;" vertex="1" parent="1">
+                    <mxGeometry x="1216" y="171" width="284" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="88" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="1248" y="296" width="249" height="108" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="" style="group" parent="88" vertex="1" connectable="0">
+                    <mxGeometry y="38" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="" style="group" parent="38" vertex="1" connectable="0">
+                    <mxGeometry y="-20" width="160" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="&lt;div&gt;&lt;span&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;&amp;nbsp; &amp;nbsp;pulsesim.py&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=17;align=left;" parent="39" vertex="1">
+                    <mxGeometry x="24" y="13" width="136" height="77" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image=data:image/png,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAD8UlEQVRoge2YTWhcVRSAv3MnaSY/SqlSNEVTartppBZN8Ye2aYwTNUh3jQqCKEoWbqKWtO6yakmoNOBWFF0EaSsFu3CKiROjRUu7aaOpolQ0hEhpQQ1pJpP37nExVUnnzcx7uS9DC/NtZjj3/N775t1zBqpUqXJbI/G4UeHg6HaD6VLlMYEtQDPQCPjANYEZFc4ZOOklvx5nYMDGEdm9gP2j20xCRoDWsCaKnlYv8RLvdlx1DZ9wsh441WD8Nd8BD0QxE2SzEd2lqU0fMj6uLikYF+OahcZdwIaV2KrweE12Z5dLfHAsQOW/5Ges0VaLbQEmw9pbeMIlPrgWYPXO/DdJc/ipKQZTv6NyPLwDucMlPkCNq4M8+gzvjG4lJ/OI7ovHZzhiKoANxsoPsXmLgNMjdCvgtGd2qHMYGC6lY/rH+hCOltLRibo+dJlOFmQStYdlT+5kSf/h060oSdAdiHyqE8nXSimWPoGDmc1GdT/oTmAj+dagkgiqR3Us+YV0Zn8LUih6Aon+L/catRdAe8m3CZVO/l+aSNBbbDG4gLfHWlR0BGhYrazySLiGTvT5YkuBBZhafYtK7Ljqrzc+y8XapJnGe4IWgk9ApdspsXD8aa137EYa28pqG+/hQHGBpC+zlojd5QqYN8gLHHn6ip5pWg8aZsO2BAkLC0h624lt0FmGRWUa5X1recgbfPI0AL43DDSVtRZZFyQueI0mMPdGbNB/EuSQr94oQ6lZkFDmqhi+qjuC6ouholitDxIXFKCq6yIcwIi9vvgq73UvhjXQM03r8XJ7mDD9iD4S1g7Ra0HiggJEyWqI/BUyWm9eZrDb028amvH9A8Be4D5KTXreEvkNijqImdkgadBNHFjpTVhV+wYDnZ5matvwvTTIXREziobxLwSKbxb4Yn4u50uUswylLmmGJAlzYtWThwXql6aCFgrfQpev/gjMl/Kmwvd567oulJYYEixHWtpYClooLOB4j69wtozDfIHKRufUyuNh7aFii4E3saDHQrk2q96OeyC90rF0vngKAVj0E2Bm1dIqTRa4BPoRxrZJe/aDUsrB88Bg6i85MPa6wmdFdcozLO2Lb67QNjRFHwF/sPNzC50KGeD6aieyUpx6noBZNirOp3SrzsShqWQBM4i2grkfuBiX00oWkJbduSlpX5hG9ERcTt3+S1OZi9CUPauZNQ9Sm/gb3/b8b++GWwFivyVM65qnGSOT+Mvm+Gmn+Dg+QrI7NwUS7tYuZA5NnHKJD3H8Bhqzr4B+HNHqMshz0jH/h2v42GZfHa/dAWYfwqMILSh3A3Ugc6heQfgF9BwmkWZ24bz04McVu0qVKrcx/wCMzkVJG0VvSgAAAABJRU5ErkJggg==;" parent="39" vertex="1">
+                    <mxGeometry x="123.9974712643678" y="44.004285714285714" width="20.390625" height="20.390625" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="手順④" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=20;strokeWidth=4;" parent="88" vertex="1">
+                    <mxGeometry x="160" width="70" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="87" value="&lt;font style=&quot;font-size: 17px&quot;&gt;実行&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=25;" vertex="1" parent="88">
+                    <mxGeometry x="141" y="30" width="108" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="93" value="" style="shape=flexArrow;endArrow=classic;html=1;fontSize=25;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="1469" y="378" as="sourcePoint"/>
+                        <mxPoint x="1569" y="378" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1519" y="378"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="94" value="パルス出力&lt;br&gt;オシロで観測" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=25;" vertex="1" parent="1">
+                    <mxGeometry x="1579" y="340" width="160" height="64" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
