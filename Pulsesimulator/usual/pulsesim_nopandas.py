@@ -13,11 +13,11 @@ pf = platform.system()
 
 Linux_pass = '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
 Mac_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
-Rasberrypi_pass = '/home/pi/python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
+Raspberrypi_pass = '/home/pi/python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
 
 
 if pf == 'Linux':
-    pulse_csv = open(Linux_pass)
+    pulse_csv = open(Raspberrypi_pass)
 elif pf == 'Darwin':
     pulse_csv = open(Mac_pass)
 
@@ -85,7 +85,7 @@ for i in ADpoat:
     GPIO.setup(i, GPIO.OUT)
 
 if pf == 'Linux':
-    pulse_csv = open(Linux_pass)
+    pulse_csv = open(Raspberrypi_pass)
 elif pf == 'Darwin':
     pulse_csv = open(Mac_pass)
 
@@ -144,7 +144,7 @@ Macdds_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/
 Rasdds_pass = '/home/pi/python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv'
 
 if pf == 'Linux':
-    DDS_csv = open(Lindds_pass)
+    DDS_csv = open(Rasdds_pass)
 elif pf == 'Darwin':
     DDS_csv = open(Macdds_pass)
 
