@@ -242,7 +242,10 @@ countlist = []
 for k in range(len(countlist0)):
     # *100:[1count : 1us] *10000:[1count : 100us] *100000000[1count :1s]
     if char_DDS in targetlist0[k]:
-        countlist.append((countlist0[k] * 100000000)-40)
+        if countlist0[k] == 0:
+            countlist.append(0)
+        else:
+            countlist.append((countlist0[k] * 100000000)-40)
     else:
         countlist.append(countlist0[k] * 100000000)
     countlist[k] = format(countlist[k], 'b').zfill(32)  # 2進数に変換して32桁になるように0埋め
