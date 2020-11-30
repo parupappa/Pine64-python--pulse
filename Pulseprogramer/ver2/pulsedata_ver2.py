@@ -229,19 +229,24 @@ while i < len(allPLADDDSdatalist):
 targetlist0 = []
 countlist0 = []
 
+char_DDS = "DDS"
+
 for n in range(len(allPLADDDSdatalist_new)):
     targetlist0.append(allPLADDDSdatalist_new[n][0])
     countlist0.append(allPLADDDSdatalist_new[n][1])
-# print(targetlist0)  # ['PL1', '', 'PL1', '', 'AD1', '']
+print(targetlist0)  # ['PL1', '', 'PL1', '', 'AD1', '']
 # print(countlist0)  # [0, 2, 5, 9, 10, 11]
 
 # カウント値操作部分
 countlist = []
 for k in range(len(countlist0)):
     # *100:[1count : 1us] *10000:[1count : 100us] *100000000[1count :1s]
-    countlist.append(countlist0[k] * 100000000)
+    if char_DDS in targetlist0[k]:
+        countlist.append((countlist0[k] * 100000000)-40)
+    else:
+        countlist.append(countlist0[k] * 100000000)
     countlist[k] = format(countlist[k], 'b').zfill(32)  # 2進数に変換して32桁になるように0埋め
-# print(countlist) #カウント値 32桁の2進数表記
+print(countlist)  # カウント値 32桁の2進数表記
 #################################################################################################
 
 
@@ -355,7 +360,7 @@ for i in range(len(dictvalue)):
 for j in range(len(Pulsedata_hex)):
     csvdata_pulse = [addresslist[17 + j], Pulsedata_hex[j]]
     csvdata.append(csvdata_pulse)
-#print(csvdata)  # 全CSVdata
+# print(csvdata)  # 全CSVdata
 
 
 # CSVファイル生成部分
