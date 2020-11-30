@@ -15,6 +15,7 @@ GPIO.setup(data_poat, GPIO.OUT)
 GPIO.setup(enable_poat, GPIO.OUT)
 GPIO.setup(start_poat, GPIO.OUT)
 
+"""
 s = "s"
 ms = "ms"
 us = "us"
@@ -38,7 +39,11 @@ data_8bit = list(format(count_value, 'b').zfill(8))
 
 print(data_8bit)
 
-for i in data_8bit:
+"""
+
+test_data = [1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+for i in test_data:
     GPIO.output(data_poat, int(i))
     sleep(0.5)
     GPIO.output(enable_poat, 1)

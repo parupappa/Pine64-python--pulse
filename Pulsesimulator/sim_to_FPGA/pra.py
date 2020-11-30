@@ -19,7 +19,7 @@ GPIO.setup(start_poat, GPIO.OUT)
 
 
 s = "s"
-"""
+
 ms = "ms"
 us = "us"
 
@@ -40,36 +40,30 @@ elif unit == "ns":
 
 data_16bit = list(format(count_value, 'b').zfill(16))
 print(data_16bit)
-"""
 
-test_data = [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0]
 
-for i in test_data:
-    if i == 1:
+
+
+for i in data_16bit:
+    if i == "1":
         GPIO.output(data_poat, 1)
-        sleep(0.1)
-        
         GPIO.output(enable_poat, 1)
-        sleep(1)
         GPIO.output(enable_poat, 0)
-        sleep(1)
+        
         
         
         
     else:
-        GPIO.output(data_poat, 0)
-        sleep(0.1)
-        
+        GPIO.output(data_poat, 0)      
         GPIO.output(enable_poat, 1)
-        sleep(1)
         GPIO.output(enable_poat, 0)
-        sleep(1)
+        
         
     
 start_botn = input("please push s  : " )
 if start_botn == "s":
     GPIO.output(start_poat, 1)
-    sleep(1)
+    
     GPIO.output(start_poat, 0)
 
 else:
