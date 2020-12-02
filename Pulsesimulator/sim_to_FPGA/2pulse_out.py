@@ -22,6 +22,7 @@ GPIO.setup(through_port, GPIO.OUT)
 s = "s"
 ms = "ms"
 us = "us"
+t = "t"
 
 pulse_info = []
 
@@ -89,7 +90,7 @@ for out_info in pulse_info:
     if out_info[2] == 1:
         through_botn = input("Please enter  t  : ")
         if through_botn == "t":
-            GPIO.output(through, 1)
+            GPIO.output(through_port, 1)
             sleep(through_widthpulse[through_ONcounter])
 
         else:
@@ -118,7 +119,7 @@ for out_info in pulse_info:
             print(through_OFFcounter)
 
 
-for i in range(through_ONcounter):
+for i in range(through_OFFcounter):
     start_botn = input("Please enter s  : ")
     if start_botn == "s":
         GPIO.output(start_port, 1)
