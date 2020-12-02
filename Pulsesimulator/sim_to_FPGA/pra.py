@@ -7,7 +7,6 @@ from time import sleep
 GPIO.setmode(GPIO.BCM)
 
 
-
 data_poat = 17
 enable_poat = 27
 start_poat = 22
@@ -23,7 +22,7 @@ s = "s"
 ms = "ms"
 us = "us"
 
-width_pulse = int(input("please input width_pulse only number : " ))
+width_pulse = int(input("please input width_pulse only number : "))
 print("width_pulse:%d" % width_pulse)
 print("--------------------------------------------------")
 unit = str(input("please input pulse unit(s,ms,us,ns) : "))
@@ -42,35 +41,26 @@ data_16bit = list(format(count_value, 'b').zfill(16))
 print(data_16bit)
 
 
-
-
 for i in data_16bit:
     if i == "1":
         GPIO.output(data_poat, 1)
         GPIO.output(enable_poat, 1)
         GPIO.output(enable_poat, 0)
-        
-        
-        
-        
+
     else:
-        GPIO.output(data_poat, 0)      
+        GPIO.output(data_poat, 0)
         GPIO.output(enable_poat, 1)
         GPIO.output(enable_poat, 0)
-        
-        
-    
-start_botn = input("please push s  : " )
+
+
+start_botn = input("please push s  : ")
 if start_botn == "s":
     GPIO.output(start_poat, 1)
-    
+
     GPIO.output(start_poat, 0)
 
 else:
     print("plese push s")
-
-
-
 
 
 GPIO.cleanup()
