@@ -30,7 +30,6 @@ pulse_info = []
 
 def bousenn():
     print("--------------------------------------------------")
-    
 
 
 for i in range(2):
@@ -115,16 +114,17 @@ for out_info in pulse_info:
                     GPIO.output(enable_port, 1)
                     GPIO.output(enable_port, 0)
 
-            start_botn = input("Please enter s  : ")
-            if start_botn == "s":
-                print("output start")
-                GPIO.output(start_port, 1)
-                GPIO.output(start_port, 0)
-            else:
-                print("Please enter s")
-
             through_OFFcounter += 1
             print(through_OFFcounter)
+
+
+for i in range(through_ONcounter):
+    start_botn = input("Please enter s  : ")
+    if start_botn == "s":
+        GPIO.output(start_port, 1)
+        GPIO.output(start_port, 0)
+    else:
+        print("Please enter s")
 
 
 GPIO.cleanup()
