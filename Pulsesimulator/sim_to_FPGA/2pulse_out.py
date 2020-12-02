@@ -25,7 +25,7 @@ us = "us"
 
 pulse_info = []
 
- 変な関数
+# 変な関数
 
 
 def bousenn():
@@ -47,7 +47,7 @@ for i in range(2):
     pulse_info.append(default_info)
 
 
- 単位変換関数
+# 単位変換関数
 def change_unit(width_pulse, unit):
     if unit == "s":
         count_value = width_pulse * (10**6) * 10
@@ -59,7 +59,7 @@ def change_unit(width_pulse, unit):
     return count_value
 
 
- format変換関数
+# format変換関数
 def change_format(count):
     data_16bit = list(format(count, 'b').zfill(16))
     data_16bit_int = [int(s) for s in data_16bit]
