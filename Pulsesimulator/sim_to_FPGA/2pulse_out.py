@@ -104,13 +104,11 @@ for out_info in pulse_info:
         while through_OFFcounter < len(data_list):
             for j in data_list[through_OFFcounter]:
                 if j == 1:
-                    pass
                     GPIO.output(data_port, 1)
                     GPIO.output(enable_port, 1)
                     GPIO.output(enable_port, 0)
 
                 else:
-                    pass
                     GPIO.output(data_port, 0)
                     GPIO.output(enable_port, 1)
                     GPIO.output(enable_port, 0)
