@@ -85,9 +85,28 @@ print(pulse_info)
 
 through_OFFcounter = 0
 through_ONcounter = 0
+dataloop_counter = 0
 
 for out_info in pulse_info:
-    if out_info[2] == 1:
+    if out_info[2] == 0:
+        while through_OFFcounter < len(data_list):
+            for j in data_list[dataloop_counter]:
+                if j == 1:
+                    GPIO.output(data_port, 1)
+                    GPIO.output(enable_port, 1)
+                    GPIO.output(enable_port, 0)
+
+                else:
+                    GPIO.output(data_port, 0)
+                    GPIO.output(enable_port, 1)
+                    GPIO.output(enable_port, 0)
+
+            dataloop_counter += 1
+            print(dataloop_counter)
+
+
+while through_OFFcounter + through_ONcounter <= len(pulse_info):
+    if pulse_info[through_ONcounter][2] == 1:
         through_botn = input("Please enter  t  : ")
         if through_botn == "t":
             GPIO.output(through_port, 1)
@@ -101,29 +120,17 @@ for out_info in pulse_info:
         print(through_ONcounter)
 
     else:
-        while through_OFFcounter < len(data_list):
-            for j in data_list[through_OFFcounter]:
-                if j == 1:
-                    GPIO.output(data_port, 1)
-                    GPIO.output(enable_port, 1)
-                    GPIO.output(enable_port, 0)
+        for i in range(through_OFFcounter):
+            start_botn = input("Please enter s  : ")
+            if start_botn == "s":
+                GPIO.output(start_port, 1)
+                GPIO.output(start_port, 0)
+            else:
+                print("Please enter s")
+                continue
 
-                else:
-                    GPIO.output(data_port, 0)
-                    GPIO.output(enable_port, 1)
-                    GPIO.output(enable_port, 0)
-
-            through_OFFcounter += 1
-            print(through_OFFcounter)
-
-
-for i in range(through_OFFcounter):
-    start_botn = input("Please enter s  : ")
-    if start_botn == "s":
-        GPIO.output(start_port, 1)
-        GPIO.output(start_port, 0)
-    else:
-        print("Please enter s")
+        through_OFFcounter += 1
+        print(through_OFFcounter)
 
 
 GPIO.cleanup()
