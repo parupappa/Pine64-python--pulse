@@ -2,9 +2,9 @@
 
 import math
 import platform
- import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 from time import sleep
- GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 
 
 data_port = 17
@@ -30,7 +30,7 @@ pulse_info = []
 
 def bousenn():
     print("--------------------------------------------------")
-    print()
+    
 
 
 for i in range(2):
@@ -127,4 +127,4 @@ for out_info in pulse_info:
             print(through_OFFcounter)
 
 
- GPIO.cleanup()
+GPIO.cleanup()
