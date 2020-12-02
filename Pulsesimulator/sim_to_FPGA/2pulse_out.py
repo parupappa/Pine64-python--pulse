@@ -103,9 +103,9 @@ for out_info in pulse_info:
 
             dataloop_counter += 1
             print(dataloop_counter)
-          
-while through_OFFcounter + through_ONcounter <= len(pulse_info):
-    if pulse_info[through_ONcounter][2] == 1:
+
+while through_OFFcounter + through_ONcounter < len(pulse_info):
+    if pulse_info[through_ONcounter + through_OFFcounter][2] == 1:
         through_botn = input("Please enter  t  : ")
         if through_botn == "t":
             GPIO.output(through_port, 1)
