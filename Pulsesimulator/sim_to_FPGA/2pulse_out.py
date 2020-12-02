@@ -116,20 +116,19 @@ while through_OFFcounter + through_ONcounter < len(pulse_info):
             continue
 
         through_ONcounter += 1
-        print(through_ONcounter)
-
+        print("through_ONcounter %d : " % through_ONcounter)
+        
     else:
-        for i in range(through_OFFcounter):
-            start_botn = input("Please enter s  : ")
-            if start_botn == "s":
-                GPIO.output(start_port, 1)
-                GPIO.output(start_port, 0)
-            else:
-                print("Please enter s")
-                continue
+        start_botn = input("Please enter s  : ")
+        if start_botn == "s":
+            GPIO.output(start_port, 1)
+            GPIO.output(start_port, 0)
+        else:
+            print("Please enter s")
+            continue
 
         through_OFFcounter += 1
-        print(through_OFFcounter)
+        print("through_OFFcounter %d : " % through_OFFcounter)
 
 
 GPIO.cleanup()
