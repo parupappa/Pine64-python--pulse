@@ -9,21 +9,21 @@ from time import sleep
 
 data_port = 17
 clk_port = 27
-start_port = 22
+start_triger = 22
 ADdata_port = 10
 ADclk_port = 9
-ADstart_port = 11
+ADstart_triger = 11
 
 through_port = 26
 
 
 # #GPIO.setup(data_port, #GPIO.OUT)
 # #GPIO.setup(clk_port, #GPIO.OUT)
-# #GPIO.setup(start_port, #GPIO.OUT)
+# #GPIO.setup(start_triger, #GPIO.OUT)
 # #GPIO.setup(through_port, #GPIO.OUT)
 # #GPIO.setup(ADdata_port, #GPIO.OUT)
 # #GPIO.setup(ADclk_port, #GPIO.OUT)
-# #GPIO.setup(ADstart_port, #GPIO.OUT)
+# #GPIO.setup(ADstart_triger, #GPIO.OUT)
 
 #########################################################
 # ADモジュール
@@ -48,8 +48,8 @@ def AD_pulse():
     AD_start_botn = input("Please enter ad : ")
     if AD_start_botn == "ad":
         pass
-        # GPIO.output(ADstart_port, 1)
-        # GPIO.output(ADstart_port, 0)
+        # GPIO.output(ADstart_triger, 1)
+        # GPIO.output(ADstart_triger, 0)
     else:
         print("Please enter ad")
 
@@ -175,8 +175,8 @@ while through_OFFcounter + through_ONcounter < len(pulse_info):
         start_botn = input("Please enter s  : ")
         if start_botn == "s":
             pass
-            # GPIO.output(start_port, 1)
-            # GPIO.output(start_port, 0)
+            # GPIO.output(start_triger, 1)
+            # GPIO.output(start_triger, 0)
         else:
             print("Please enter s")
             continue
@@ -244,8 +244,8 @@ for i in range(loop_times):
         print()
         if start_botn == "s":
             pass
-            # GPIO.output(start_port, 1)
-            # GPIO.output(start_port, 0)
+            # GPIO.output(start_triger, 1)
+            # GPIO.output(start_triger, 0)
         else:
             print("Please enter s")
             continue
