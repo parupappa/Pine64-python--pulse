@@ -2,21 +2,59 @@
 
 import math
 import platform
-#import RPi.GPIO as GPIO
+# import RPi.#GPIO as #GPIO
 from time import sleep
-# GPIO.setmode(GPIO.BCM)
+# #GPIO.setmode(#GPIO.BCM)
 
 
 data_port = 17
-enable_port = 27
+clk_port = 27
 start_port = 22
+ADdata_port = 10
+ADclk_port = 9
+ADstart_port = 11
+
 through_port = 26
 
 
-# GPIO.setup(data_port, GPIO.OUT)
-# GPIO.setup(enable_port, GPIO.OUT)
-# GPIO.setup(start_port, GPIO.OUT)
-# GPIO.setup(through_port, GPIO.OUT)
+# #GPIO.setup(data_port, #GPIO.OUT)
+# #GPIO.setup(clk_port, #GPIO.OUT)
+# #GPIO.setup(start_port, #GPIO.OUT)
+# #GPIO.setup(through_port, #GPIO.OUT)
+# #GPIO.setup(ADdata_port, #GPIO.OUT)
+# #GPIO.setup(ADclk_port, #GPIO.OUT)
+# #GPIO.setup(ADstart_port, #GPIO.OUT)
+
+#########################################################
+# ADモジュール
+# 必要なときに呼び出して使う。
+AD_data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0]
+
+
+def AD_pulse():
+    for i in AD_data:
+        if i == 1:
+            pass
+            # GPIO.output(ADdata_port, 1)
+            # GPIO.output(ADclk_port, 1)
+            # GPIO.output(ADclk_port, 0)
+
+        else:
+            pass
+            # GPIO.output(ADdata_port, 0)
+            # GPIO.output(ADclk_port, 1)
+            # GPIO.output(ADclk_port, 0)
+
+    AD_start_botn = input("Please enter ad : ")
+    if AD_start_botn == "ad":
+        pass
+        # GPIO.output(ADstart_port, 1)
+        # GPIO.output(ADstart_port, 0)
+    else:
+        print("Please enter ad")
+
+
+##########################################################
 
 
 s = "s"
@@ -104,14 +142,14 @@ for out_info in pulse_info:
             for j in data_list[dataloop_counter]:
                 if j == 1:
                     pass
-                    GPIO.output(data_port, 1)
-                    GPIO.output(enable_port, 1)
-                    GPIO.output(enable_port, 0)
+                    # GPIO.output(data_port, 1)
+                    # GPIO.output(clk_port, 1)
+                    # GPIO.output(clk_port, 0)
                 else:
                     pass
-                    GPIO.output(data_port, 0)
-                    GPIO.output(enable_port, 1)
-                    GPIO.output(enable_port, 0)
+                    # GPIO.output(data_port, 0)
+                    # GPIO.output(clk_port, 1)
+                    # GPIO.output(clk_port, 0)
 
             dataloop_counter += 1
             # print(dataloop_counter)
@@ -121,30 +159,30 @@ while through_OFFcounter + through_ONcounter < len(pulse_info):
         print()
         through_botn = input("Please enter  t  : ")
         if through_botn == "t":
-            GPIO.output(through_port, 1)
+            # GPIO.output(through_port, 1)
             sleep(through_widthpulse[through_ONcounter])
-            GPIO.output(through_port, 0)
+            # GPIO.output(through_port, 0)
 
         else:
             print("Please enter t")
             continue
 
         through_ONcounter += 1
-        #print("through_ONcounter  : %d " % through_ONcounter)
+        # print("through_ONcounter  : %d " % through_ONcounter)
 
     else:
         print()
         start_botn = input("Please enter s  : ")
         if start_botn == "s":
             pass
-            GPIO.output(start_port, 1)
-            GPIO.output(start_port, 0)
+            # GPIO.output(start_port, 1)
+            # GPIO.output(start_port, 0)
         else:
             print("Please enter s")
             continue
 
         through_OFFcounter += 1
-        #print("through_OFFcounter  :  %d " % through_OFFcounter)
+        # print("through_OFFcounter  :  %d " % through_OFFcounter)
 
 print()
 bousenn()
@@ -178,24 +216,24 @@ for i in range(loop_times):
     for k in next_data:
         if k == 1:
             pass
-            GPIO.output(data_port, 1)
-            GPIO.output(enable_port, 1)
-            GPIO.output(enable_port, 0)
+            # GPIO.output(data_port, 1)
+            # GPIO.output(clk_port, 1)
+            # GPIO.output(clk_port, 0)
 
         else:
             pass
-            GPIO.output(data_port, 0)
-            GPIO.output(enable_port, 1)
-            GPIO.output(enable_port, 0)
+            # GPIO.output(data_port, 0)
+            # GPIO.output(clk_port, 1)
+            # GPIO.output(clk_port, 0)
 
     if next_through == 1:  # through ONのとき
         print()
         through_botn = input("Please enter  t  : ")
         print()
         if through_botn == "t":
-            GPIO.output(through_port, 1)
+            # GPIO.output(through_port, 1)
             sleep(sleep_time)
-            GPIO.output(through_port, 0)
+            # GPIO.output(through_port, 0)
         else:
             print("Please enter t")
             continue
@@ -206,11 +244,11 @@ for i in range(loop_times):
         print()
         if start_botn == "s":
             pass
-            GPIO.output(start_port, 1)
-            GPIO.output(start_port, 0)
+            # GPIO.output(start_port, 1)
+            # GPIO.output(start_port, 0)
         else:
             print("Please enter s")
             continue
 
 
-# GPIO.cleanup()
+# #GPIO.cleanup()
