@@ -6,6 +6,7 @@ import csv
 import xlrd
 import openpyxl
 import platform
+import re
 pf = platform.system()
 
 Linux_pass = 'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
@@ -228,6 +229,8 @@ while i < len(allPLADDDSdatalist):
 # 対象とカウント値に分割
 targetlist0 = []
 countlist0 = []
+target_list = []
+count_list = []
 
 char_DDS = "DDS"
 
@@ -235,19 +238,59 @@ for n in range(len(allPLADDDSdatalist_new)):
     targetlist0.append(allPLADDDSdatalist_new[n][0])
     countlist0.append(allPLADDDSdatalist_new[n][1])
 print(targetlist0)  # ['PL1', '', 'PL1', '', 'AD1', '']
-# print(countlist0)  # [0, 2, 5, 9, 10, 11]
+print(countlist0)  # [0, 2, 5, 9, 10, 11]
+
+
+DDSname = ["DDS11", "DDS12", "DDS13", "DDS14",
+           "DDS15", "DDS16", "DDS17", "DDS18", "DDS21", "DDS22", "DDS23", "DDS24", "DDS25", "DDS26", "DDS27", "DDS28"]
+
+
+for i in range(len(targetlist0)):
+    DDSname_list, PLname, ADname = [], [], []
+    if char_DDS in targetlist0[i]:
+        DDSname_list = re.findall("DDS" + '[0-9]{2}', targetlist0[i])
+        PLname = re.findall("PL" + '[0-3]{1}', targetlist0[i])
+        ADname = re.findall("AD" + '[0-3]{1}', targetlist0[i])
+        """
+        print(DDSname_list)
+        print(PLname)
+        print(ADname)
+        print("-----------------------------")
+        """
+        if len(PLname) != 0:
+            target_list.append(PLname[0])
+            count_list.append(countlist0[i])
+        else:
+            pass
+        if len(ADname) != 0:
+            target_list.append(ADname[i])
+            count_list.append(countlist0[i])
+        else:
+            pass
+
+        for j in range(len(DDSname_list)):
+            target_list.append(DDSname_list[j])
+            count_list.append(countlist0[i])
+
+    else:
+        target_list.append(targetlist0[i])
+        count_list.append(countlist0[i])
+
+print(target_list)
+print(count_list)
+
 
 # カウント値操作部分
 countlist = []
-for k in range(len(countlist0)):
+for k in range(len(count_list)):
     # *100:[1count : 1us] *10000:[1count : 100us] *100000000[1count :1s]
-    if char_DDS in targetlist0[k]:
-        if countlist0[k] == 0:
+    if char_DDS in target_list[k]:
+        if count_list[k] == 0:
             countlist.append(0)
         else:
-            countlist.append((countlist0[k] * 100000000)-40)
+            countlist.append((count_list[k] * 100000000)-40)
     else:
-        countlist.append(countlist0[k] * 100000000)
+        countlist.append(count_list[k] * 100000000)
     countlist[k] = format(countlist[k], 'b').zfill(32)  # 2進数に変換して32桁になるように0埋め
 print(countlist)  # カウント値 32桁の2進数表記
 #################################################################################################
@@ -263,28 +306,28 @@ targetDDS21, targetDDS22, targetDDS23, targetDDS24, targetDDS25, targetDDS26, ta
 ], [], [], [], [], [], [], []
 
 
-targetPL1 = ['1' if 'PL1' in tl else '0' for tl in targetlist0]
-targetPL2 = ['1' if 'PL2' in tl else '0' for tl in targetlist0]
-targetPL3 = ['1' if 'PL3' in tl else '0' for tl in targetlist0]
-targetAD1 = ['1' if 'AD1' in tl else '0' for tl in targetlist0]
-targetAD2 = ['1' if 'AD2' in tl else '0' for tl in targetlist0]
-targetAD3 = ['1' if 'AD3' in tl else '0' for tl in targetlist0]
-targetDDS11 = ['1' if 'DDS11' in tl else '0' for tl in targetlist0]
-targetDDS12 = ['1' if 'DDS12' in tl else '0' for tl in targetlist0]
-targetDDS13 = ['1' if 'DDS13' in tl else '0' for tl in targetlist0]
-targetDDS14 = ['1' if 'DDS14' in tl else '0' for tl in targetlist0]
-targetDDS15 = ['1' if 'DDS15' in tl else '0' for tl in targetlist0]
-targetDDS16 = ['1' if 'DDS16' in tl else '0' for tl in targetlist0]
-targetDDS17 = ['1' if 'DDS17' in tl else '0' for tl in targetlist0]
-targetDDS18 = ['1' if 'DDS18' in tl else '0' for tl in targetlist0]
-targetDDS21 = ['1' if 'DDS21' in tl else '0' for tl in targetlist0]
-targetDDS22 = ['1' if 'DDS22' in tl else '0' for tl in targetlist0]
-targetDDS23 = ['1' if 'DDS23' in tl else '0' for tl in targetlist0]
-targetDDS24 = ['1' if 'DDS24' in tl else '0' for tl in targetlist0]
-targetDDS25 = ['1' if 'DDS25' in tl else '0' for tl in targetlist0]
-targetDDS26 = ['1' if 'DDS26' in tl else '0' for tl in targetlist0]
-targetDDS27 = ['1' if 'DDS27' in tl else '0' for tl in targetlist0]
-targetDDS28 = ['1' if 'DDS28' in tl else '0' for tl in targetlist0]
+targetPL1 = ['1' if 'PL1' in tl else '0' for tl in target_list]
+targetPL2 = ['1' if 'PL2' in tl else '0' for tl in target_list]
+targetPL3 = ['1' if 'PL3' in tl else '0' for tl in target_list]
+targetAD1 = ['1' if 'AD1' in tl else '0' for tl in target_list]
+targetAD2 = ['1' if 'AD2' in tl else '0' for tl in target_list]
+targetAD3 = ['1' if 'AD3' in tl else '0' for tl in target_list]
+targetDDS11 = ['1' if 'DDS11' in tl else '0' for tl in target_list]
+targetDDS12 = ['1' if 'DDS12' in tl else '0' for tl in target_list]
+targetDDS13 = ['1' if 'DDS13' in tl else '0' for tl in target_list]
+targetDDS14 = ['1' if 'DDS14' in tl else '0' for tl in target_list]
+targetDDS15 = ['1' if 'DDS15' in tl else '0' for tl in target_list]
+targetDDS16 = ['1' if 'DDS16' in tl else '0' for tl in target_list]
+targetDDS17 = ['1' if 'DDS17' in tl else '0' for tl in target_list]
+targetDDS18 = ['1' if 'DDS18' in tl else '0' for tl in target_list]
+targetDDS21 = ['1' if 'DDS21' in tl else '0' for tl in target_list]
+targetDDS22 = ['1' if 'DDS22' in tl else '0' for tl in target_list]
+targetDDS23 = ['1' if 'DDS23' in tl else '0' for tl in target_list]
+targetDDS24 = ['1' if 'DDS24' in tl else '0' for tl in target_list]
+targetDDS25 = ['1' if 'DDS25' in tl else '0' for tl in target_list]
+targetDDS26 = ['1' if 'DDS26' in tl else '0' for tl in target_list]
+targetDDS27 = ['1' if 'DDS27' in tl else '0' for tl in target_list]
+targetDDS28 = ['1' if 'DDS28' in tl else '0' for tl in target_list]
 
 
 bitsdata_32 = []
