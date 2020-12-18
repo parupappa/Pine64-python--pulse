@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 
 import math
+import sys
 import platform
 import RPi.GPIO as GPIO
 from time import sleep
@@ -95,7 +96,7 @@ def change_unit(width_pulse, unit):
     return count_value
 
 
-format変換関数
+#format exchange function 
 def change_format(count):
     data_16bit = list(format(count, 'b').zfill(16))
     data_16bit_int = [int(s) for s in data_16bit]
@@ -184,14 +185,19 @@ while through_OFFcounter + through_ONcounter < len(pulse_info):
 
 print()
 bousenn()
-print("How many times do you repeat ?")
+print("How many times do you repeat ? if you not repeat , please enter 0 ")
 loop_times = int(input("Please enter loop number : "))
+
 bousenn()
 print()
+if loop_times == 0:
+        sys.exit()
+
 
 for i in range(loop_times):
     next_data = []  #next pulse infomation
     next_width_pulse = int(input("Please enter width_pulse only number : "))
+    
     bousenn()
     next_unit = str(input("Please enter pulse unit(s,ms,us) : "))
     bousenn()
@@ -224,7 +230,7 @@ for i in range(loop_times):
             GPIO.output(clk_port, 1)
             GPIO.output(clk_port, 0)
 
-    if next_through == 1:  through ONのとき
+    if next_through == 1:  #through ONのとき
         print()
         through_botn = input("Please enter  t  : ")
         print()
