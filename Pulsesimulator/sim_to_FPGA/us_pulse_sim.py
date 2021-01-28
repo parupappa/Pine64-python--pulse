@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 import math
 import sys
@@ -10,25 +10,26 @@ GPIO.setmode(GPIO.BCM)
 
 data_port = 17
 clk_port = 27
-start_triger = 22
+start_trigger = 22
 ADdata_port = 10
 ADclk_port = 9
-ADstart_triger = 11
+ADstart_trigger = 11
 
 through_port = 26
 
 
 GPIO.setup(data_port, GPIO.OUT)
 GPIO.setup(clk_port, GPIO.OUT)
-GPIO.setup(start_triger, GPIO.OUT)
+GPIO.setup(start_trigger, GPIO.OUT)
 GPIO.setup(through_port, GPIO.OUT)
 GPIO.setup(ADdata_port, GPIO.OUT)
 GPIO.setup(ADclk_port, GPIO.OUT)
-GPIO.setup(ADstart_triger, GPIO.OUT)
+GPIO.setup(ADstart_trigger, GPIO.OUT)
 
 #########################################################
-#ADmodule
+# ADmodule
 AD_data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0]
+
 
 def AD_pulse():
     for i in AD_data:
@@ -47,8 +48,8 @@ def AD_pulse():
     AD_start_botn = input("Please enter ad : ")
     if AD_start_botn == "ad":
         pass
-        GPIO.output(ADstart_triger, 1)
-        GPIO.output(ADstart_triger, 0)
+        GPIO.output(ADstart_trigger, 1)
+        GPIO.output(ADstart_trigger, 0)
     else:
         print("Please enter ad")
 
@@ -62,8 +63,6 @@ us = "us"
 t = "t"
 
 pulse_info = []
-
-
 
 
 def bousenn():
@@ -84,7 +83,7 @@ for i in range(2):
     pulse_info.append(default_info)
 
 
-#unit exchange function
+# unit exchange function
 def change_unit(width_pulse, unit):
     if unit == "s":
         count_value = width_pulse * (10**6) * 10
@@ -96,7 +95,7 @@ def change_unit(width_pulse, unit):
     return count_value
 
 
-#format exchange function 
+# format exchange function
 def change_format(count):
     data_16bit = list(format(count, 'b').zfill(16))
     data_16bit_int = [int(s) for s in data_16bit]
@@ -174,8 +173,8 @@ while through_OFFcounter + through_ONcounter < len(pulse_info):
         start_botn = input("Please enter s  : ")
         if start_botn == "s":
             pass
-            GPIO.output(start_triger, 1)
-            GPIO.output(start_triger, 0)
+            GPIO.output(start_trigger, 1)
+            GPIO.output(start_trigger, 0)
         else:
             print("Please enter s")
             continue
@@ -191,13 +190,13 @@ loop_times = int(input("Please enter loop number : "))
 bousenn()
 print()
 if loop_times == 0:
-        sys.exit()
+    sys.exit()
 
 
 for i in range(loop_times):
-    next_data = []  #next pulse infomation
+    next_data = []  # next pulse infomation
     next_width_pulse = int(input("Please enter width_pulse only number : "))
-    
+
     bousenn()
     next_unit = str(input("Please enter pulse unit(s,ms,us) : "))
     bousenn()
@@ -230,7 +229,7 @@ for i in range(loop_times):
             GPIO.output(clk_port, 1)
             GPIO.output(clk_port, 0)
 
-    if next_through == 1:  #through ONのとき
+    if next_through == 1:  # through ONのとき
         print()
         through_botn = input("Please enter  t  : ")
         print()
@@ -248,8 +247,8 @@ for i in range(loop_times):
         print()
         if start_botn == "s":
             pass
-            GPIO.output(start_triger, 1)
-            GPIO.output(start_triger, 0)
+            GPIO.output(start_trigger, 1)
+            GPIO.output(start_trigger, 0)
         else:
             print("Please enter s")
             continue
