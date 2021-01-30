@@ -9,15 +9,15 @@ import platform
 import re
 pf = platform.system()
 
-Linux_pass = 'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
-Mac_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
+Linux_path = 'C:/Users/NITGC-E/Desktop/Tokken/Python/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
+Mac_path = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulseprogramer/ver2/pulsedata.xlsm'
 
 
 if pf == 'Windows':
-    wb = xlrd.open_workbook(Linux_pass)
+    wb = xlrd.open_workbook(Linux_path)
     sheet1 = wb.sheet_by_name('Pulseパラメータ')
 elif pf == 'Darwin':
-    wb = xlrd.open_workbook(Mac_pass)
+    wb = xlrd.open_workbook(Mac_path)
     sheet1 = wb.sheet_by_name('Pulseパラメータ')
 
 
@@ -116,11 +116,11 @@ patternnamelist_int = []
 
 
 if pf == 'Windows':
-    wb = xlrd.open_workbook(Linux_pass)
+    wb = xlrd.open_workbook(Linux_path)
     sheet2 = wb.sheet_by_name('DDSパラメータ')
 
 elif pf == 'Darwin':
-    wb = xlrd.open_workbook(Mac_pass)
+    wb = xlrd.open_workbook(Mac_path)
     sheet2 = wb.sheet_by_name('DDSパラメータ')
 
 
@@ -237,8 +237,8 @@ char_DDS = "DDS"
 for n in range(len(allPLADDDSdatalist_new)):
     targetlist0.append(allPLADDDSdatalist_new[n][0])
     countlist0.append(allPLADDDSdatalist_new[n][1])
-#print(targetlist0)  # ['PL1', '', 'PL1', '', 'AD1', '']
-#print(countlist0)  # [0, 2, 5, 9, 10, 11]
+# print(targetlist0)  # ['PL1', '', 'PL1', '', 'AD1', '']
+# print(countlist0)  # [0, 2, 5, 9, 10, 11]
 
 
 DDSname = ["DDS11", "DDS12", "DDS13", "DDS14",
@@ -276,8 +276,8 @@ for i in range(len(targetlist0)):
         target_list.append(targetlist0[i])
         count_list.append(countlist0[i])
 
-#print(target_list)
-#print(count_list)
+# print(target_list)
+# print(count_list)
 
 
 # カウント値操作部分

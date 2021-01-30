@@ -15,13 +15,13 @@ csv_dataframe = pd.read_csv(
 
 pf = platform.system()
 
-Linux_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
-Mac_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
+Linux_path = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
+Mac_path = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
 
 if pf == 'Linux':
-    pulse_csv = open(Linux_pass)
+    pulse_csv = open(Linux_path)
 elif pf == 'Darwin':
-    pulse_csv = open(Mac_pass)
+    pulse_csv = open(Mac_path)
 
 
 ###########################################################################################

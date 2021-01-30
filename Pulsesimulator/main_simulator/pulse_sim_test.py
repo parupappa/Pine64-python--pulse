@@ -18,19 +18,20 @@ import csv
 import pandas as pd
 from time import sleep
 import time
-#import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 import platform
 pf = platform.system()
 # GPIO.setmode(GPIO.BCM)
 
 
-fname_Lin = '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
-fname_Dar = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
+Raspberrypi_path = '/home/pi/python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
+
+Mac_path = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
 
 if pf == 'Linux':
-    pulse_csv = open(fname_Lin)
+    pulse_csv = open(Raspberrypi_path)
 elif pf == 'Darwin':
-    pulse_csv = open(fname_Dar)
+    pulse_csv = open(Mac_path)
 
 ###########################################################################################
 
@@ -63,7 +64,7 @@ for i in range(len(sc1)):
 # DDS40bit  データのシミュレーション
 if pf == 'Linux':
     dds_csv = open(
-        '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv')
+        '/home/pi/python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv'}
 elif pf == 'Darwin':
     dds_csv = open(
         '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv')
@@ -129,7 +130,7 @@ while True:
             GPIO.output(PL[0], 0)
             GPIO.output(DDS[0], 0)
             sleep(0.5)
-            #print("%d,waitting now" % (counter))
+            # print("%d,waitting now" % (counter))
         counter += 1
         # print(counter)
     else:

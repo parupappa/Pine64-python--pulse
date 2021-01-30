@@ -11,15 +11,15 @@ GPIO.setmode(GPIO.BCM)
 
 pf = platform.system()
 
-Linux_pass = '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
-Mac_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
-Raspberrypi_pass = '/home/pi/python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
+Linux_path = '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
+Mac_path = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
+Raspberrypi_path = '/home/pi/python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simdata.csv'
 
 
 if pf == 'Linux':
-    pulse_csv = open(Raspberrypi_pass)
+    pulse_csv = open(Raspberrypi_path)
 elif pf == 'Darwin':
-    pulse_csv = open(Mac_pass)
+    pulse_csv = open(Mac_path)
 
 ###########################################################################################
 # インデント減らしたい時、Shift + Tab
@@ -85,9 +85,9 @@ for i in ADpoat:
     GPIO.setup(i, GPIO.OUT)
 
 if pf == 'Linux':
-    pulse_csv = open(Raspberrypi_pass)
+    pulse_csv = open(Raspberrypi_path)
 elif pf == 'Darwin':
-    pulse_csv = open(Mac_pass)
+    pulse_csv = open(Mac_path)
 
 
 AD1_sc1, AD1_bc1, AD2_sc2, AD2_bc2, AD3_sc3, AD3_bc3 = [], [], [], [], [], []
@@ -139,14 +139,14 @@ print(AD_nsc)
 # DDS40bit  データのシミュレーション
 
 
-Lindds_pass = '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv'
-Macdds_pass = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv'
-Rasdds_pass = '/home/pi/python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv'
+Lindds_path = '/home/ubuntu/Documents/Python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv'
+Macdds_path = '/Users/yokooannosuke/Cording/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv'
+Rasdds_path = '/home/pi/python/Pine64-python--pulse/Pulsesimulator/usual/pulse_simDDSdata.csv'
 
 if pf == 'Linux':
-    DDS_csv = open(Rasdds_pass)
+    DDS_csv = open(Rasdds_path)
 elif pf == 'Darwin':
-    DDS_csv = open(Macdds_pass)
+    DDS_csv = open(Macdds_path)
 
 DDSpoat = [19, 26]
 
@@ -285,7 +285,7 @@ while counter <= max(max((max(PL_nsc), max(AD_nsc), max(DDS_nsc)))):
         j += 1
 
     else:
-        GPIO.output(DDSpoat[0] , 0)
+        GPIO.output(DDSpoat[0], 0)
         GPIO.output(DDSpoat[1], 0)
         GPIO.output(PLpoat[0], 0)
         GPIO.output(PLpoat[1], 0)
